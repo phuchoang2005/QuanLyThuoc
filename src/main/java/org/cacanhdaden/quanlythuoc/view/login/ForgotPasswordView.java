@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.user;
+package org.cacanhdaden.quanlythuoc.view.login;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -66,16 +66,6 @@ public class ForgotPasswordView extends JFrame {
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.LINE_START;
         panel.add(input, gbc);
-    }
-
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        SwingUtilities.invokeLater(() -> new ForgotPasswordView().setVisible(true));
     }
 }
 

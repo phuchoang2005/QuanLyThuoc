@@ -1,13 +1,25 @@
-package org.cacanhdaden.quanlythuoc.view.user;
+package org.cacanhdaden.quanlythuoc.view.login;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AuthenticationView extends JFrame {
+public class LoginView extends JFrame {
+    private JPanel mainPanel = new JPanel();
+    private JLabel lblSubTitle = new JLabel("Đăng nhập tài khoản", SwingConstants.CENTER);
+    private JPanel formPanel = new JPanel(new GridBagLayout());
+    private JTextField txtUsername = new JTextField(20);
+    private JPasswordField txtPassword = new JPasswordField(20);
+    private JPanel optionPanel = new JPanel(new GridLayout(2, 2, 10, 5));
+    private JButton btnForgot = new JButton("Nhấn vào đây");
+    private JButton btnRegister = new JButton("Nhấn vào đây");
+    private JButton btnLogin = new JButton("ĐĂNG NHẬP");
+    private GridBagConstraints gbc = new GridBagConstraints();
+    private JLabel lblAppTitle = new JLabel("ỨNG DỤNG QUẢN LÝ DƯỢC PHẨM CÁ NHÂN", SwingConstants.CENTER);
 
-    public AuthenticationView() {
+    public LoginView() {
         setTitle("Ứng dụng quản lý dược phẩm cá nhân");
         setSize(500, 350);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -16,31 +28,24 @@ public class AuthenticationView extends JFrame {
     }
 
     private void initUI() {
-        JPanel mainPanel = new JPanel();
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         // Tiêu đề
-        JLabel lblAppTitle = new JLabel("ỨNG DỤNG QUẢN LÝ DƯỢC PHẨM CÁ NHÂN", SwingConstants.CENTER);
         lblAppTitle.setFont(new Font("SansSerif", Font.BOLD, 18));
         lblAppTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(lblAppTitle);
 
-        JLabel lblSubTitle = new JLabel("Đăng nhập tài khoản", SwingConstants.CENTER);
         lblSubTitle.setFont(new Font("SansSerif", Font.PLAIN, 14));
         lblSubTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(Box.createVerticalStrut(10));
         mainPanel.add(lblSubTitle);
 
         // Biểu mẫu đăng nhập
-        JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setOpaque(false);
-        GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        JTextField txtUsername = new JTextField(20);
-        JPasswordField txtPassword = new JPasswordField(20);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -60,37 +65,32 @@ public class AuthenticationView extends JFrame {
         mainPanel.add(formPanel);
 
         // Quên mật khẩu & tạo tài khoản
-        JPanel optionPanel = new JPanel(new GridLayout(2, 2, 10, 5));
         optionPanel.setOpaque(false);
 
         optionPanel.add(new JLabel("Quên mật khẩu"));
-        JButton btnForgot = new JButton("Nhấn vào đây");
         optionPanel.add(btnForgot);
 
         optionPanel.add(new JLabel("Chưa có tài khoản?"));
-        JButton btnRegister = new JButton("Nhấn vào đây");
         optionPanel.add(btnRegister);
 
         mainPanel.add(optionPanel);
 
         // Nút đăng nhập
         mainPanel.add(Box.createVerticalStrut(20));
-        JButton btnLogin = new JButton("ĐĂNG NHẬP");
         btnLogin.setFont(new Font("SansSerif", Font.BOLD, 14));
         btnLogin.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         mainPanel.add(btnLogin);
 
         add(mainPanel);
     }
-
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        SwingUtilities.invokeLater(() -> new AuthenticationView().setVisible(true));
+    public JButton getBtnForgot(){
+        return btnForgot;
+    }
+    public JButton getBtnRegister(){
+        return btnRegister;
+    }
+    public JButton getBtnLogin(){
+        return btnLogin;
     }
 }
 
