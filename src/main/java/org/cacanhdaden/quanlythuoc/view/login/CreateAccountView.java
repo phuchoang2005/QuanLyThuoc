@@ -7,18 +7,16 @@ public class CreateAccountView extends JFrame {
     private JLabel lblTitle = new JLabel("TẠO TÀI KHOẢN");
     private JPanel formPanel = new JPanel(new GridBagLayout());
     private JTextField txtUsername = new JTextField(20);
+    private JTextField txtPhone = new JTextField(20);
     private JPasswordField txtPassword = new JPasswordField(20);
     private JPasswordField txtConfirmPassword = new JPasswordField(20);
     private JTextField txtFullName = new JTextField(20);
     private JTextField txtEmail = new JTextField(20);
     private JSpinner spnAge = new JSpinner(new SpinnerNumberModel(18, 1, 120, 1));
-    private JTextArea txtMedicalHistory = new JTextArea(3, 20);
     private JPanel buttonPanel = new JPanel();
     private JButton btnBack = new JButton("Trở lại");
     private JButton btnSubmit = new JButton("Xác nhận");
-    private JScrollPane scrollPane = new JScrollPane(txtMedicalHistory);
     private GridBagConstraints gbc = new GridBagConstraints();
-
     public CreateAccountView() {
         setTitle("Tạo tài khoản");
         setSize(500, 520);
@@ -41,11 +39,6 @@ public class CreateAccountView extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
 
-        txtMedicalHistory.setLineWrap(true);
-        txtMedicalHistory.setWrapStyleWord(true);
-        String[] regions = {"Miền Bắc", "Miền Trung", "Miền Nam"};
-        JComboBox<String> cbRegion = new JComboBox<>(regions);
-
         int row = 0;
 
         // Các dòng nhập
@@ -55,9 +48,7 @@ public class CreateAccountView extends JFrame {
         addRow(formPanel, gbc, row++, "Họ tên:", txtFullName);
         addRow(formPanel, gbc, row++, "Email:", txtEmail);
         addRow(formPanel, gbc, row++, "Tuổi:", spnAge);
-        addRow(formPanel, gbc, row++, "Tiền sử bệnh lý:", scrollPane);
-        addRow(formPanel, gbc, row++, "Khu vực sinh sống:", cbRegion);
-
+        addRow(formPanel, gbc, row++, "Số điện thoại: ", txtPhone);
         mainPanel.add(formPanel);
 
         // Nút
@@ -86,6 +77,28 @@ public class CreateAccountView extends JFrame {
     }
     public JButton getBtnSubmit(){
         return btnSubmit;
+    }
+
+    public String getUserName(){
+        return this.txtUsername.getText();
+    }
+    public String getPassword(){
+        return this.txtPassword.getText();
+    }
+    public String getFullName(){
+        return this.txtFullName.getText();
+    }
+    public String getEmail(){
+        return this.txtEmail.getText();
+    }
+    public String getPhone(){
+        return this.txtPhone.getText();
+    }
+    public int getAge(){
+        return this.spnAge.getComponentCount();
+    }
+    public String getConfirmPassword(){
+        return this.txtConfirmPassword.getText();
     }
 }
 

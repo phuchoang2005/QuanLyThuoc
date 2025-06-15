@@ -1,7 +1,5 @@
 package org.cacanhdaden.quanlythuoc.view.login;
 
-import com.formdev.flatlaf.FlatLightLaf;
-import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,6 +89,12 @@ public class LoginView extends JFrame {
     }
     public JButton getBtnLogin(){
         return btnLogin;
+    }
+    public String getTxtUsername(){
+        return txtUsername.getText();
+    }
+    public String getTxtPassword(){
+        return txtPassword.getText();
     }
 }
 

@@ -10,14 +10,17 @@ public class User {
 
     private String id;
 
+    private String userName;
+
     private String fullName;
 
     private String email;
 
-    private String password;
-
     private String phone;
 
+    private int age;
+
+    private String password_hash;
 
     private Role role;
 
