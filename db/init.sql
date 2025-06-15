@@ -11,7 +11,8 @@ CREATE TABLE users (
     role ENUM('DOCTOR', 'PATIENT') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-select * from users;
+alter table users add column (user_name VARCHAR(50));
+alter table users add column (age int);
 
 -- 2. Bảng Medication (thuốc)
 CREATE TABLE medication (
