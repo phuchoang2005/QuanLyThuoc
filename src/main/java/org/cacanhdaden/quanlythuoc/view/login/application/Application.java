@@ -1,17 +1,16 @@
-package org.cacanhdaden.quanlythuoc.view.login;
+package org.cacanhdaden.quanlythuoc.view.login.application;
 
 import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
+import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import com.formdev.flatlaf.util.FlatAnimatedLafChange;
-import com.formdev.flatlaf.util.FlatClientProperties;
-import org.cacanhdaden.quanlythuoc.view.login.LoginForm;
-import org.cacanhdaden.quanlythuoc.view.login.MainForm;
-import org.cacanhdaden.quanlythuoc.view.login.Notifications;
-import raven.theme.FlatRobotoFont;
+import com.formdev.flatlaf.FlatClientProperties;
+import org.cacanhdaden.quanlythuoc.view.login.application.form.LoginForm;
+import org.cacanhdaden.quanlythuoc.view.login.application.form.MainForm;
+import raven.toast.Notifications;
 
 import javax.swing.*;
 import java.awt.*;
-
 public class Application extends JFrame {
 
     private static Application instance;
@@ -30,7 +29,7 @@ public class Application extends JFrame {
         setSize(new Dimension(1366, 768));
         setLocationRelativeTo(null);
         setContentPane(loginForm);
-        getRootPane().putClientProperty(FlatClientProperties.FULL_WINDOW_CONTENT, true);
+        getRootPane().putClientProperty("flatlaf.internal.fullWindowContent", true);
         Notifications.getInstance().setJFrame(this);
     }
 
@@ -55,11 +54,13 @@ public class Application extends JFrame {
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
-    private void switchContent(Component content) {
+    private void switchContent(Container content) {
         setContentPane(content);
         content.applyComponentOrientation(getComponentOrientation());
         SwingUtilities.updateComponentTreeUI(content);
     }
+
+
 
     public static void setSelectedMenu(int index, int subIndex) {
         getInstance().mainForm.setSelectedMenu(index, subIndex);

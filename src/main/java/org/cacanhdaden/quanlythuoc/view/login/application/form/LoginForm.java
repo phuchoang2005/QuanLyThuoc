@@ -1,8 +1,8 @@
-package org.cacanhdaden.quanlythuoc.view.login;
+package org.cacanhdaden.quanlythuoc.view.login.application.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import net.miginfocom.swing.MigLayout;
-import raven.application.Application;
+import org.cacanhdaden.quanlythuoc.view.login.application.Application;
 
 import javax.swing.*;
 
@@ -38,7 +38,7 @@ public class LoginForm extends JPanel {
     }
 
     private void initComponents() {
-        panelLogin1 = new PanelLogin();
+        panelLogin1 = new org.cacanhdaden.quanlythuoc.view.login.application.form.PanelLogin();
         lbTitle = new JLabel("Login", SwingConstants.CENTER);
         lbUser = new JLabel("User Name");
         txtUser = new JTextField();

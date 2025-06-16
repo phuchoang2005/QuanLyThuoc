@@ -1,12 +1,24 @@
-package org.cacanhdaden.quanlythuoc.view.login;
+package org.cacanhdaden.quanlythuoc.view.login.application.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.util.UIScale;
-import raven.application.Application;
-import raven.icon.FlatSVGIcon;
-
-import javax.swing.*;
+import com.formdev.flatlaf.extras.FlatSVGIcon;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.LayoutManager;
+import javax.swing.JButton;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import org.cacanhdaden.quanlythuoc.view.login.application.Application;
+import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormDashboard;
+import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormInbox;
+import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormRead;
+import org.cacanhdaden.quanlythuoc.view.login.menu.Menu;
 import java.awt.*;
 
 public class MainForm extends JLayeredPane {
