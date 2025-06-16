@@ -1,0 +1,24 @@
+user: [đăng nhập-đăng xuất, đăng ký (email), quên mật khẩu(email)] -> Sang.
+
+cá nhân: tra cứu lịch sử dùng đơn thuốc (Dashboard) -> Sang, tạo notification nhắc uống thuốc, tra cứu thuốc (lấy api - Dashboard) -> Sang, gửi yêu cầu kê đơn thuốc (Dashboard), Xem chi tiết đơn thuốc (Dashboard) -> Sang, quản lý tài khoản.
+bác sĩ: Xem danh sách bệnh nhân (Dashboard), quản lý đơn thuốc (Dashboard), xem hồ sơ bệnh án (Dashboard).
+
+Sang:
+    đăng nhập-đăng xuất,
+    đăng ký (email),
+    quên mật khẩu(email)
+    tra cứu lịch sử dùng đơn thuốc (Dashboard)
+    tra cứu thuốc (lấy api - Dashboard)
+    Xem chi tiết đơn thuốc (Dashboard)
+
+Phúc:
+    tạo notification nhắc uống thuốc trên hệ thống
+    gửi yêu cầu kê đơn thuốc
+    quản lý tài khoản bệnh nhân.
+    Xem danh sách bệnh nhân (Dashboard)
+    quản lý đơn thuốc (Dashboard)
+    xem hồ sơ bệnh án (Dashboard)
+    
+
+Database:
+    https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%2211F6eEP0TSUvIitRSL3vbg8Uypk7iPgAJ%22%5D,%22action%22:%22open%22,%22userId%22:%22105947402148751279603%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing

@@ -1,21 +1,24 @@
 package org.cacanhdaden.quanlythuoc.view.login;
 
 
+import lombok.Getter;
+
 import javax.swing.*;
 import java.awt.*;
 
+@Getter
 public class LoginView extends JFrame {
-    private JPanel mainPanel = new JPanel();
-    private JLabel lblSubTitle = new JLabel("Đăng nhập tài khoản", SwingConstants.CENTER);
-    private JPanel formPanel = new JPanel(new GridBagLayout());
-    private JTextField txtUsername = new JTextField(20);
-    private JPasswordField txtPassword = new JPasswordField(20);
-    private JPanel optionPanel = new JPanel(new GridLayout(2, 2, 10, 5));
-    private JButton btnForgot = new JButton("Nhấn vào đây");
-    private JButton btnRegister = new JButton("Nhấn vào đây");
-    private JButton btnLogin = new JButton("ĐĂNG NHẬP");
-    private GridBagConstraints gbc = new GridBagConstraints();
-    private JLabel lblAppTitle = new JLabel("ỨNG DỤNG QUẢN LÝ DƯỢC PHẨM CÁ NHÂN", SwingConstants.CENTER);
+    private final JPanel mainPanel = new JPanel();
+    private final JLabel lblSubTitle = new JLabel("Đăng nhập tài khoản", SwingConstants.CENTER);
+    private final JPanel formPanel = new JPanel(new GridBagLayout());
+    private final JTextField txtUsername = new JTextField(20);
+    private final JPasswordField txtPassword = new JPasswordField(20);
+    private final JPanel optionPanel = new JPanel(new GridLayout(2, 2, 10, 5));
+    private final JButton btnForgot = new JButton("Nhấn vào đây");
+    private final JButton btnRegister = new JButton("Nhấn vào đây");
+    private final JButton btnLogin = new JButton("ĐĂNG NHẬP");
+    private final GridBagConstraints gbc = new GridBagConstraints();
+    private final JLabel lblAppTitle = new JLabel("ỨNG DỤNG QUẢN LÝ DƯỢC PHẨM CÁ NHÂN", SwingConstants.CENTER);
 
     public LoginView() {
         setTitle("Ứng dụng quản lý dược phẩm cá nhân");
@@ -80,21 +83,6 @@ public class LoginView extends JFrame {
         mainPanel.add(btnLogin);
 
         add(mainPanel);
-    }
-    public JButton getBtnForgot(){
-        return btnForgot;
-    }
-    public JButton getBtnRegister(){
-        return btnRegister;
-    }
-    public JButton getBtnLogin(){
-        return btnLogin;
-    }
-    public String getTxtUsername(){
-        return txtUsername.getText();
-    }
-    public String getTxtPassword(){
-        return txtPassword.getText();
     }
 }
 

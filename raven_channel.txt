@@ -1,0 +1,18 @@
+Bệnh nhân:
+    Dashboard: Hiển thị thông tin bệnh nhân.
+
+    Web: Đơn thuốc
+        - Chi tiết đơn thuốc.
+        - Yêu cầu kê đơn.
+        - Lịch sử dùng thuốc.
+    Chat: Tra cứu hướng dẫn sử dụng thuốc.
+    Calendar: Quản lý thông tin bệnh nhân.
+    Logout.
+Bác sĩ:
+    Dashboard: Xem danh sách bệnh nhân của ngày hôm nay tương ứng.
+    Email: Quản lý đơn thuốc (CRUD).
+    Chat: Xem hồ sơ bệnh án.
+    Logout.
+
+
+https://github.com/DJ-Raven/flatlaf-dashboard
