@@ -3,7 +3,7 @@ package org.cacanhdaden.quanlythuoc.view.login.application.form;
 import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
-import org.cacanhdaden.quanlythuoc.view.login.application.Application;
+import org.cacanhdaden.quanlythuoc.control.authentication.LoginController;
 
 import javax.swing.*;
 
@@ -13,7 +13,7 @@ import javax.swing.*;
 @Getter
 public class LoginForm extends JPanel {
 
-    private JButton cmdLogin;
+    private JButton btnLogin;
     private JLabel lbPass;
     private JLabel lbTitle;
     private JLabel lbUser;
@@ -36,26 +36,28 @@ public class LoginForm extends JPanel {
         txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "User Name");
         txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Password");
         txtPass.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true;showCapsLock:true");
-        cmdLogin.putClientProperty(FlatClientProperties.STYLE, "borderWidth:0;focusWidth:0");
+        btnLogin.putClientProperty(FlatClientProperties.STYLE, "borderWidth:0;focusWidth:0");
     }
 
     private void initComponents() {
         panelLogin1 = new org.cacanhdaden.quanlythuoc.view.login.application.form.PanelLogin();
         lbTitle = new JLabel("Login", SwingConstants.CENTER);
-        lbUser = new JLabel("User Name");
+        lbUser = new JLabel("Email / Số điện thoại");
         txtUser = new JTextField();
         lbPass = new JLabel("Password");
         txtPass = new JPasswordField();
-        cmdLogin = new JButton("Login");
+        btnLogin = new JButton("Login");
 
-        cmdLogin.addActionListener(e -> onLogin());
+        btnLogin.addActionListener(e -> {
+            LoginController loginController = new LoginController(this);
+        });
 
         panelLogin1.add(lbTitle);
         panelLogin1.add(lbUser);
         panelLogin1.add(txtUser);
         panelLogin1.add(lbPass);
         panelLogin1.add(txtPass);
-        panelLogin1.add(cmdLogin);
+        panelLogin1.add(btnLogin);
 
         setLayout(new GroupLayout(this));
         GroupLayout layout = (GroupLayout) getLayout();
@@ -75,7 +77,7 @@ public class LoginForm extends JPanel {
         );
     }
 
-    private void onLogin() {
+    /*private void onLogin() {
         Application.login();
-    }
+    }*/
 }

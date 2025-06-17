@@ -5,12 +5,17 @@ import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.FlatClientProperties;
+import lombok.Getter;
+import lombok.Setter;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.LoginForm;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.MainForm;
 import raven.toast.Notifications;
 
 import javax.swing.*;
 import java.awt.*;
+
+@Getter
+@Setter
 public class Application extends JFrame {
 
     private static Application instance;

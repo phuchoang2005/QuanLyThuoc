@@ -18,19 +18,12 @@ import java.util.List;
 public class Menu extends JPanel {
 
     private static final String[][] MENU_ITEMS = {
-            {"~MAIN~"},
-            {"Dashboard"},
-            {"~WEB APP~"},
-            {"Email", "Inbox", "Read", "Compost"},
-            {"Chat"},
-            {"Calendar"},
-            {"~COMPONENT~"},
-            {"Advanced UI", "Cropper", "Owl Carousel", "Sweet Alert"},
-            {"Forms", "Basic Elements", "Advanced Elements", "Editors", "Wizard"},
-            {"~OTHER~"},
-            {"Charts", "Apex", "Flot", "Peity", "Sparkline"},
-            {"Icons", "Feather Icons", "Flag Icons", "Mdi Icons"},
-            {"Special Pages", "Blank page", "Faq", "Invoice", "Profile", "Pricing", "Timeline"},
+            {"~Trang chủ~"},
+            {"Thông tin cá nhân"},
+            {"~Đơn thuốc~"},
+            {"Yêu cầu kê đơn", "Chi tiết đơn thuốc", "Lịch sử dùng thuốc"},
+            {"Tra cứu trực tuyến"},
+            {"Quản lý thông tin bệnh nhân"},
             {"Logout"}
     };
 
