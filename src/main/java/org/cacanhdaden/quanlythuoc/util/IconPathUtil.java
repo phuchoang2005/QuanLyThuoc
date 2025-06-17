@@ -1,16 +1,15 @@
 package org.cacanhdaden.quanlythuoc.util;
 
 import lombok.Data;
-import lombok.Getter;
 
 @Data
-public class IconPath {
+public class IconPathUtil {
     private final String lightModeIconPath;
     private final String darkModeIconPath;
     private final String svgIconPath;
     private final String svgIconMenuPath;
 
-    public IconPath(){
+    public IconPathUtil(){
         lightModeIconPath = "images/DarkMode_LightMode/light.svg";
         darkModeIconPath = "images/DarkMode_LightMode/dark.svg";
         svgIconPath = "images/icon/svg/";

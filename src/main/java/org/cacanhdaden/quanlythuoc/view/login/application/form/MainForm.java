@@ -16,24 +16,23 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import lombok.Data;
-import lombok.Getter;
-import org.cacanhdaden.quanlythuoc.util.IconPath;
+import org.cacanhdaden.quanlythuoc.util.IconPathUtil;
 import org.cacanhdaden.quanlythuoc.view.login.application.Application;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormDashboard;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormInbox;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormRead;
 import org.cacanhdaden.quanlythuoc.view.login.menu.Menu;
-import java.awt.*;
+
 @Data
 public class MainForm extends JLayeredPane {
 
     private final Menu menu;
     private final JPanel panelBody;
     private final JButton menuButton;
-    private final IconPath iconPath;
+    private final IconPathUtil iconPath;
     public MainForm() {
         this.menu = new Menu();
-        iconPath = new IconPath();
+        iconPath = new IconPathUtil();
         this.panelBody = new JPanel(new BorderLayout());
         this.menuButton = new JButton();
         init();

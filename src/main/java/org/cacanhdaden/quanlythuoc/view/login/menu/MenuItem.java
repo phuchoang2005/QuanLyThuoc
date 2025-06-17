@@ -6,7 +6,7 @@ import com.formdev.flatlaf.ui.FlatUIUtils;
 import com.formdev.flatlaf.util.UIScale;
 import lombok.Getter;
 import lombok.Setter;
-import org.cacanhdaden.quanlythuoc.util.IconPath;
+import org.cacanhdaden.quanlythuoc.util.IconPathUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,10 +31,10 @@ public class MenuItem extends JPanel {
     private boolean menuVisible = false;
     private float animationProgress = 0f;
     private PopupSubmenu popup;
-    private final IconPath iconPath;
+    private final IconPathUtil iconPath;
     // Constructor
     public MenuItem(Menu menu, String[] menuTexts, int menuIndex, List<MenuEvent> events) {
-        iconPath = new IconPath();
+        iconPath = new IconPathUtil();
         this.menu = menu;
         this.menuTexts = menuTexts;
         this.menuIndex = menuIndex;

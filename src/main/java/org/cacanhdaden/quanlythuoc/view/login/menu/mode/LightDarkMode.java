@@ -7,7 +7,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import lombok.Getter;
-import org.cacanhdaden.quanlythuoc.util.IconPath;
+import org.cacanhdaden.quanlythuoc.util.IconPathUtil;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -19,9 +19,9 @@ public class LightDarkMode extends JPanel {
     private final JButton buttonLight;
     private final JButton buttonDark;
     private final JButton buttonLightDark;
-    private final IconPath iconPath;
+    private final IconPathUtil iconPath;
     public LightDarkMode() {
-        iconPath = new IconPath();
+        iconPath = new IconPathUtil();
         setBorder(new EmptyBorder(2, 2, 2, 2));
         setLayout(new LightDarkModeLayout());
         putClientProperty(FlatClientProperties.STYLE,
