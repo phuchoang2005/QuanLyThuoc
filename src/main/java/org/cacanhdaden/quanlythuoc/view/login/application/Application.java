@@ -86,7 +86,7 @@ public class Application extends JFrame {
 
     public static void main(String[] args) {
         FlatRobotoFont.install();
-        FlatLaf.registerCustomDefaultsSource("raven.theme");
+        FlatLaf.registerCustomDefaultsSource("config/properties");
         UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
         FlatMacDarkLaf.setup();
 

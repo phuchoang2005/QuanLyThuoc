@@ -6,19 +6,20 @@ import com.formdev.flatlaf.icons.FlatAbstractIcon;
 import com.formdev.flatlaf.util.ColorFunctions;
 import com.formdev.flatlaf.util.LoggingFacade;
 import com.formdev.flatlaf.util.UIScale;
+import lombok.Getter;
 import org.cacanhdaden.quanlythuoc.view.login.menu.Menu;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Collections;
-
+@Getter
 public class ToolBarAccentColor extends JPanel {
 
     private final Menu menu;
     private final JPopupMenu popup = new JPopupMenu();
     private final JToolBar toolbar = new JToolBar();
     private final JToggleButton selectedButton = new JToggleButton();
-    private boolean menuFull = true;
+    private boolean menuFull;
 
     private static final String[] ACCENT_COLOR_KEYS = {
             "App.accent.default", "App.accent.blue", "App.accent.purple",
@@ -32,10 +33,6 @@ public class ToolBarAccentColor extends JPanel {
     public ToolBarAccentColor(Menu menu) {
         this.menu = menu;
         initComponent();
-    }
-
-    public boolean isMenuFull() {
-        return menuFull;
     }
 
     public void setMenuFull(boolean menuFull) {

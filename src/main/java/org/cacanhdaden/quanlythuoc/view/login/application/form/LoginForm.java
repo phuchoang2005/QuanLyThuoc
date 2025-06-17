@@ -1,6 +1,7 @@
 package org.cacanhdaden.quanlythuoc.view.login.application.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
 import org.cacanhdaden.quanlythuoc.view.login.application.Application;
 
@@ -9,6 +10,7 @@ import javax.swing.*;
 /**
  * Login Form Panel
  */
+@Getter
 public class LoginForm extends JPanel {
 
     private JButton cmdLogin;

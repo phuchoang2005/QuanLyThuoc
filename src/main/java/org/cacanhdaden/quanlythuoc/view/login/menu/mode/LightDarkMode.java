@@ -6,26 +6,29 @@ import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import lombok.Getter;
+import org.cacanhdaden.quanlythuoc.util.IconPath;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-
+@Getter
 public class LightDarkMode extends JPanel {
 
     private boolean menuFull = true;
     private final JButton buttonLight;
     private final JButton buttonDark;
     private final JButton buttonLightDark;
-
+    private final IconPath iconPath;
     public LightDarkMode() {
+        iconPath = new IconPath();
         setBorder(new EmptyBorder(2, 2, 2, 2));
         setLayout(new LightDarkModeLayout());
         putClientProperty(FlatClientProperties.STYLE,
                 "arc:999; background:$Menu.lightdark.background");
 
-        buttonLight = createButton("Light", "main/java/view/login/menu/mode/light.svg", false);
-        buttonDark = createButton("Dark", "main/java/view/login/menu/mode/dark.svg", true);
+        buttonLight = createButton("Light", iconPath.getLightModeIconPath(), false);
+        buttonDark = createButton("Dark", iconPath.getDarkModeIconPath(), true);
         buttonLightDark = createToggleButton();
 
         add(buttonLight);
@@ -82,7 +85,7 @@ public class LightDarkMode extends JPanel {
         boolean isDark = FlatLaf.isLafDark();
         applyStyle(buttonLight, !isDark);
         applyStyle(buttonDark, isDark);
-        buttonLightDark.setIcon(new FlatSVGIcon(isDark ? "raven/menu/mode/dark.svg" : "raven/menu/mode/light.svg"));
+        buttonLightDark.setIcon(new FlatSVGIcon(isDark ? iconPath.getDarkModeIconPath() : iconPath.getLightModeIconPath()));
     }
 
     private void applyStyle(JButton button, boolean active) {

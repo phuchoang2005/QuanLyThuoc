@@ -6,6 +6,7 @@ import com.formdev.flatlaf.ui.FlatUIUtils;
 import com.formdev.flatlaf.util.UIScale;
 import lombok.Getter;
 import lombok.Setter;
+import org.cacanhdaden.quanlythuoc.util.IconPath;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,9 +31,10 @@ public class MenuItem extends JPanel {
     private boolean menuVisible = false;
     private float animationProgress = 0f;
     private PopupSubmenu popup;
-
+    private final IconPath iconPath;
     // Constructor
     public MenuItem(Menu menu, String[] menuTexts, int menuIndex, List<MenuEvent> events) {
+        iconPath = new IconPath();
         this.menu = menu;
         this.menuTexts = menuTexts;
         this.menuIndex = menuIndex;
@@ -118,9 +120,9 @@ public class MenuItem extends JPanel {
     }
 
     private Icon loadIcon(int index) {
-        Color light = FlatUIUtils.getUIColor("Menu.icon.lightColor", Color.RED);
-        Color dark = FlatUIUtils.getUIColor("Menu.icon.darkColor", Color.RED);
-        FlatSVGIcon icon = new FlatSVGIcon("raven/menu/icon/" + index + ".svg");
+        Color light = FlatUIUtils.getUIColor("Menu.icon.lightColor", Color.LIGHT_GRAY);
+        Color dark = FlatUIUtils.getUIColor("Menu.icon.darkColor", Color.LIGHT_GRAY);
+        FlatSVGIcon icon = new FlatSVGIcon(iconPath.getSvgIconMenuPath() + index + ".svg");
         FlatSVGIcon.ColorFilter filter = new FlatSVGIcon.ColorFilter();
         filter.add(Color.decode("#969696"), light, dark);
         icon.setColorFilter(filter);

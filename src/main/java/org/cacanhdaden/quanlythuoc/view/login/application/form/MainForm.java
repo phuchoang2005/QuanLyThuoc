@@ -14,21 +14,26 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import lombok.Data;
+import lombok.Getter;
+import org.cacanhdaden.quanlythuoc.util.IconPath;
 import org.cacanhdaden.quanlythuoc.view.login.application.Application;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormDashboard;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormInbox;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormRead;
 import org.cacanhdaden.quanlythuoc.view.login.menu.Menu;
 import java.awt.*;
-
+@Data
 public class MainForm extends JLayeredPane {
 
     private final Menu menu;
     private final JPanel panelBody;
     private final JButton menuButton;
-
+    private final IconPath iconPath;
     public MainForm() {
         this.menu = new Menu();
+        iconPath = new IconPath();
         this.panelBody = new JPanel(new BorderLayout());
         this.menuButton = new JButton();
         init();
@@ -84,7 +89,7 @@ public class MainForm extends JLayeredPane {
         String iconName = full ^ getComponentOrientation().isLeftToRight()
                 ? "menu_right.svg"
                 : "menu_left.svg";
-        menuButton.setIcon(new FlatSVGIcon("raven/icon/svg/" + iconName, 0.8f));
+        menuButton.setIcon(new FlatSVGIcon(iconPath.getSvgIconPath() + iconName, 0.8f));
     }
 
     public void hideMenu() {
@@ -134,7 +139,7 @@ public class MainForm extends JLayeredPane {
                 int width = parent.getWidth() - insets.left - insets.right;
                 int height = parent.getHeight() - insets.top - insets.bottom;
 
-                int menuWidth = UIScale.scale(menu.isMenuFull() ? menu.getMenuMaxWidth() : menu.getMenuMinWidth());
+                int menuWidth = com.formdev.flatlaf.util.UIScale.scale(menu.isMenuFull() ? menu.getMenuMaxWidth() : menu.getMenuMinWidth());
                 int menuX = ltr ? x : x + width - menuWidth;
 
                 menu.setBounds(menuX, y, menuWidth, height);

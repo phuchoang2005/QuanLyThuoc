@@ -3,6 +3,7 @@ package org.cacanhdaden.quanlythuoc.view.login.menu;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.ui.FlatUIUtils;
 import com.formdev.flatlaf.util.UIScale;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.cacanhdaden.quanlythuoc.view.login.menu.mode.LightDarkMode;
@@ -12,10 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-@Getter
-@Setter
+@Data
 public class Menu extends JPanel {
 
     private static final String[][] MENU_ITEMS = {
@@ -93,7 +92,7 @@ public class Menu extends JPanel {
 
     private JLabel createHeaderLabel() {
         JLabel label = new JLabel(headerName);
-        label.setIcon(new ImageIcon(getClass().getResource("/icon/png/logo.png")));
+        label.setIcon(new ImageIcon(getClass().getResource("/images/icon/png/logo.png")));
         label.putClientProperty(FlatClientProperties.STYLE,
                 "font:$Menu.header.font; foreground:$Menu.foreground");
         return label;
