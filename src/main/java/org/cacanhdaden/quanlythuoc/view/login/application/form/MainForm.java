@@ -71,7 +71,7 @@ public class MainForm extends JLayeredPane {
                         default -> action.cancel();
                     }
                 }
-                case 9 -> Application.logout();
+                case 9 -> Application.showLoginForm();
                 default -> action.cancel();
             }
         });

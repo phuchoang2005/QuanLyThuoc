@@ -4,6 +4,8 @@ import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
 import org.cacanhdaden.quanlythuoc.control.authentication.LoginController;
+import org.cacanhdaden.quanlythuoc.control.authentication.SignUpController;
+import org.cacanhdaden.quanlythuoc.view.login.application.Application;
 
 import javax.swing.*;
 
@@ -14,6 +16,8 @@ import javax.swing.*;
 public class LoginForm extends JPanel {
 
     private JButton btnLogin;
+    private JButton btnSignUp;
+    private JButton btnForgotPassword;
     private JLabel lbPass;
     private JLabel lbTitle;
     private JLabel lbUser;
@@ -41,15 +45,21 @@ public class LoginForm extends JPanel {
 
     private void initComponents() {
         panelLogin1 = new org.cacanhdaden.quanlythuoc.view.login.application.form.PanelLogin();
-        lbTitle = new JLabel("Login", SwingConstants.CENTER);
+        lbTitle = new JLabel("Đăng nhập", SwingConstants.CENTER);
         lbUser = new JLabel("Email / Số điện thoại");
         txtUser = new JTextField();
-        lbPass = new JLabel("Password");
+        lbPass = new JLabel("Mật khẩu");
         txtPass = new JPasswordField();
-        btnLogin = new JButton("Login");
+        btnSignUp = new JButton("Đăng ký");
+        btnForgotPassword = new JButton("Quên mật khẩu");
+        btnLogin = new JButton("Đăng nhập");
 
         btnLogin.addActionListener(e -> {
             LoginController loginController = new LoginController(this);
+        });
+
+        btnSignUp.addActionListener(e -> {
+            Application.showSignUpForm();
         });
 
         panelLogin1.add(lbTitle);
@@ -57,6 +67,8 @@ public class LoginForm extends JPanel {
         panelLogin1.add(txtUser);
         panelLogin1.add(lbPass);
         panelLogin1.add(txtPass);
+        panelLogin1.add(btnSignUp);
+        panelLogin1.add(btnForgotPassword);
         panelLogin1.add(btnLogin);
 
         setLayout(new GroupLayout(this));

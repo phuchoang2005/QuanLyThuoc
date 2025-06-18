@@ -1,0 +1,134 @@
+package org.cacanhdaden.quanlythuoc.view.login.application.form;
+
+import com.formdev.flatlaf.FlatClientProperties;
+import lombok.Getter;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.*;
+import org.cacanhdaden.quanlythuoc.view.login.application.Application;
+import org.cacanhdaden.quanlythuoc.control.authentication.SignUpController;
+import raven.datetime.DatePicker;
+
+@Getter
+public class SignUpForm extends JPanel {
+
+    private JButton btnSignUp;
+    private JButton btnLogin;
+    private JLabel lbTitle;
+    private JLabel lbEmail;
+    private JLabel lbPass;
+    private JLabel lbFullName;
+    private JLabel lbDob;
+    private JLabel lbGender;
+    private JLabel lbPhone;
+    private JLabel lbAddress;
+    private JTextField txtEmail;
+    private JPasswordField txtPass;
+    private JTextField txtFullName;
+    private DatePicker datePickerDob;
+    private JComboBox<String> cbGender;
+    private JTextField txtPhone;
+    private JTextArea txtAddress;
+    private PanelSignUp panelSignUp;
+
+    public SignUpForm() {
+        initComponents();
+        setupLayout();
+        setupComponentStyle();
+    }
+
+    private void setupLayout() {
+        setLayout(new MigLayout("al center center"));
+    }
+
+    private void setupComponentStyle() {
+        lbTitle.putClientProperty(FlatClientProperties.STYLE, "font:$h1.font");
+        txtEmail.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Email");
+        txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Mật khẩu");
+        txtPass.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true;showCapsLock:true");
+        txtFullName.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Họ và tên");
+        txtPhone.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Số điện thoại");
+        txtAddress.setLineWrap(true);
+        txtAddress.setWrapStyleWord(true);
+        btnSignUp.putClientProperty(FlatClientProperties.STYLE, "borderWidth:0;focusWidth:0");
+        btnLogin.putClientProperty(FlatClientProperties.STYLE, "borderWidth:0;focusWidth:0");
+    }
+
+    private void initComponents() {
+        panelSignUp = new org.cacanhdaden.quanlythuoc.view.login.application.form.PanelSignUp();
+        lbTitle = new JLabel("Đăng ký tài khoản", SwingConstants.CENTER);
+        lbEmail = new JLabel("Email");
+        lbPass = new JLabel("Mật khẩu");
+        lbFullName = new JLabel("Họ và tên");
+        lbDob = new JLabel("Ngày sinh");
+        lbGender = new JLabel("Giới tính");
+        lbPhone = new JLabel("Số điện thoại");
+        lbAddress = new JLabel("Địa chỉ");
+
+        txtEmail = new JTextField();
+        txtPass = new JPasswordField();
+        txtFullName = new JTextField();
+        datePickerDob = new DatePicker();
+        JFormattedTextField dateEditor = new JFormattedTextField();
+        datePickerDob.setEditor(dateEditor);
+        datePickerDob.setCloseAfterSelected(true);
+
+        cbGender = new JComboBox<>(new String[]{"Nam", "Nữ"});
+        txtPhone = new JTextField();
+        txtAddress = new JTextArea(2, 20);
+
+        btnSignUp = new JButton("Hoàn tất");
+        btnLogin = new JButton("Trở về đăng nhập");
+
+        btnLogin.addActionListener(e -> {
+            Application.showLoginForm();
+        });
+
+        btnSignUp.addActionListener(e -> {
+            SignUpController signUpController = new SignUpController(this);
+        });
+
+        panelSignUp.add(lbTitle);
+        panelSignUp.add(lbEmail);
+        panelSignUp.add(txtEmail);
+        panelSignUp.add(lbPass);
+        panelSignUp.add(txtPass);
+        panelSignUp.add(lbFullName);
+        panelSignUp.add(txtFullName);
+        panelSignUp.add(lbDob);
+        panelSignUp.add(dateEditor, "growx");
+        panelSignUp.add(lbGender);
+        panelSignUp.add(cbGender);
+        panelSignUp.add(lbPhone);
+        panelSignUp.add(txtPhone);
+        panelSignUp.add(lbAddress);
+        panelSignUp.add(new JScrollPane(txtAddress));
+        panelSignUp.add(btnSignUp);
+        panelSignUp.add(btnLogin);
+
+        setLayout(new GroupLayout(this));
+        GroupLayout layout = (GroupLayout) getLayout();
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(218, Short.MAX_VALUE)
+                                .addComponent(panelSignUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(197))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(68)
+                                .addComponent(panelSignUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(96, Short.MAX_VALUE))
+        );
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Sign Up Form");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 600);
+        frame.add(new SignUpForm());
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+}

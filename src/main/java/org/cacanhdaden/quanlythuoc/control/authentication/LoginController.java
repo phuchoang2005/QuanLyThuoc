@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import raven.toast.Notifications;
 
+import javax.swing.*;
+
 @Getter
 @Setter
 public class LoginController {
@@ -26,12 +28,14 @@ public class LoginController {
         String password = new String(this.loginForm.getTxtPass().getPassword());
         if (login(email, password)) {
             // Login successful, proceed to the main application
-            Application.login();
+            Application.showMainForm();
         } else {
             // Show error message
-            Notifications.getInstance().show(
-                    Notifications.Type.ERROR,
-                    "Login Failed"
+            JOptionPane.showMessageDialog(
+                loginForm,
+                "Invalid email or password. Please try again.",
+                "Login Error",
+                JOptionPane.ERROR_MESSAGE
             );
         }
     }

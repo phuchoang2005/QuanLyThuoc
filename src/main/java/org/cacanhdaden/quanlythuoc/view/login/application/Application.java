@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.LoginForm;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.MainForm;
+import org.cacanhdaden.quanlythuoc.view.login.application.form.SignUpForm;
 import raven.toast.Notifications;
 
 import javax.swing.*;
@@ -21,10 +22,12 @@ public class Application extends JFrame {
     private static Application instance;
     private final MainForm mainForm;
     private final LoginForm loginForm;
+    private final SignUpForm signUpForm;
 
     public Application() {
         this.mainForm = new MainForm();
         this.loginForm = new LoginForm();
+        this.signUpForm = new SignUpForm();
 
         initUI();
     }
@@ -43,19 +46,12 @@ public class Application extends JFrame {
         getInstance().mainForm.showForm(component);
     }
 
-    public static void login() {
+    public static void showMainForm() {
         FlatAnimatedLafChange.showSnapshot();
         Application app = getInstance();
         app.switchContent(app.mainForm);
         setSelectedMenu(0, 0);
         app.mainForm.hideMenu();
-        FlatAnimatedLafChange.hideSnapshotWithAnimation();
-    }
-
-    public static void logout() {
-        FlatAnimatedLafChange.showSnapshot();
-        Application app = getInstance();
-        app.switchContent(app.loginForm);
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
@@ -65,7 +61,19 @@ public class Application extends JFrame {
         SwingUtilities.updateComponentTreeUI(content);
     }
 
+    public static void showLoginForm() {
+        FlatAnimatedLafChange.showSnapshot();
+        Application app = getInstance();
+        app.switchContent(app.loginForm);
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
 
+    public static void showSignUpForm() {
+        FlatAnimatedLafChange.showSnapshot();
+        Application app = getInstance();
+        app.switchContent(app.signUpForm);
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
 
     public static void setSelectedMenu(int index, int subIndex) {
         getInstance().mainForm.setSelectedMenu(index, subIndex);

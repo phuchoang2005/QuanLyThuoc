@@ -18,7 +18,7 @@ CREATE TABLE `users` (
   `gender` ENUM('male', 'female', 'other') NULL,
   `phone_number` VARCHAR(20) NULL,
   `address` TEXT NULL,
-  `role` ENUM('patient', 'doctor', 'admin') NOT NULL DEFAULT 'patient',
+  `role` ENUM('patient', 'doctor') NOT NULL DEFAULT 'patient',
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
