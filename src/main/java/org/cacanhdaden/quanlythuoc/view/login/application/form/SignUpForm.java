@@ -1,12 +1,17 @@
 package org.cacanhdaden.quanlythuoc.view.login.application.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import org.cacanhdaden.quanlythuoc.view.login.application.Application;
 import org.cacanhdaden.quanlythuoc.control.authentication.SignUpController;
 import raven.datetime.DatePicker;
+
+import java.awt.*;
 
 @Getter
 public class SignUpForm extends JPanel {
@@ -37,7 +42,22 @@ public class SignUpForm extends JPanel {
     }
 
     private void setupLayout() {
-        setLayout(new MigLayout("al center center"));
+        setLayout(new GroupLayout(this));
+        GroupLayout layout = (GroupLayout) getLayout();
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(218, Short.MAX_VALUE)
+                                .addComponent(panelSignUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(197))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(68)
+                                .addComponent(panelSignUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(96, Short.MAX_VALUE))
+        );
     }
 
     private void setupComponentStyle() {
@@ -104,31 +124,5 @@ public class SignUpForm extends JPanel {
         panelSignUp.add(new JScrollPane(txtAddress));
         panelSignUp.add(btnSignUp);
         panelSignUp.add(btnLogin);
-
-        setLayout(new GroupLayout(this));
-        GroupLayout layout = (GroupLayout) getLayout();
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(218, Short.MAX_VALUE)
-                                .addComponent(panelSignUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(197))
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(68)
-                                .addComponent(panelSignUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(96, Short.MAX_VALUE))
-        );
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Sign Up Form");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 600);
-        frame.add(new SignUpForm());
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
     }
 }
