@@ -1,22 +1,13 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
 import org.cacanhdaden.quanlythuoc.model.dao.LoginDAO;
-import org.cacanhdaden.quanlythuoc.model.dto.LoginDTO;
+import org.cacanhdaden.quanlythuoc.model.model.Users;
 import org.cacanhdaden.quanlythuoc.view.login.application.Application;
 import org.cacanhdaden.quanlythuoc.view.login.application.form.LoginForm;
-import lombok.Getter;
-import lombok.Setter;
-import raven.toast.Notifications;
 
 import javax.swing.*;
-
-@Getter
-@Setter
 public class LoginController {
     private LoginForm loginForm;
-    public LoginController() {
-
-    }
 
     public LoginController(LoginForm loginForm) {
         this.loginForm = loginForm;
@@ -40,12 +31,15 @@ public class LoginController {
         }
     }
 
-    public boolean login(String email, String password) {
-        LoginDTO loginDTO = new LoginDTO(email, password);
-        if (!loginDTO.isValid()) {
-            return false;
+    private boolean login(String email, String password) {
+        Users users = new Users(email, password);
+        if (isValid(users)) {
+            return true;
         }
-        LoginDAO loginDAO = new LoginDAO(loginDTO);
-        return loginDAO.checkLogin();
+        return false;
+    }
+
+    private boolean isValid(Users users) {
+        return !users.getEmail().isEmpty() && !users.getHashedPassword().isEmpty();
     }
 }

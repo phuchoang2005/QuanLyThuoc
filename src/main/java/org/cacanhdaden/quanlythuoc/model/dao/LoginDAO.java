@@ -1,32 +1,27 @@
 package org.cacanhdaden.quanlythuoc.model.dao;
 
-import org.cacanhdaden.quanlythuoc.model.dto.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.cacanhdaden.quanlythuoc.model.model.Users;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginDAO {
-    private LoginDTO loginDTO;
-    public LoginDAO() {
-
-    }
-
-    public LoginDAO(LoginDTO loginDTO) {
-        this.loginDTO = loginDTO;
-    }
+    private Users users;
 
     public boolean checkLogin() {
         String sql = "SELECT COUNT(*) FROM users WHERE email = ? AND password_hash = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, loginDTO.getEmail());
-            ps.setString(2, loginDTO.getHashedPassword());
+            ps.setString(1, users.getEmail());
+            ps.setString(2, users.getHashedPassword());
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt(1) > 0;
