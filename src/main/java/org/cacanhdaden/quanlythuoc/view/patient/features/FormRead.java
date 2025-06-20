@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.patient.other;
+package org.cacanhdaden.quanlythuoc.view.patient.features;
 
 import javax.swing.*;
 import java.awt.*;

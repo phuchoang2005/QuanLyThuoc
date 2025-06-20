@@ -1,9 +1,10 @@
-package org.cacanhdaden.quanlythuoc.view.patient.other;
+package org.cacanhdaden.quanlythuoc.view.doctor.features;
+
+import com.formdev.flatlaf.FlatClientProperties;
+import raven.toast.Notifications;
 
 import javax.swing.*;
 import java.awt.*;
-import com.formdev.flatlaf.FlatClientProperties;
-import raven.toast.Notifications;
 
 public class FormDashboard extends JPanel {
 

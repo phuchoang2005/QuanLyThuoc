@@ -1,15 +1,16 @@
-package org.cacanhdaden.quanlythuoc.view.patient.other;
+package org.cacanhdaden.quanlythuoc.view.doctor.features;
+
+import com.formdev.flatlaf.FlatClientProperties;
 
 import javax.swing.*;
-import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.*;
 
-public class FormInbox extends JPanel {
+public class DefaultForm extends JPanel {
 
     private final JLabel label;
 
-    public FormInbox() {
-        label = createLabel("Inbox");
+    public DefaultForm(String text) {
+        label = createLabel(text);
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         add(label, BorderLayout.CENTER);
@@ -21,3 +22,4 @@ public class FormInbox extends JPanel {
         return lb;
     }
 }
+

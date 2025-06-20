@@ -1,36 +1,28 @@
-package org.cacanhdaden.quanlythuoc.view.patient;
+package org.cacanhdaden.quanlythuoc.view.doctor;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.util.UIScale;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.LayoutManager;
-import javax.swing.JButton;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import com.formdev.flatlaf.util.UIScale;
 import lombok.Data;
 import org.cacanhdaden.quanlythuoc.util.IconPathUtil;
+import org.cacanhdaden.quanlythuoc.view.doctor.features.FormDashboard;
+import org.cacanhdaden.quanlythuoc.view.doctor.features.FormInbox;
+import org.cacanhdaden.quanlythuoc.view.doctor.features.FormRead;
+import org.cacanhdaden.quanlythuoc.view.doctor.menuDoctor.Menu;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
-import org.cacanhdaden.quanlythuoc.view.patient.other.FormDashboard;
-import org.cacanhdaden.quanlythuoc.view.patient.other.FormInbox;
-import org.cacanhdaden.quanlythuoc.view.patient.other.FormRead;
-import org.cacanhdaden.quanlythuoc.view.patient.menu.Menu;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 @Data
-public class MainForm extends JLayeredPane {
+public class MainFormDoctor extends JLayeredPane {
 
     private final Menu menu;
     private final JPanel panelBody;
     private final JButton menuButton;
     private final IconPathUtil iconPath;
-    public MainForm() {
+    public MainFormDoctor() {
         this.menu = new Menu();
         iconPath = new IconPathUtil();
         this.panelBody = new JPanel(new BorderLayout());
@@ -138,7 +130,7 @@ public class MainForm extends JLayeredPane {
                 int width = parent.getWidth() - insets.left - insets.right;
                 int height = parent.getHeight() - insets.top - insets.bottom;
 
-                int menuWidth = com.formdev.flatlaf.util.UIScale.scale(menu.isMenuFull() ? menu.getMenuMaxWidth() : menu.getMenuMinWidth());
+                int menuWidth = UIScale.scale(menu.isMenuFull() ? menu.getMenuMaxWidth() : menu.getMenuMinWidth());
                 int menuX = ltr ? x : x + width - menuWidth;
 
                 menu.setBounds(menuX, y, menuWidth, height);

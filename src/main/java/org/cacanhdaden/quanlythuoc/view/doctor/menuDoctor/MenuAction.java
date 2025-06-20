@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.patient.menu;
+package org.cacanhdaden.quanlythuoc.view.doctor.menuDoctor;
 
 public class MenuAction {
     protected boolean isCancel() {

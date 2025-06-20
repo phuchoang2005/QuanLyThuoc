@@ -5,10 +5,9 @@ import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
-import lombok.Setter;
 import org.cacanhdaden.quanlythuoc.view.login.form.LoginForm;
 import org.cacanhdaden.quanlythuoc.view.login.form.SignUpForm;
-import org.cacanhdaden.quanlythuoc.view.patient.MainForm;
+import org.cacanhdaden.quanlythuoc.view.patient.MainFormPatient;
 import raven.toast.Notifications;
 
 import javax.swing.*;
@@ -18,12 +17,12 @@ import java.awt.*;
 public class Launch extends JFrame {
 
     private static Launch instance;
-    private final MainForm mainForm;
+    private final MainFormPatient mainFormPatient;
     private final LoginForm loginForm;
     private final SignUpForm signUpForm;
 
     public Launch() {
-        this.mainForm = new MainForm();
+        this.mainFormPatient = new MainFormPatient();
         this.loginForm = new LoginForm();
         this.signUpForm = new SignUpForm();
 
@@ -41,15 +40,15 @@ public class Launch extends JFrame {
 
     public static void showForm(Component component) {
         component.applyComponentOrientation(getInstance().getComponentOrientation());
-        getInstance().mainForm.showForm(component);
+        getInstance().mainFormPatient.showForm(component);
     }
 
     public static void showMainForm() {
         FlatAnimatedLafChange.showSnapshot();
         Launch app = getInstance();
-        app.switchContent(app.mainForm);
+        app.switchContent(app.mainFormPatient);
         setSelectedMenu(0, 0);
-        app.mainForm.hideMenu();
+        app.mainFormPatient.hideMenu();
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
@@ -74,7 +73,7 @@ public class Launch extends JFrame {
     }
 
     public static void setSelectedMenu(int index, int subIndex) {
-        getInstance().mainForm.setSelectedMenu(index, subIndex);
+        getInstance().mainFormPatient.setSelectedMenu(index, subIndex);
     }
 
     private static Launch getInstance() {

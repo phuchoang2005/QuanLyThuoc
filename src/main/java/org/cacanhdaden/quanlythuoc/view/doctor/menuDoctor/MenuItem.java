@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.patient.menu;
+package org.cacanhdaden.quanlythuoc.view.doctor.menuDoctor;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
