@@ -15,7 +15,6 @@ import javax.swing.*;
 import java.awt.*;
 
 @Getter
-@Setter
 public class Launch extends JFrame {
 
     private static Launch instance;
@@ -96,7 +95,7 @@ public class Launch extends JFrame {
         pack();
     }
 
-    public static void main(String[] args) {
+    public static void launch() {
         FlatRobotoFont.install();
         FlatLaf.registerCustomDefaultsSource("config/properties");
         UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
