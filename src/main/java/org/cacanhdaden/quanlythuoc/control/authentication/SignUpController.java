@@ -1,10 +1,8 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
-import org.cacanhdaden.quanlythuoc.view.login.application.Application;
-import org.cacanhdaden.quanlythuoc.view.login.application.form.SignUpForm;
+import org.cacanhdaden.quanlythuoc.view.login.form.SignUpForm;
 import lombok.Getter;
 import lombok.Setter;
-import javax.swing.*;
 
 @Getter
 @Setter

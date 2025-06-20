@@ -1,13 +1,11 @@
-package org.cacanhdaden.quanlythuoc.view.login.menu;
+package org.cacanhdaden.quanlythuoc.view.patient.menu;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.ui.FlatUIUtils;
 import com.formdev.flatlaf.util.UIScale;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.cacanhdaden.quanlythuoc.view.login.menu.mode.LightDarkMode;
-import org.cacanhdaden.quanlythuoc.view.login.menu.mode.ToolBarAccentColor;
+import org.cacanhdaden.quanlythuoc.view.patient.menu.mode.LightDarkMode;
+import org.cacanhdaden.quanlythuoc.view.patient.menu.mode.ToolBarAccentColor;
 
 import javax.swing.*;
 import java.awt.*;

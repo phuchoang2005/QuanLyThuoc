@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.login.application.form;
+package org.cacanhdaden.quanlythuoc.view.patient;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.util.UIScale;
@@ -17,11 +17,11 @@ import javax.swing.border.EmptyBorder;
 
 import lombok.Data;
 import org.cacanhdaden.quanlythuoc.util.IconPathUtil;
-import org.cacanhdaden.quanlythuoc.view.login.application.Application;
-import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormDashboard;
-import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormInbox;
-import org.cacanhdaden.quanlythuoc.view.login.application.form.other.FormRead;
-import org.cacanhdaden.quanlythuoc.view.login.menu.Menu;
+import org.cacanhdaden.quanlythuoc.view.login.Launch;
+import org.cacanhdaden.quanlythuoc.view.patient.other.FormDashboard;
+import org.cacanhdaden.quanlythuoc.view.patient.other.FormInbox;
+import org.cacanhdaden.quanlythuoc.view.patient.other.FormRead;
+import org.cacanhdaden.quanlythuoc.view.patient.menu.Menu;
 
 @Data
 public class MainForm extends JLayeredPane {
@@ -63,15 +63,15 @@ public class MainForm extends JLayeredPane {
     private void initMenu() {
         menu.addMenuEvent((index, subIndex, action) -> {
             switch (index) {
-                case 0 -> Application.showForm(new FormDashboard());
+                case 0 -> Launch.showForm(new FormDashboard());
                 case 1 -> {
                     switch (subIndex) {
-                        case 1 -> Application.showForm(new FormInbox());
-                        case 2 -> Application.showForm(new FormRead());
+                        case 1 -> Launch.showForm(new FormInbox());
+                        case 2 -> Launch.showForm(new FormRead());
                         default -> action.cancel();
                     }
                 }
-                case 9 -> Application.showLoginForm();
+                case 9 -> Launch.showLoginForm();
                 default -> action.cancel();
             }
         });

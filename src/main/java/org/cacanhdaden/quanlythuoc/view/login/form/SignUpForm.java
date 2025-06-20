@@ -1,17 +1,12 @@
-package org.cacanhdaden.quanlythuoc.view.login.application.form;
+package org.cacanhdaden.quanlythuoc.view.login.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.FlatLaf;
-import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
-import net.miginfocom.swing.MigLayout;
+
 import javax.swing.*;
-import org.cacanhdaden.quanlythuoc.view.login.application.Application;
+import org.cacanhdaden.quanlythuoc.view.login.Launch;
 import org.cacanhdaden.quanlythuoc.control.authentication.SignUpController;
 import raven.datetime.DatePicker;
-
-import java.awt.*;
 
 @Getter
 public class SignUpForm extends JPanel {
@@ -74,7 +69,7 @@ public class SignUpForm extends JPanel {
     }
 
     private void initComponents() {
-        panelSignUp = new org.cacanhdaden.quanlythuoc.view.login.application.form.PanelSignUp();
+        panelSignUp = new org.cacanhdaden.quanlythuoc.view.login.form.PanelSignUp();
         lbTitle = new JLabel("Đăng ký tài khoản", SwingConstants.CENTER);
         lbEmail = new JLabel("Email");
         lbPass = new JLabel("Mật khẩu");
@@ -100,7 +95,7 @@ public class SignUpForm extends JPanel {
         btnLogin = new JButton("Trở về đăng nhập");
 
         btnLogin.addActionListener(e -> {
-            Application.showLoginForm();
+            Launch.showLoginForm();
         });
 
         btnSignUp.addActionListener(e -> {

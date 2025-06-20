@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.login.menu.mode;
+package org.cacanhdaden.quanlythuoc.view.patient.menu.mode;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;

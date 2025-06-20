@@ -1,9 +1,8 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
-import org.cacanhdaden.quanlythuoc.model.dao.LoginDAO;
 import org.cacanhdaden.quanlythuoc.model.model.Users;
-import org.cacanhdaden.quanlythuoc.view.login.application.Application;
-import org.cacanhdaden.quanlythuoc.view.login.application.form.LoginForm;
+import org.cacanhdaden.quanlythuoc.view.login.Launch;
+import org.cacanhdaden.quanlythuoc.view.login.form.LoginForm;
 
 import javax.swing.*;
 public class LoginController {
@@ -19,7 +18,7 @@ public class LoginController {
         String password = new String(this.loginForm.getTxtPass().getPassword());
         if (login(email, password)) {
             // Login successful, proceed to the main application
-            Application.showMainForm();
+            Launch.showMainForm();
         } else {
             // Show error message
             JOptionPane.showMessageDialog(

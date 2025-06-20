@@ -1,15 +1,14 @@
-package org.cacanhdaden.quanlythuoc.view.login.application;
+package org.cacanhdaden.quanlythuoc.view.login;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
 import lombok.Setter;
-import org.cacanhdaden.quanlythuoc.view.login.application.form.LoginForm;
-import org.cacanhdaden.quanlythuoc.view.login.application.form.MainForm;
-import org.cacanhdaden.quanlythuoc.view.login.application.form.SignUpForm;
+import org.cacanhdaden.quanlythuoc.view.login.form.LoginForm;
+import org.cacanhdaden.quanlythuoc.view.login.form.SignUpForm;
+import org.cacanhdaden.quanlythuoc.view.patient.MainForm;
 import raven.toast.Notifications;
 
 import javax.swing.*;
@@ -17,14 +16,14 @@ import java.awt.*;
 
 @Getter
 @Setter
-public class Application extends JFrame {
+public class Launch extends JFrame {
 
-    private static Application instance;
+    private static Launch instance;
     private final MainForm mainForm;
     private final LoginForm loginForm;
     private final SignUpForm signUpForm;
 
-    public Application() {
+    public Launch() {
         this.mainForm = new MainForm();
         this.loginForm = new LoginForm();
         this.signUpForm = new SignUpForm();
@@ -48,7 +47,7 @@ public class Application extends JFrame {
 
     public static void showMainForm() {
         FlatAnimatedLafChange.showSnapshot();
-        Application app = getInstance();
+        Launch app = getInstance();
         app.switchContent(app.mainForm);
         setSelectedMenu(0, 0);
         app.mainForm.hideMenu();
@@ -63,14 +62,14 @@ public class Application extends JFrame {
 
     public static void showLoginForm() {
         FlatAnimatedLafChange.showSnapshot();
-        Application app = getInstance();
+        Launch app = getInstance();
         app.switchContent(app.loginForm);
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
     public static void showSignUpForm() {
         FlatAnimatedLafChange.showSnapshot();
-        Application app = getInstance();
+        Launch app = getInstance();
         app.switchContent(app.signUpForm);
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
@@ -79,7 +78,7 @@ public class Application extends JFrame {
         getInstance().mainForm.setSelectedMenu(index, subIndex);
     }
 
-    private static Application getInstance() {
+    private static Launch getInstance() {
         return instance;
     }
 
@@ -104,7 +103,7 @@ public class Application extends JFrame {
         FlatMacDarkLaf.setup();
 
         EventQueue.invokeLater(() -> {
-            instance = new Application();
+            instance = new Launch();
             // instance.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
             instance.setVisible(true);
         });

@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.login.menu;
+package org.cacanhdaden.quanlythuoc.view.patient.menu;
 import java.util.HashMap;
 import com.formdev.flatlaf.util.Animator;
 

@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.login.application.form.other;
+package org.cacanhdaden.quanlythuoc.view.patient.other;
 
 import javax.swing.*;
 import java.awt.*;

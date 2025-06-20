@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.login.menu.mode;
+package org.cacanhdaden.quanlythuoc.view.patient.menu.mode;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
@@ -7,7 +7,7 @@ import com.formdev.flatlaf.util.ColorFunctions;
 import com.formdev.flatlaf.util.LoggingFacade;
 import com.formdev.flatlaf.util.UIScale;
 import lombok.Getter;
-import org.cacanhdaden.quanlythuoc.view.login.menu.Menu;
+import org.cacanhdaden.quanlythuoc.view.patient.menu.Menu;
 
 import javax.swing.*;
 import java.awt.*;
