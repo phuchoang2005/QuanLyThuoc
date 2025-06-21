@@ -26,7 +26,7 @@ public class Menu extends JPanel {
     };
 
     private final List<MenuEvent> events = new ArrayList<>();
-    private final String headerName = "Raven Channel";
+    private final String headerName = "Phần mềm quản lý toa thuốc";
 
     private JLabel header;
     private JScrollPane scroll;

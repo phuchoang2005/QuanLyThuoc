@@ -21,6 +21,7 @@ import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 import org.cacanhdaden.quanlythuoc.view.patient.features.FormDashboard;
 import org.cacanhdaden.quanlythuoc.view.patient.features.FormInbox;
 import org.cacanhdaden.quanlythuoc.view.patient.features.FormRead;
+import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManagerPanel;
 import org.cacanhdaden.quanlythuoc.view.patient.menuPatient.Menu;
 
 @Data
@@ -71,7 +72,8 @@ public class MainFormPatient extends JLayeredPane {
                         default -> action.cancel();
                     }
                 }
-                case 9 -> Launch.showLoginForm();
+                case 3 -> Launch.showForm(new PatientManagerPanel());
+                case 4 -> Launch.showLoginForm();
                 default -> action.cancel();
             }
         });
