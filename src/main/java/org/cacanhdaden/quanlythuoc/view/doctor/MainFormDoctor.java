@@ -9,7 +9,7 @@ import org.cacanhdaden.quanlythuoc.view.doctor.features.FormDashboard;
 import org.cacanhdaden.quanlythuoc.view.doctor.features.FormInbox;
 import org.cacanhdaden.quanlythuoc.view.doctor.features.FormRead;
 import org.cacanhdaden.quanlythuoc.view.doctor.menuDoctor.Menu;
-import org.cacanhdaden.quanlythuoc.view.login.Launch;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

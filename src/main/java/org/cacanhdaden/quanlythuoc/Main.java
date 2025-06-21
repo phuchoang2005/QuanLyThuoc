@@ -1,5 +1,5 @@
 package org.cacanhdaden.quanlythuoc;
-import org.cacanhdaden.quanlythuoc.view.login.Launch;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {

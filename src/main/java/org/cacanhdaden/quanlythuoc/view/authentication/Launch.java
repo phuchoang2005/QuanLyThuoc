@@ -1,12 +1,12 @@
-package org.cacanhdaden.quanlythuoc.view.login;
+package org.cacanhdaden.quanlythuoc.view.authentication;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
-import org.cacanhdaden.quanlythuoc.view.login.form.LoginForm;
-import org.cacanhdaden.quanlythuoc.view.login.form.SignUpForm;
+import org.cacanhdaden.quanlythuoc.view.authentication.form.LoginForm;
+import org.cacanhdaden.quanlythuoc.view.authentication.form.SignUpForm;
 import org.cacanhdaden.quanlythuoc.view.patient.MainFormPatient;
 import raven.toast.Notifications;
 

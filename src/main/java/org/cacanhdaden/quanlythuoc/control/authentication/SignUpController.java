@@ -1,6 +1,6 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
-import org.cacanhdaden.quanlythuoc.view.login.form.SignUpForm;
+import org.cacanhdaden.quanlythuoc.view.authentication.form.SignUpForm;
 import lombok.Getter;
 import lombok.Setter;
 

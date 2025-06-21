@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import lombok.Data;
 import org.cacanhdaden.quanlythuoc.util.IconPathUtil;
-import org.cacanhdaden.quanlythuoc.view.login.Launch;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 import org.cacanhdaden.quanlythuoc.view.patient.features.FormDashboard;
 import org.cacanhdaden.quanlythuoc.view.patient.features.FormInbox;
 import org.cacanhdaden.quanlythuoc.view.patient.features.FormRead;

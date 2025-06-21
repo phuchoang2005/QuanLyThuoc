@@ -1,10 +1,10 @@
-package org.cacanhdaden.quanlythuoc.view.login.form;
+package org.cacanhdaden.quanlythuoc.view.authentication.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
 
 import javax.swing.*;
-import org.cacanhdaden.quanlythuoc.view.login.Launch;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 import org.cacanhdaden.quanlythuoc.control.authentication.SignUpController;
 import raven.datetime.DatePicker;
 
@@ -69,7 +69,7 @@ public class SignUpForm extends JPanel {
     }
 
     private void initComponents() {
-        panelSignUp = new org.cacanhdaden.quanlythuoc.view.login.form.PanelSignUp();
+        panelSignUp = new org.cacanhdaden.quanlythuoc.view.authentication.form.PanelSignUp();
         lbTitle = new JLabel("Đăng ký tài khoản", SwingConstants.CENTER);
         lbEmail = new JLabel("Email");
         lbPass = new JLabel("Mật khẩu");

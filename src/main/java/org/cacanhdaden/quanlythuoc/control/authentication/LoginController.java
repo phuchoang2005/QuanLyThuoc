@@ -1,8 +1,8 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
 import org.cacanhdaden.quanlythuoc.model.model.Users;
-import org.cacanhdaden.quanlythuoc.view.login.Launch;
-import org.cacanhdaden.quanlythuoc.view.login.form.LoginForm;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
+import org.cacanhdaden.quanlythuoc.view.authentication.form.LoginForm;
 
 import javax.swing.*;
 public class LoginController {

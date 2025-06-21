@@ -1,10 +1,10 @@
-package org.cacanhdaden.quanlythuoc.view.login.form;
+package org.cacanhdaden.quanlythuoc.view.authentication.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
 import org.cacanhdaden.quanlythuoc.control.authentication.LoginController;
-import org.cacanhdaden.quanlythuoc.view.login.Launch;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 
 import javax.swing.*;
 
@@ -43,7 +43,7 @@ public class LoginForm extends JPanel {
     }
 
     private void initComponents() {
-        panelLogin1 = new org.cacanhdaden.quanlythuoc.view.login.form.PanelLogin();
+        panelLogin1 = new org.cacanhdaden.quanlythuoc.view.authentication.form.PanelLogin();
         lbTitle = new JLabel("Đăng nhập", SwingConstants.CENTER);
         lbUser = new JLabel("Email / Số điện thoại");
         txtUser = new JTextField();
