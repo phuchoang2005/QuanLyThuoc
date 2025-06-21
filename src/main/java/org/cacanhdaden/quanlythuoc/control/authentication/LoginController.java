@@ -1,10 +1,18 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
+import org.cacanhdaden.quanlythuoc.model.dao.LoginDAO;
 import org.cacanhdaden.quanlythuoc.model.model.Users;
+import org.cacanhdaden.quanlythuoc.util.StringMatcherUtil;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
 import org.cacanhdaden.quanlythuoc.view.login.form.LoginForm;
-
 import javax.swing.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class LoginController {
     private LoginForm loginForm;
 
@@ -13,32 +21,49 @@ public class LoginController {
         handleLoginButtonClick();
     }
 
-    void handleLoginButtonClick() {
-        String email = this.loginForm.getTxtUser().getText();
-        String password = new String(this.loginForm.getTxtPass().getPassword());
-        if (login(email, password)) {
-            // Login successful, proceed to the main application
+    private void handleLoginButtonClick() {
+        Users user = new Users();
+
+        if (
+            StringMatcherUtil.isEmail(this.loginForm.getTxtUser().getText())
+        ) {
+            user = Users.EmailUsers(
+                this.loginForm.getTxtUser().getText(),
+                new String(this.loginForm.getTxtPass().getPassword())
+            );
+        } else {
+            user = Users.PhoneNumberUsers(
+                this.loginForm.getTxtUser().getText(),
+                new String(this.loginForm.getTxtPass().getPassword())
+            );
+        }
+
+        if (login(user)) {
             Launch.showMainForm();
         } else {
-            // Show error message
             JOptionPane.showMessageDialog(
                 loginForm,
-                "Invalid email or password. Please try again.",
-                "Login Error",
+                "Đăng nhập không thành công. Vui lòng kiểm tra lại thông tin.",
+                "Lỗi đăng nhập",
                 JOptionPane.ERROR_MESSAGE
             );
         }
     }
 
-    private boolean login(String email, String password) {
-        Users users = new Users(email, password);
-        if (isValid(users)) {
-            return true;
+    private boolean login(Users user) {
+        if (!isValid(user)) {
+            return false;
         }
-        return false;
+        LoginDAO loginDAO = new LoginDAO(user);
+        return loginDAO.handleLogin();
     }
 
-    private boolean isValid(Users users) {
-        return !users.getEmail().isEmpty() && !users.getHashedPassword().isEmpty();
+    private boolean isValid(Users user) {
+        if (StringMatcherUtil.isEmail(this.loginForm.getTxtUser().getText())) {
+            return user.getHashedPassword() != null && !user.getHashedPassword().isEmpty();
+        } else {
+            return user.getPhoneNumber() != null && !user.getPhoneNumber().isEmpty() &&
+                user.getHashedPassword() != null && !user.getHashedPassword().isEmpty();
+        }
     }
 }

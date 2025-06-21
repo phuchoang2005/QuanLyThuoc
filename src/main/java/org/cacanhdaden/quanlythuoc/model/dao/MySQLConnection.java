@@ -8,8 +8,8 @@ public class MySQLConnection {
 
     private static final String URL = "jdbc:mysql://localhost:3306/QLT";
     private static final String USER = "root";
-    //private static final String PASSWORD = "181105"; Sang Password
-    private static final String PASSWORD = "012345678";
+    private static final String PASSWORD = "181105"; //Sang Password
+//    private static final String PASSWORD = "012345678";
 
     // Trả về Connection mỗi khi gọi
     public static Connection getConnection() throws SQLException {

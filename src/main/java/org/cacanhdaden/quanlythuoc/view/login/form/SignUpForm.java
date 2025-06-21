@@ -4,6 +4,10 @@ import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
 
 import javax.swing.*;
+
+import net.miginfocom.swing.MigLayout;
+import org.cacanhdaden.quanlythuoc.model.model.Users;
+import org.cacanhdaden.quanlythuoc.util.GenderPassingUtil;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
 import org.cacanhdaden.quanlythuoc.control.authentication.SignUpController;
 import raven.datetime.DatePicker;
@@ -37,22 +41,7 @@ public class SignUpForm extends JPanel {
     }
 
     private void setupLayout() {
-        setLayout(new GroupLayout(this));
-        GroupLayout layout = (GroupLayout) getLayout();
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(218, Short.MAX_VALUE)
-                                .addComponent(panelSignUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(197))
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(68)
-                                .addComponent(panelSignUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(96, Short.MAX_VALUE))
-        );
+        setLayout(new MigLayout("al center center"));
     }
 
     private void setupComponentStyle() {
@@ -87,7 +76,16 @@ public class SignUpForm extends JPanel {
         datePickerDob.setEditor(dateEditor);
         datePickerDob.setCloseAfterSelected(true);
 
-        cbGender = new JComboBox<>(new String[]{"Nam", "Nữ"});
+        cbGender = new JComboBox<>(
+            new String[]{
+                GenderPassingUtil.UserEnumToString(
+                    Users.GenderEnum.MALE
+                ),
+                GenderPassingUtil.UserEnumToString(
+                    Users.GenderEnum.FEMALE
+                )
+            }
+        );
         txtPhone = new JTextField();
         txtAddress = new JTextArea(2, 20);
 
@@ -119,5 +117,22 @@ public class SignUpForm extends JPanel {
         panelSignUp.add(new JScrollPane(txtAddress));
         panelSignUp.add(btnSignUp);
         panelSignUp.add(btnLogin);
+
+        setLayout(new GroupLayout(this));
+        GroupLayout layout = (GroupLayout) getLayout();
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(218, Short.MAX_VALUE)
+                                .addComponent(panelSignUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(197))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(68)
+                                .addComponent(panelSignUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(96, Short.MAX_VALUE))
+        );
     }
 }

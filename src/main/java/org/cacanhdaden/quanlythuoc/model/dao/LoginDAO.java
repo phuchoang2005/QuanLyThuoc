@@ -1,9 +1,7 @@
 package org.cacanhdaden.quanlythuoc.model.dao;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.cacanhdaden.quanlythuoc.model.model.Users;
 
 import java.sql.Connection;
@@ -14,14 +12,21 @@ import java.sql.SQLException;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginDAO {
-    private Users users;
+    private Users user;
 
-    public boolean checkLogin() {
-        String sql = "SELECT COUNT(*) FROM users WHERE email = ? AND password_hash = ?";
-        try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, users.getEmail());
-            ps.setString(2, users.getHashedPassword());
+    public boolean handleLogin() {
+        String sql = null;
+        if (user.getEmail() != null) {
+            sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+        } else {
+            sql = "SELECT COUNT(*) FROM users WHERE phone_number = ?";
+        }
+
+        try (
+            Connection conn = MySQLConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+        ) {
+            ps.setString(1, user.getEmail());
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt(1) > 0;
