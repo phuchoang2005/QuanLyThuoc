@@ -15,11 +15,11 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import lombok.Data;
 import lombok.Getter;
 import org.cacanhdaden.quanlythuoc.util.IconPathUtil;
 import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 import org.cacanhdaden.quanlythuoc.view.patient.features.*;
+import org.cacanhdaden.quanlythuoc.view.patient.features.PrescriptionManager.PrescriptionManagerPanel;
 import org.cacanhdaden.quanlythuoc.view.patient.menuPatient.Menu;
 
 @Getter
@@ -67,7 +67,7 @@ public class MainFormPatient extends JLayeredPane {
                     switch (subIndex) {
                         case 1 -> Launch.showForm(new FormInbox());
                         case 2 -> Launch.showForm(new FormRead());
-                        case 3 -> Launch.showForm(new RequestPrescriptionPanel());
+                        case 3 -> Launch.showForm(new PrescriptionManagerPanel());
                         default -> action.cancel();
                     }
                 }

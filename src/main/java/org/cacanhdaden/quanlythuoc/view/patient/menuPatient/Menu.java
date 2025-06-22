@@ -19,7 +19,7 @@ public class Menu extends JPanel {
             {"~Trang chủ~"},
             {"Thông tin cá nhân"},
             {"~Đơn thuốc~"},
-            {"Yêu cầu kê đơn", "Chi tiết đơn thuốc", "Lịch sử dùng thuốc", "Yêu cầu kê đơn"},
+            {"Yêu cầu kê đơn", "Chi tiết đơn thuốc", "Lịch sử dùng thuốc", "Kê đơn"},
             {"Tra cứu trực tuyến"},
             {"Quản lý thông tin bệnh nhân"},
             {"Logout"}

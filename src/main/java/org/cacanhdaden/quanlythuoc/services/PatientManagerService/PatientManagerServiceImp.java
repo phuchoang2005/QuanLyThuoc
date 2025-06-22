@@ -17,29 +17,55 @@ import java.awt.event.FocusEvent;
 @AllArgsConstructor
 public class PatientManagerServiceImp implements PatientManagerServiceInterface{
     private final PatientManagerPanel panel;
-
+    private void checkInformationValidBeforeSubmit() throws InvalidInformationException {
+        checkEmailValidBeforeSubmit();
+        checkDobValidBeforeSubmit();
+    }
+    private void checkEmailValidBeforeSubmit() throws InvalidInformationException {
+        final String emailString = panel.getEmailTextField().getText();
+        try{
+            ValidatorInterface validator = new EmailValidatorImp(emailString);
+            validator.checkValid();
+        }catch(InvalidInformationException exception){
+            throw new InvalidInformationException(exception.getMessage());
+        }
+    }
+    private void checkDobValidBeforeSubmit() throws InvalidInformationException {
+        final String dobString = panel.getDobTextField().getText();
+        try {
+            ValidatorInterface validator = new DateValidatorImp(dobString);
+            validator.checkValid();
+        }catch(InvalidInformationException exception){
+            throw new InvalidInformationException(exception.getMessage());
+        }
+    }
     public void update(){
         this.panel.getUpdateButton().addActionListener(e->{
-            checkInformationValid();
-            final UpdatePatientInformationDAO dao = new UpdatePatientInformationDAO(panel);
-            try {
-                dao.update();
-                JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Chúc mừng", JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(panel, ex.getMessage(), "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-                loadCurrentInformation();
+            try{
+                checkInformationValidBeforeSubmit();
+                final UpdatePatientInformationDAO dao = new UpdatePatientInformationDAO(panel);
+                try {
+                    dao.update();
+                    JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Chúc mừng", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IllegalStateException ex) {
+                    JOptionPane.showMessageDialog(panel, ex.getMessage(), "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+                    //loadCurrentInformation();
+                }
+
+            }catch(InvalidInformationException exception){
+                JOptionPane.showMessageDialog(panel, exception.getMessage(), "Cảnh báo", JOptionPane.WARNING_MESSAGE);
             }
         });
     }
     public void loadCurrentInformation() {
-        final LoadCurrentPatientInformationDAO dao = new LoadCurrentPatientInformationDAO(panel);
         try {
+            final LoadCurrentPatientInformationDAO dao = new LoadCurrentPatientInformationDAO(panel);
             dao.load();
-        } catch (Exception e) {
+        } catch (IllegalStateException e) {
             JOptionPane.showMessageDialog(this.panel,e.getMessage(),"Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void checkInformationValid() {
+    public void checkInformationValidOnProgress() {
 
         checkDateValid();
         checkEmailValid();
@@ -49,7 +75,8 @@ public class PatientManagerServiceImp implements PatientManagerServiceInterface{
         this.panel.getEmailTextField().addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent event){
-                final ValidatorInterface emailValidator = new EmailValidatorImp(panel.getEmailTextField().getText());
+                final String emailString = panel.getEmailTextField().getText();
+                final ValidatorInterface emailValidator = new EmailValidatorImp(emailString);
                 try {
                     emailValidator.checkValid();
                     panel.getEmailTextField().setBorder(BorderFactory.createLineBorder(Color.GREEN));
@@ -64,7 +91,8 @@ public class PatientManagerServiceImp implements PatientManagerServiceInterface{
         this.panel.getDobTextField().addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent event){
-                final ValidatorInterface dateValidator = new DateValidatorImp(panel.getDobTextField().getText());
+                final String  dateString = panel.getDobTextField().getText();
+                final ValidatorInterface dateValidator = new DateValidatorImp(dateString);
                 try {
                     dateValidator.checkValid();
                     panel.getDobTextField().setBorder(BorderFactory.createLineBorder(Color.GREEN));

@@ -3,8 +3,6 @@ import org.cacanhdaden.quanlythuoc.services.PatientManagerService.PatientManager
 import org.cacanhdaden.quanlythuoc.services.PatientManagerService.PatientManagerServiceInterface;
 import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManagerPanel;
 
-import javax.swing.*;
-
 
 public class PatientManagerController {
     private final PatientManagerServiceInterface services;
@@ -16,7 +14,7 @@ public class PatientManagerController {
         update();
     }
     private void checkInformationValid(){
-        services.checkInformationValid();
+        services.checkInformationValidOnProgress();
     }
     private void loadCurrentInformation(){
         services.loadCurrentInformation();
