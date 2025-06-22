@@ -1,5 +1,6 @@
 package org.cacanhdaden.quanlythuoc.model.dao;
 
+import lombok.AllArgsConstructor;
 import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManagerPanel;
 
 import javax.swing.*;
@@ -8,12 +9,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+@AllArgsConstructor
 public class UpdatePatientInformationDAO {
     private final PatientManagerPanel panel;
-    public UpdatePatientInformationDAO(PatientManagerPanel panel) {
-        this.panel = panel;
-    }
     public boolean isUpdateSuccessful(){
         try{
             String sql = "Update users " +
@@ -43,19 +41,8 @@ public class UpdatePatientInformationDAO {
             stmt.setString(6, this.panel.getAddressTextField().getText());
             stmt.setDate(7, Date.valueOf(LocalDate.now()));
             stmt.setString(8, this.panel.getIdJTextField().getText());
-            if(stmt.executeUpdate() > 0){
-                JOptionPane.showMessageDialog(this.panel, "Thông tin bệnh nhân đã được cập nhật thành công", "Chúc mừng",JOptionPane.INFORMATION_MESSAGE);
-            }
-            return true;
+            return stmt.executeUpdate() > 0;
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(this.panel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            panel.getIdJTextField().setText("");
-            panel.getEmailTextField().setText("");
-            panel.getFull_nameField().setText("");
-            panel.getDobTextField().setText("");
-            panel.getPhone_numberTextField().setText("");
-            panel.getAddressTextField().setText("");
-            panel.getIdJTextField().setText("");
             return false;
         }
     }

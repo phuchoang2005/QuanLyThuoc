@@ -7,17 +7,19 @@ Sang:
     đăng nhập-đăng xuất,
     đăng ký (email),
     quên mật khẩu(email)
-    tra cứu lịch sử dùng đơn thuốc (Dashboard)
-    tra cứu thuốc (lấy api - Dashboard)
-    Xem chi tiết đơn thuốc (Dashboard)
+    tra cứu lịch sử dùng đơn thuốc (Dashboard) - bệnh nhân
+    tra cứu thuốc (lấy api) - bệnh nhân
+    Xem chi tiết đơn thuốc (Dashboard) - bệnh nhân
 
 Phúc:
-    tạo notification nhắc uống thuốc trên hệ thống
-    gửi yêu cầu kê đơn thuốc
-    quản lý tài khoản bệnh nhân.
-    Xem danh sách bệnh nhân (Dashboard)
-    quản lý đơn thuốc (Dashboard)
-    xem hồ sơ bệnh án (Dashboard)
+    tạo notification nhắc uống thuốc trên hệ thống - bệnh nhân
+    gửi yêu cầu kê đơn thuốc - bệnh nhân **
+    quản lý tài khoản bệnh nhân - bệnh nhân. **
+
+Bảo:
+    Xem danh sách bệnh nhân (Dashboard) - bác sĩ
+    quản lý đơn thuốc (Dashboard) - bác sĩ
+    xem hồ sơ bệnh án (Dashboard) - bác sĩ
     
 
 Database:

@@ -15,7 +15,7 @@ CREATE TABLE `users` (
   `password_hash` VARCHAR(255) NOT NULL,
   `full_name` VARCHAR(255) NOT NULL,
   `date_of_birth` DATE NULL,
-  `gender` ENUM('male', 'female', 'other') NULL,
+  `gender` ENUM('Nam', 'Nữ', 'Khác') NULL,
   `phone_number` VARCHAR(20) NULL,
   `address` TEXT NULL,
   `role` ENUM('patient', 'doctor') NOT NULL DEFAULT 'patient',

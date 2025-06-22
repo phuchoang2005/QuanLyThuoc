@@ -3,6 +3,8 @@ package org.cacanhdaden.quanlythuoc.view.patient.features;
 import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
 import org.cacanhdaden.quanlythuoc.control.patient.PatientManagerController;
+import org.cacanhdaden.quanlythuoc.services.CheckDateValid;
+import org.cacanhdaden.quanlythuoc.services.CheckEmailValid;
 import org.cacanhdaden.quanlythuoc.services.CheckUserInformationInvalid;
 
 import javax.swing.*;
@@ -147,7 +149,7 @@ public class PatientManagerPanel extends JPanel {
         emailTextField.addFocusListener(new FocusAdapter(){
             @Override
             public void focusLost(FocusEvent event){
-                new CheckUserInformationInvalid(mainPanel).checkingEmailInvalid();
+                new CheckEmailValid(mainPanel).checkInformationValid();
             }
         });
     }
@@ -155,7 +157,7 @@ public class PatientManagerPanel extends JPanel {
         dobTextField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                new CheckUserInformationInvalid(mainPanel).checkingDateInvalid();
+                new CheckDateValid(mainPanel).checkInformationValid();
             }
         });
     }

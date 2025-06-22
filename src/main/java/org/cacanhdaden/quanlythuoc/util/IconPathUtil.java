@@ -4,15 +4,8 @@ import lombok.Data;
 
 @Data
 public class IconPathUtil {
-    private final String lightModeIconPath;
-    private final String darkModeIconPath;
-    private final String svgIconPath;
-    private final String svgIconMenuPath;
-
-    public IconPathUtil(){
-        lightModeIconPath = "images/DarkMode_LightMode/light.svg";
-        darkModeIconPath = "images/DarkMode_LightMode/dark.svg";
-        svgIconPath = "images/icon/svg/";
-        svgIconMenuPath = "images/iconMenu/";
-    }
+    private final String lightModeIconPath = "images/DarkMode_LightMode/light.svg";
+    private final String darkModeIconPath = "images/DarkMode_LightMode/dark.svg";
+    private final String svgIconPath = "images/icon/svg/";;
+    private final String svgIconMenuPath = "images/iconMenu/";
 }
