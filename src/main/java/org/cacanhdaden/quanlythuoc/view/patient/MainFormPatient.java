@@ -68,7 +68,6 @@ public class MainFormPatient extends JLayeredPane {
                         case 1 -> Launch.showForm(new FormInbox());
                         case 2 -> Launch.showForm(new FormRead());
                         case 3 -> Launch.showForm(new RequestPrescriptionPanel());
-                        case 4 -> Launch.showForm(new RequestPrescriptionPanel());
                         default -> action.cancel();
                     }
                 }

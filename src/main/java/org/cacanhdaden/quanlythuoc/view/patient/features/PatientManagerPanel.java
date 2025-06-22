@@ -3,18 +3,12 @@ package org.cacanhdaden.quanlythuoc.view.patient.features;
 import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
 import org.cacanhdaden.quanlythuoc.control.patient.PatientManagerController;
-import org.cacanhdaden.quanlythuoc.services.CheckDateValid;
-import org.cacanhdaden.quanlythuoc.services.CheckEmailValid;
-import org.cacanhdaden.quanlythuoc.services.CheckUserInformationInvalid;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 @Getter
 public class PatientManagerPanel extends JPanel {
-    private final PatientManagerPanel mainPanel= this;
     private final JTextField idJTextField = new JTextField(20);
     private final JTextField full_nameField = new JTextField(20);
     private final JTextField phone_numberTextField = new JTextField(20);
@@ -47,9 +41,7 @@ public class PatientManagerPanel extends JPanel {
         configLayout();
         initComponent();
         changePassword();
-        checkEmailInvalid();
-        checkDateInvalid();
-        getInformation();
+        handleInformation();
     }
 
     private void configLayout() {
@@ -145,25 +137,7 @@ public class PatientManagerPanel extends JPanel {
 
     private void changePassword(){
     }
-    private void checkEmailInvalid(){
-        emailTextField.addFocusListener(new FocusAdapter(){
-            @Override
-            public void focusLost(FocusEvent event){
-                new CheckEmailValid(mainPanel).checkInformationValid();
-            }
-        });
-    }
-    private void checkDateInvalid(){
-        dobTextField.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                new CheckDateValid(mainPanel).checkInformationValid();
-            }
-        });
-    }
-    private void getInformation(){
-        updateButton.addActionListener(e->{
-           new PatientManagerController(this);
-        });
+    private void handleInformation(){
+        new PatientManagerController(this);
     }
 }

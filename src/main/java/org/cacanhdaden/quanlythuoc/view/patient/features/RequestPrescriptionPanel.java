@@ -9,7 +9,7 @@ public class RequestPrescriptionPanel extends JPanel {
     private final JLabel label;
 
     public RequestPrescriptionPanel() {
-        label = createLabel("Xin chào tất cả các bạn, mình Jenny Huỳnh");
+        label = createLabel("Xin chào tất cả các bạn, mình là Jenny Huỳnh");
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         add(label, BorderLayout.CENTER);

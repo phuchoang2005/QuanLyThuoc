@@ -4,7 +4,6 @@ package org.cacanhdaden.quanlythuoc.model.dao;
 import lombok.AllArgsConstructor;
 import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManagerPanel;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +12,7 @@ import java.sql.ResultSet;
 public class LoadCurrentPatientInformationDAO {
     private final PatientManagerPanel panel;
 
-    public boolean isLoadSuccessful(){
+    public void load(){
         try{
             String sql = "select * from users where id = ?";
             Connection conn = MySQLConnection.getConnection();
@@ -28,9 +27,8 @@ public class LoadCurrentPatientInformationDAO {
                 this.panel.getAddressTextField().setText(rs.getString("address"));
                 this.panel.getPhone_numberTextField().setText(rs.getString("phone_number"));
             }
-            return true;
         }catch(Exception ex){
-            return false;
+            throw new IllegalStateException(ex);
         }
     }
 }
