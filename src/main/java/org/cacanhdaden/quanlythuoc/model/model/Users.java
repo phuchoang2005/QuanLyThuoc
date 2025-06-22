@@ -16,6 +16,7 @@ public class Users {
 
     private String id;
     private String email;
+    private String password;
     private String hashedPassword;
     private String fullName;
     private String dateOfBirth;
@@ -29,6 +30,7 @@ public class Users {
     public static Users EmailUsers (String email, String password) {
         Users user = new Users();
         user.setEmail(email);
+        user.setPassword(password);
         user.setHashedPassword(PasswordUtil.hashPassword(password));
         return user;
     }
@@ -36,6 +38,7 @@ public class Users {
     public static Users PhoneNumberUsers (String phoneNumber, String password) {
         Users user = new Users();
         user.setPhoneNumber(phoneNumber);
+        user.setPassword(password);
         user.setHashedPassword(PasswordUtil.hashPassword(password));
         return user;
     }
@@ -50,6 +53,7 @@ public class Users {
             String address
     ) {
         this.email = email;
+        this.password = password;
         this.hashedPassword = PasswordUtil.hashPassword(password);
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
