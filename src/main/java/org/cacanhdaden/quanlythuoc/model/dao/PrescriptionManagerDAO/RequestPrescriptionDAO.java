@@ -28,7 +28,7 @@ public class RequestPrescriptionDAO {
 
             ps.execute();
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            throw new RuntimeException("Không thể cập nhật");
         }
     }
 }

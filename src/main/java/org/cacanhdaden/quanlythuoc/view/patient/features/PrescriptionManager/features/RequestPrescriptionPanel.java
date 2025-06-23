@@ -50,21 +50,14 @@ public class RequestPrescriptionPanel extends JPanel {
 
         // Submit button
         submitButton = new JButton("Gửi yêu cầu");
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                submitPrescriptionRequest();
-            }
-        });
         add(submitButton, "span, align center, wrap");
 
         // Feedback label
         feedbackLabel = new JLabel("");
         feedbackLabel.setForeground(Color.RED);
         add(feedbackLabel, "span, align center");
-    }
 
-    private void submitPrescriptionRequest() {
         new RequestPrescriptionController(this);
     }
+
 }
