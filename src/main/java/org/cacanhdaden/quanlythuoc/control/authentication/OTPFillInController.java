@@ -66,6 +66,7 @@ public class OTPFillInController {
                     "Lỗi đăng ký",
                     JOptionPane.ERROR_MESSAGE
                 );
+                Launch.showSignUpForm();
             }
         }
     }

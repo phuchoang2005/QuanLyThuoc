@@ -23,11 +23,9 @@ public class OTPFillInForm extends JPanel {
     private JButton btnResend;
     private JLabel lbTitle;
     private JLabel lbOTP;
-    private JLabel lbTimeCounter;
     private PanelOTPFillIn panelOTPFillIn;
     private JTextField txtOTP;
     private Users user;
-    private int timeLimit = 120;
     private boolean isFinished = false;
     private String OTPCode;
 
@@ -51,7 +49,6 @@ public class OTPFillInForm extends JPanel {
         panelOTPFillIn = new PanelOTPFillIn();
         lbTitle = new JLabel("Nhập mã OTP nhận được", SwingConstants.CENTER);
         lbOTP = new JLabel("OTP");
-        lbTimeCounter = new JLabel("Thời gian còn lại: " + timeLimit + "s", SwingConstants.RIGHT);
         txtOTP = new JTextField();
         btnResend = new JButton("Gửi lại");
         btnResend.setName("btnResend");
@@ -69,7 +66,6 @@ public class OTPFillInForm extends JPanel {
         panelOTPFillIn.add(lbTitle);
         panelOTPFillIn.add(lbOTP);
         panelOTPFillIn.add(txtOTP);
-        panelOTPFillIn.add(lbTimeCounter);
         panelOTPFillIn.add(btnResend);
         panelOTPFillIn.add(btnFinish);
 
