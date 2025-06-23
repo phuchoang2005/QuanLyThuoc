@@ -1,12 +1,10 @@
 -- Cài đặt encoding để hỗ trợ tiếng Việt
--- CREATE DATABASE QLT;
+CREATE DATABASE QLT;
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- Xác định DB sử dụng
--- USE QLT;
--- USE sys;
--- DROP DATABASE QLT;
+USE QLT;
 
 -- =================================================================
 -- Bảng 1: users - Lưu trữ thông tin người dùng (Bệnh nhân & Bác sĩ)
@@ -21,7 +19,7 @@ CREATE TABLE `users` (
   `gender` ENUM('Nam', 'Nữ', 'Khác') NULL,
   `phone_number` VARCHAR(20) NULL,
   `address` TEXT NULL,
-  `role` ENUM('PATIENT', 'DOCTOR') NOT NULL DEFAULT 'patient',
+  `role` ENUM('PATIENT', 'DOCTOR') NOT NULL DEFAULT 'PATIENT',
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
