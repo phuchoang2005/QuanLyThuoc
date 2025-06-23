@@ -2,7 +2,7 @@ package org.cacanhdaden.quanlythuoc.model.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.cacanhdaden.quanlythuoc.model.model.Users;
+import org.cacanhdaden.quanlythuoc.model.object.Users;
 import org.cacanhdaden.quanlythuoc.util.PasswordUtil;
 
 import java.sql.Connection;

@@ -6,7 +6,7 @@ import lombok.Getter;
 import javax.swing.*;
 
 import net.miginfocom.swing.MigLayout;
-import org.cacanhdaden.quanlythuoc.model.model.Users;
+import org.cacanhdaden.quanlythuoc.model.object.Users;
 import org.cacanhdaden.quanlythuoc.util.GenderPassingUtil;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
 import org.cacanhdaden.quanlythuoc.control.authentication.SignUpController;
@@ -16,7 +16,7 @@ import raven.datetime.DatePicker;
 public class SignUpForm extends JPanel {
 
     private JButton btnSignUp;
-    private JButton btnLogin;
+    private JButton btnReturn;
     private JLabel lbTitle;
     private JLabel lbEmail;
     private JLabel lbPass;
@@ -54,7 +54,7 @@ public class SignUpForm extends JPanel {
         txtAddress.setLineWrap(true);
         txtAddress.setWrapStyleWord(true);
         btnSignUp.putClientProperty(FlatClientProperties.STYLE, "borderWidth:0;focusWidth:0");
-        btnLogin.putClientProperty(FlatClientProperties.STYLE, "borderWidth:0;focusWidth:0");
+        btnReturn.putClientProperty(FlatClientProperties.STYLE, "borderWidth:0;focusWidth:0");
     }
 
     private void initComponents() {
@@ -90,9 +90,9 @@ public class SignUpForm extends JPanel {
         txtAddress = new JTextArea(2, 20);
 
         btnSignUp = new JButton("Hoàn tất");
-        btnLogin = new JButton("Trở về đăng nhập");
+        btnReturn = new JButton("Trở về đăng nhập");
 
-        btnLogin.addActionListener(e -> {
+        btnReturn.addActionListener(e -> {
             Launch.showLoginForm();
         });
 
@@ -116,7 +116,7 @@ public class SignUpForm extends JPanel {
         panelSignUp.add(lbAddress);
         panelSignUp.add(new JScrollPane(txtAddress));
         panelSignUp.add(btnSignUp);
-        panelSignUp.add(btnLogin);
+        panelSignUp.add(btnReturn);
 
         setLayout(new GroupLayout(this));
         GroupLayout layout = (GroupLayout) getLayout();

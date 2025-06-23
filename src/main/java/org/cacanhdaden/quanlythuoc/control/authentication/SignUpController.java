@@ -1,7 +1,8 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
 import org.cacanhdaden.quanlythuoc.model.dao.SignUpDAO;
-import org.cacanhdaden.quanlythuoc.model.model.Users;
+import org.cacanhdaden.quanlythuoc.model.object.Users;
+import org.cacanhdaden.quanlythuoc.util.EmailSendingUtil;
 import org.cacanhdaden.quanlythuoc.util.GenderPassingUtil;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
 import org.cacanhdaden.quanlythuoc.view.login.form.SignUpForm;
@@ -24,7 +25,7 @@ public class SignUpController {
         handleSignUpButtonClick();
     }
 
-    public void handleSignUpButtonClick() {
+    private void handleSignUpButtonClick() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Users user = new Users(
             this.signUpForm.getTxtEmail().getText(),
@@ -32,16 +33,28 @@ public class SignUpController {
             this.signUpForm.getTxtFullName().getText(),
             this.signUpForm.getDatePickerDob().getSelectedDate().toString(),
             Objects.requireNonNull(
-                GenderPassingUtil.StringToUserEnum(
-                    this.signUpForm.getCbGender().getSelectedItem().toString()
-                )
+                    GenderPassingUtil.StringToUserEnum(
+                            this.signUpForm.getCbGender().getSelectedItem().toString()
+                    )
             ).toString(),
             this.signUpForm.getTxtPhone().getText(),
             this.signUpForm.getTxtAddress().getText()
         );
 
-        if (signup(user)) {
-            Launch.showLoginForm();
+        if (isValid(user)) {
+            String OTPcode = EmailSendingUtil.sendAuthOTPEmail(user.getEmail());
+
+            if (OTPcode == null) {
+                JOptionPane.showMessageDialog(
+                    signUpForm,
+                    "Không thể gửi mã OTP đến Email. Vui lòng thử lại",
+                    "Lỗi đăng ký",
+                    JOptionPane.ERROR_MESSAGE
+                );
+            } else {
+                Launch.showOTPFillInForm();
+                Launch.loadInfoOnOTPFillInForm(user, OTPcode);
+            }
         } else {
             JOptionPane.showMessageDialog(
                 signUpForm,
@@ -50,14 +63,6 @@ public class SignUpController {
                 JOptionPane.ERROR_MESSAGE
             );
         }
-    }
-
-    private boolean signup(Users user) {
-        if (!isValid(user)) {
-            return true;
-        }
-        SignUpDAO signupDAO = new SignUpDAO(user);
-        return signupDAO.handleSignUp();
     }
 
     private boolean isValid(Users user) {

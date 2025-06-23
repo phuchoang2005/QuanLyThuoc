@@ -1,20 +1,19 @@
-package org.cacanhdaden.quanlythuoc.model.model;
+package org.cacanhdaden.quanlythuoc.model.object;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Drugs {
+public class Prescription {
     private String id;
-    private String api_drug_id;
-    private String name;
-    private String description;
-    private String dosage_form;
-    private String manufacturer;
+    private String patient_id;
+    private String doctor_id;
+    private String diagnosis;
+    private String notes;
+    private String issue_date;
     private String created_at = new Date().toString();
 }

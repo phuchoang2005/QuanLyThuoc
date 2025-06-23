@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.model.model;
+package org.cacanhdaden.quanlythuoc.model.object;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

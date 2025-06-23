@@ -1,6 +1,6 @@
 package org.cacanhdaden.quanlythuoc.util;
 
-import org.cacanhdaden.quanlythuoc.model.model.Users;
+import org.cacanhdaden.quanlythuoc.model.object.Users;
 
 public class GenderPassingUtil {
     public static String UserEnumToString(Users.GenderEnum inp) {

@@ -2,14 +2,11 @@ package org.cacanhdaden.quanlythuoc.model.dao;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.cacanhdaden.quanlythuoc.model.dto.SignUpDTO;
-import org.cacanhdaden.quanlythuoc.model.model.Users;
+import org.cacanhdaden.quanlythuoc.model.object.Users;
 import org.cacanhdaden.quanlythuoc.util.GenderPassingUtil;
-import org.cacanhdaden.quanlythuoc.util.PasswordUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

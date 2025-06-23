@@ -5,7 +5,9 @@ import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
+import org.cacanhdaden.quanlythuoc.model.object.Users;
 import org.cacanhdaden.quanlythuoc.view.login.form.LoginForm;
+import org.cacanhdaden.quanlythuoc.view.login.form.OTPFillInForm;
 import org.cacanhdaden.quanlythuoc.view.login.form.SignUpForm;
 import org.cacanhdaden.quanlythuoc.view.patient.MainFormPatient;
 import raven.toast.Notifications;
@@ -20,11 +22,13 @@ public class Launch extends JFrame {
     private final MainFormPatient mainFormPatient;
     private final LoginForm loginForm;
     private final SignUpForm signUpForm;
+    private final OTPFillInForm otpFillInForm;
 
     public Launch() {
         this.mainFormPatient = new MainFormPatient();
         this.loginForm = new LoginForm();
         this.signUpForm = new SignUpForm();
+        this.otpFillInForm = new OTPFillInForm();
 
         initUI();
     }
@@ -70,6 +74,22 @@ public class Launch extends JFrame {
         Launch app = getInstance();
         app.switchContent(app.signUpForm);
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
+
+    public static void showOTPFillInForm() {
+        FlatAnimatedLafChange.showSnapshot();
+        Launch app = getInstance();
+        app.switchContent(app.otpFillInForm);
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
+
+    public static void loadInfoOnOTPFillInForm(Users user, String OTPCode) {
+        getInstance().otpFillInForm.setOTPCode(OTPCode);
+        getInstance().otpFillInForm.setUser(user);
+    }
+
+    public static boolean isOTPFillInFormFinished() {
+        return getInstance().otpFillInForm.isFinished();
     }
 
     public static void setSelectedMenu(int index, int subIndex) {
