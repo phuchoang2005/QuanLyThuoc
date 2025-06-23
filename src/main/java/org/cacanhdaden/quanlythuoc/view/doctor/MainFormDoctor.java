@@ -5,9 +5,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.util.UIScale;
 import lombok.Data;
 import org.cacanhdaden.quanlythuoc.util.IconPathUtil;
-import org.cacanhdaden.quanlythuoc.view.doctor.features.FormDashboard;
-import org.cacanhdaden.quanlythuoc.view.doctor.features.FormInbox;
-import org.cacanhdaden.quanlythuoc.view.doctor.features.FormRead;
+import org.cacanhdaden.quanlythuoc.view.doctor.features.*;
 import org.cacanhdaden.quanlythuoc.view.doctor.menuDoctor.Menu;
 import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 
@@ -56,14 +54,15 @@ public class MainFormDoctor extends JLayeredPane {
         menu.addMenuEvent((index, subIndex, action) -> {
             switch (index) {
                 case 0 -> Launch.showForm(new FormDashboard());
-                case 1 -> {
+                case 1 -> Launch.showForm(new FormPatientList());
+                case 2 -> {
                     switch (subIndex) {
-                        case 1 -> Launch.showForm(new FormInbox());
-                        case 2 -> Launch.showForm(new FormRead());
+                        case 1 -> Launch.showForm(new FormManagePrescription());
+                        case 2 -> Launch.showForm(new FormMedicalRecord());
                         default -> action.cancel();
                     }
                 }
-                case 9 -> Launch.showLoginForm();
+                case 3 -> Launch.showLoginForm();
                 default -> action.cancel();
             }
         });

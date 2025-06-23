@@ -7,6 +7,7 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
 import org.cacanhdaden.quanlythuoc.view.authentication.form.LoginForm;
 import org.cacanhdaden.quanlythuoc.view.authentication.form.SignUpForm;
+import org.cacanhdaden.quanlythuoc.view.doctor.MainFormDoctor;
 import org.cacanhdaden.quanlythuoc.view.patient.MainFormPatient;
 import raven.toast.Notifications;
 
@@ -17,12 +18,12 @@ import java.awt.*;
 public class Launch extends JFrame {
 
     private static Launch instance;
-    private final MainFormPatient mainFormPatient;
+    private final MainFormDoctor mainFormDoctor;
     private final LoginForm loginForm;
     private final SignUpForm signUpForm;
 
     public Launch() {
-        this.mainFormPatient = new MainFormPatient();
+        this.mainFormDoctor = new MainFormDoctor();
         this.loginForm = new LoginForm();
         this.signUpForm = new SignUpForm();
 
@@ -40,15 +41,15 @@ public class Launch extends JFrame {
 
     public static void showForm(Component component) {
         component.applyComponentOrientation(getInstance().getComponentOrientation());
-        getInstance().mainFormPatient.showForm(component);
+        getInstance().mainFormDoctor.showForm(component);
     }
 
     public static void showMainForm() {
         FlatAnimatedLafChange.showSnapshot();
         Launch app = getInstance();
-        app.switchContent(app.mainFormPatient);
+        app.switchContent(app.mainFormDoctor);
         setSelectedMenu(0, 0);
-        app.mainFormPatient.hideMenu();
+        app.mainFormDoctor.hideMenu();
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
@@ -73,7 +74,7 @@ public class Launch extends JFrame {
     }
 
     public static void setSelectedMenu(int index, int subIndex) {
-        getInstance().mainFormPatient.setSelectedMenu(index, subIndex);
+        getInstance().mainFormDoctor.setSelectedMenu(index, subIndex);
     }
 
     private static Launch getInstance() {
