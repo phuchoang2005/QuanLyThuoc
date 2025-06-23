@@ -18,9 +18,9 @@ public class Menu extends JPanel {
     private static final String[][] MENU_ITEMS = {
             {"~Trang chủ~"},
             {"Thông tin cá nhân"},
-            {"Quản lý thông tin bệnh nhân"},
+            {"Danh sách bệnh nhân"},
             {"~Đơn thuốc~"},
-            {"Quản lý đơn thuốc", "Chi tiết đơn thuốc", "Lịch sử dùng thuốc"},
+            {"Quản lý đơn thuốc", "Đơn thuốc", "Hồ sơ bệnh án"},
             {"Logout"}
     };
 
