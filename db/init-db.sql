@@ -3,6 +3,7 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- Xác định DB sử dụng
+CREATE DATABASE IF NOT EXISTS QLT;
 USE QLT;
 
 -- =================================================================

@@ -21,4 +21,9 @@ public class FormPatientList extends JPanel {
 
         add(new JScrollPane(tblPatients), BorderLayout.CENTER);
     }
+
+    // Getter cho table để controller có thể truy cập
+    public JTable getTblPatients() {
+        return tblPatients;
+    }
 }
