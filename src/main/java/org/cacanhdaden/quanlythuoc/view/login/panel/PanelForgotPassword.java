@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.login.form;
+package org.cacanhdaden.quanlythuoc.view.login.panel;
 
 
 import com.formdev.flatlaf.FlatClientProperties;
@@ -10,10 +10,10 @@ import javax.swing.*;
  *
  * @author Raven
  */
-public class PanelOTPFillIn extends JPanel {
+public class PanelForgotPassword extends JPanel {
 
-    public PanelOTPFillIn() {
-        setLayout(new MigLayout("fillx,wrap,insets 30 40 50 40, width 320", "[fill]", "[]20[][]10[][]"));
+    public PanelForgotPassword() {
+        setLayout(new MigLayout("fillx,wrap,insets 30 40 50 40, width 320", "[fill]", "[]30[][]30[]"));
         putClientProperty(FlatClientProperties.STYLE, ""
                 + "background:$Login.background;"
                 + "arc:20;");

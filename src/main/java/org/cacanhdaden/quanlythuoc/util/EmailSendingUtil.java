@@ -62,7 +62,7 @@ public class EmailSendingUtil {
         Random rand = new Random();
         int num = 100000 + rand.nextInt(900000);
 
-        boolean isSend =  EmailSendingUtil.sendEmail(session, toEmail,"Mã OTP quên mật khẩu", "Xin chào! \nCảm ơn đã đăng ký tài khoản trên hệ thống! \nMã OTP để hoàn tất đăng ký là " + String.valueOf(num));
+        boolean isSend =  EmailSendingUtil.sendEmail(session, toEmail,"Yêu cầu gửi mã OTP", "Xin chào! \nĐây là mã OTP sử dụng cho chức năng tương ứng trên hệ thống! \nMã OTP là " + String.valueOf(num));
 
         if (!isSend) {
             return null;

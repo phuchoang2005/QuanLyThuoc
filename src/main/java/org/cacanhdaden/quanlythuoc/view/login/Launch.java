@@ -6,9 +6,7 @@ import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
 import org.cacanhdaden.quanlythuoc.model.object.Users;
-import org.cacanhdaden.quanlythuoc.view.login.form.LoginForm;
-import org.cacanhdaden.quanlythuoc.view.login.form.OTPFillInForm;
-import org.cacanhdaden.quanlythuoc.view.login.form.SignUpForm;
+import org.cacanhdaden.quanlythuoc.view.login.form.*;
 import org.cacanhdaden.quanlythuoc.view.patient.MainFormPatient;
 import raven.toast.Notifications;
 
@@ -22,13 +20,19 @@ public class Launch extends JFrame {
     private final MainFormPatient mainFormPatient;
     private final LoginForm loginForm;
     private final SignUpForm signUpForm;
-    private final OTPFillInForm otpFillInForm;
+    private final OTPSignUpForm otpSignUpForm;
+    private final OTPForgotPasswordForm otpForgotPasswordForm;
+    private final ForgotPasswordForm forgotPasswordForm;
+    private final ResetPasswordForm resetPasswordForm;
 
     public Launch() {
         this.mainFormPatient = new MainFormPatient();
         this.loginForm = new LoginForm();
         this.signUpForm = new SignUpForm();
-        this.otpFillInForm = new OTPFillInForm();
+        this.otpSignUpForm = new OTPSignUpForm();
+        this.forgotPasswordForm = new ForgotPasswordForm();
+        this.otpForgotPasswordForm = new OTPForgotPasswordForm();
+        this.resetPasswordForm = new ResetPasswordForm();
 
         initUI();
     }
@@ -76,20 +80,41 @@ public class Launch extends JFrame {
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
-    public static void showOTPFillInForm() {
+    public static void showOTPSignUpForm() {
         FlatAnimatedLafChange.showSnapshot();
         Launch app = getInstance();
-        app.switchContent(app.otpFillInForm);
+        app.switchContent(app.otpSignUpForm);
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
-    public static void loadInfoOnOTPFillInForm(Users user, String OTPCode) {
-        getInstance().otpFillInForm.setOTPCode(OTPCode);
-        getInstance().otpFillInForm.setUser(user);
+    public static void showOTPForgotPasswordForm() {
+        FlatAnimatedLafChange.showSnapshot();
+        Launch app = getInstance();
+        app.switchContent(app.otpForgotPasswordForm);
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
-    public static boolean isOTPFillInFormFinished() {
-        return getInstance().otpFillInForm.isFinished();
+    public static void showForgotPasswordForm() {
+        FlatAnimatedLafChange.showSnapshot();
+        Launch app = getInstance();
+        app.switchContent(app.forgotPasswordForm);
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
+
+    public static void showResetPasswordForm() {
+        FlatAnimatedLafChange.showSnapshot();
+        Launch app = getInstance();
+        app.switchContent(app.resetPasswordForm);
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
+
+    public static void loadOTPSignUpInfo(Users user, String OTPCode) {
+        getInstance().otpSignUpForm.setOTPCode(OTPCode);
+        getInstance().otpSignUpForm.setUser(user);
+    }
+
+    public static void loadOTPForgotPasswordInfo(String OTPCode) {
+        getInstance().otpForgotPasswordForm.setOTPCode(OTPCode);
     }
 
     public static void setSelectedMenu(int index, int subIndex) {

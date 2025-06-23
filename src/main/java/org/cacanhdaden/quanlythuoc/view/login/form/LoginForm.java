@@ -5,6 +5,7 @@ import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
 import org.cacanhdaden.quanlythuoc.control.authentication.LoginController;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
+import org.cacanhdaden.quanlythuoc.view.login.panel.PanelLogin;
 
 import javax.swing.*;
 
@@ -36,14 +37,14 @@ public class LoginForm extends JPanel {
 
     private void setupComponentStyle() {
         lbTitle.putClientProperty(FlatClientProperties.STYLE, "font:$h1.font");
-        txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "User Name");
-        txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Password");
+        txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Email / Số điện thoại");
+        txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Mật khẩu");
         txtPass.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true;showCapsLock:true");
         btnLogin.putClientProperty(FlatClientProperties.STYLE, "borderWidth:0;focusWidth:0");
     }
 
     private void initComponents() {
-        panelLogin1 = new org.cacanhdaden.quanlythuoc.view.login.form.PanelLogin();
+        panelLogin1 = new PanelLogin();
         lbTitle = new JLabel("Đăng nhập", SwingConstants.CENTER);
         lbUser = new JLabel("Email / Số điện thoại");
         txtUser = new JTextField();
@@ -59,6 +60,10 @@ public class LoginForm extends JPanel {
 
         btnSignUp.addActionListener(e -> {
             Launch.showSignUpForm();
+        });
+
+        btnForgotPassword.addActionListener(e -> {
+            Launch.showForgotPasswordForm();
         });
 
         panelLogin1.add(lbTitle);

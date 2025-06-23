@@ -1,6 +1,5 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
-import org.cacanhdaden.quanlythuoc.model.dao.SignUpDAO;
 import org.cacanhdaden.quanlythuoc.model.object.Users;
 import org.cacanhdaden.quanlythuoc.util.EmailSendingUtil;
 import org.cacanhdaden.quanlythuoc.util.GenderPassingUtil;
@@ -52,8 +51,8 @@ public class SignUpController {
                     JOptionPane.ERROR_MESSAGE
                 );
             } else {
-                Launch.showOTPFillInForm();
-                Launch.loadInfoOnOTPFillInForm(user, OTPcode);
+                Launch.showOTPSignUpForm();
+                Launch.loadOTPSignUpInfo(user, OTPcode);
             }
         } else {
             JOptionPane.showMessageDialog(
