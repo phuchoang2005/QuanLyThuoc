@@ -1,0 +1,4 @@
+INSERT INTO prescription_requests (id, patient_id, doctor_id, reason, status, doctor_notes, created_at, updated_at) VALUES
+(1, 1, 3, 'Đã hết thuốc điều trị huyết áp theo đơn cũ.', 'APPROVED', 'Đã duyệt. Bệnh nhân tiếp tục dùng theo đơn cũ. Tái khám đúng hẹn.', '2025-06-18 09:00:00', '2025-06-18 14:00:00'),
+(2, 2, 4, 'Cần thêm thuốc tiểu đường cho tháng tiếp theo.', 'PENDING', NULL, '2025-06-22 15:00:00', '2025-06-22 15:00:00'),
+(3, 5, 3, 'Vẫn còn ho và đau họng.', 'REJECTED', 'Triệu chứng của bạn cần được tái khám trực tiếp để đánh giá lại. Vui lòng đặt lịch khám.', '2025-06-26 11:00:00', '2025-06-26 17:00:00');

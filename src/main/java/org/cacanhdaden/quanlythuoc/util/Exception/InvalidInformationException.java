@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.services.Exception;
+package org.cacanhdaden.quanlythuoc.util.Exception;
 
 public class InvalidInformationException extends Exception{
     public InvalidInformationException(final String message) {

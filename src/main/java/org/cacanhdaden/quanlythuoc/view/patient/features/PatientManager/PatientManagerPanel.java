@@ -1,8 +1,8 @@
-package org.cacanhdaden.quanlythuoc.view.patient.features;
+package org.cacanhdaden.quanlythuoc.view.patient.features.PatientManager;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
-import org.cacanhdaden.quanlythuoc.control.patient.PatientManagerController;
+import org.cacanhdaden.quanlythuoc.control.patient.PatientManagerController.PatientManagerController;
 
 import javax.swing.*;
 import java.awt.*;

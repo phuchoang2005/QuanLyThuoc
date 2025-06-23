@@ -1,9 +1,8 @@
-package org.cacanhdaden.quanlythuoc.model.dao;
+package org.cacanhdaden.quanlythuoc.model.dao.authentication;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
 import org.cacanhdaden.quanlythuoc.model.model.Users;
 
 import java.sql.Connection;
@@ -12,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @AllArgsConstructor
-@NoArgsConstructor
 public class LoginDAO {
     private Users users;
 

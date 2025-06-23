@@ -1,6 +1,8 @@
 package org.cacanhdaden.quanlythuoc.view.patient.features.PrescriptionManager.features;
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
+import org.cacanhdaden.quanlythuoc.control.patient.PrescriptionManagerController.RequestPrescriptionController;
+import org.cacanhdaden.quanlythuoc.model.model.Users;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,11 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 @Getter
 public class RequestPrescriptionPanel extends JPanel {
-    private final JComboBox<String> doctorComboBox;
+    private final JComboBox<Users> doctorComboBox;
     private final JTextArea reasonTextArea;
     private final JButton submitButton;
+    private final JLabel patientIdLabel;
     private final JLabel feedbackLabel;
-
+    private final JTextField patientIdTextField;
     public RequestPrescriptionPanel() {
         // Set layout
         setLayout(new MigLayout("wrap 2, insets 30 80 30 80", "[right]20[grow,fill]", "[]15[]"));
@@ -22,14 +25,17 @@ public class RequestPrescriptionPanel extends JPanel {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
         add(titleLabel, "span, align center, wrap");
 
+        patientIdLabel = new JLabel("Nhập vào mã bệnh nhân:");
+        patientIdTextField = new JTextField();
+        add(patientIdLabel);
+        add(patientIdTextField, "growx, wrap");
+
         // Doctor selection
         JLabel doctorLabel = new JLabel("Chọn bác sĩ:");
         add(doctorLabel);
 
         doctorComboBox = new JComboBox<>();
-        doctorComboBox.addItem("Dr. Smith");
-        doctorComboBox.addItem("Dr. Johnson");
-        doctorComboBox.addItem("Dr. Brown");
+
         add(doctorComboBox, "growx, wrap");
 
         // Reason input
@@ -59,21 +65,6 @@ public class RequestPrescriptionPanel extends JPanel {
     }
 
     private void submitPrescriptionRequest() {
-        String selectedDoctor = (String) doctorComboBox.getSelectedItem();
-        String reason = reasonTextArea.getText().trim();
-
-        if (reason.isEmpty()) {
-            feedbackLabel.setText("Yêu cầu không thể rỗng");
-            return;
-        }
-
-        // Placeholder logic to handle request submission
-        // In reality, you would send this to your backend for processing
-        feedbackLabel.setForeground(Color.GREEN);
-        feedbackLabel.setText("Yêu cầu đơn thuốc đã đến tay bác sĩ");
-
-        // Clear the fields after submission
-        reasonTextArea.setText("");
-        doctorComboBox.setSelectedIndex(0); // Reset doctor selection
+        new RequestPrescriptionController(this);
     }
 }

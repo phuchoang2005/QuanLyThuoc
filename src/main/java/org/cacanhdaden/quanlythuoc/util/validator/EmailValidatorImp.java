@@ -1,9 +1,7 @@
-package org.cacanhdaden.quanlythuoc.services.validator;
+package org.cacanhdaden.quanlythuoc.util.validator;
 
 import lombok.AllArgsConstructor;
-import org.cacanhdaden.quanlythuoc.services.Exception.InvalidInformationException;
-
-import javax.swing.*;
+import org.cacanhdaden.quanlythuoc.util.Exception.InvalidInformationException;
 
 @AllArgsConstructor
 public class EmailValidatorImp implements ValidatorInterface {

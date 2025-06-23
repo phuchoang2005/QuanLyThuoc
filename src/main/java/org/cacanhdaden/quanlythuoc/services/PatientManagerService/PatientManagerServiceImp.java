@@ -1,18 +1,20 @@
 package org.cacanhdaden.quanlythuoc.services.PatientManagerService;
 
+import jdk.jfr.Event;
 import lombok.AllArgsConstructor;
-import org.cacanhdaden.quanlythuoc.model.dao.LoadCurrentPatientInformationDAO;
-import org.cacanhdaden.quanlythuoc.model.dao.UpdatePatientInformationDAO;
-import org.cacanhdaden.quanlythuoc.services.Exception.InvalidInformationException;
-import org.cacanhdaden.quanlythuoc.services.validator.DateValidatorImp;
-import org.cacanhdaden.quanlythuoc.services.validator.EmailValidatorImp;
-import org.cacanhdaden.quanlythuoc.services.validator.ValidatorInterface;
-import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManagerPanel;
+import org.cacanhdaden.quanlythuoc.model.dao.PatientManagerDAO.LoadCurrentPatientInformationDAO;
+import org.cacanhdaden.quanlythuoc.model.dao.PatientManagerDAO.UpdatePatientInformationDAO;
+import org.cacanhdaden.quanlythuoc.util.Exception.InvalidInformationException;
+import org.cacanhdaden.quanlythuoc.util.validator.DateValidatorImp;
+import org.cacanhdaden.quanlythuoc.util.validator.EmailValidatorImp;
+import org.cacanhdaden.quanlythuoc.util.validator.ValidatorInterface;
+import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManager.PatientManagerPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.EventListener;
 
 @AllArgsConstructor
 public class PatientManagerServiceImp implements PatientManagerServiceInterface{
@@ -49,7 +51,7 @@ public class PatientManagerServiceImp implements PatientManagerServiceInterface{
                     JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Chúc mừng", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IllegalStateException ex) {
                     JOptionPane.showMessageDialog(panel, ex.getMessage(), "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-                    //loadCurrentInformation();
+                    loadCurrentInformation();
                 }
 
             }catch(InvalidInformationException exception){
@@ -58,12 +60,17 @@ public class PatientManagerServiceImp implements PatientManagerServiceInterface{
         });
     }
     public void loadCurrentInformation() {
-        try {
-            final LoadCurrentPatientInformationDAO dao = new LoadCurrentPatientInformationDAO(panel);
-            dao.load();
-        } catch (IllegalStateException e) {
-            JOptionPane.showMessageDialog(this.panel,e.getMessage(),"Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
+        this.panel.getIdJTextField().addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent eventListener){
+                try {
+                    final LoadCurrentPatientInformationDAO dao = new LoadCurrentPatientInformationDAO(panel);
+                    dao.load();
+                } catch (IllegalStateException e) {
+                    JOptionPane.showMessageDialog(panel,e.getMessage(),"Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
     }
     public void checkInformationValidOnProgress() {
 

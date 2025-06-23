@@ -19,6 +19,7 @@ import lombok.Getter;
 import org.cacanhdaden.quanlythuoc.util.IconPathUtil;
 import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 import org.cacanhdaden.quanlythuoc.view.patient.features.*;
+import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManager.PatientManagerPanel;
 import org.cacanhdaden.quanlythuoc.view.patient.features.PrescriptionManager.PrescriptionManagerPanel;
 import org.cacanhdaden.quanlythuoc.view.patient.menuPatient.Menu;
 

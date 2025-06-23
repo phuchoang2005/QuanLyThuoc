@@ -1,10 +1,9 @@
-package org.cacanhdaden.quanlythuoc.model.dao;
+package org.cacanhdaden.quanlythuoc.model.dao.PatientManagerDAO;
 
 import lombok.AllArgsConstructor;
-import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManagerPanel;
+import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
+import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManager.PatientManagerPanel;
 
-import javax.print.attribute.standard.JobMessageFromOperator;
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -23,7 +22,7 @@ public class UpdatePatientInformationDAO {
                     "gender = ?, " +
                     "phone_number = ?, " +
                     "address = ?, " +
-                    "updated_at = ? ," +
+                    "updated_at = ? " +
                     "where id = ?";
             Connection conn = MySQLConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);

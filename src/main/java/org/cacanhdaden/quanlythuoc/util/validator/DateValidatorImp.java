@@ -1,7 +1,7 @@
-package org.cacanhdaden.quanlythuoc.services.validator;
+package org.cacanhdaden.quanlythuoc.util.validator;
 
 import lombok.AllArgsConstructor;
-import org.cacanhdaden.quanlythuoc.services.Exception.InvalidInformationException;
+import org.cacanhdaden.quanlythuoc.util.Exception.InvalidInformationException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +18,7 @@ public class DateValidatorImp implements ValidatorInterface {
         try {
             LocalDate.parse(dateStr, formatter);
         } catch (DateTimeParseException e) {
-            throw new InvalidInformationException("Định dạng thời gian không hợp lệ");
+            throw new InvalidInformationException("Định dạng thời gian không hợp lệ. Định dạng hợp lệ sẽ là ngày/tháng/năm. Với ngày và tháng bắt buộc là 2 chữ số, còn năm là 4 chữ số");
         }
     }
     @Override

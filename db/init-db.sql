@@ -1,9 +1,12 @@
 -- Cài đặt encoding để hỗ trợ tiếng Việt
+-- CREATE DATABASE QLT;
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- Xác định DB sử dụng
-USE QLT;
+-- USE QLT;
+-- USE sys;
+-- DROP DATABASE QLT;
 
 -- =================================================================
 -- Bảng 1: users - Lưu trữ thông tin người dùng (Bệnh nhân & Bác sĩ)
@@ -18,7 +21,7 @@ CREATE TABLE `users` (
   `gender` ENUM('Nam', 'Nữ', 'Khác') NULL,
   `phone_number` VARCHAR(20) NULL,
   `address` TEXT NULL,
-  `role` ENUM('patient', 'doctor') NOT NULL DEFAULT 'patient',
+  `role` ENUM('PATIENT', 'DOCTOR') NOT NULL DEFAULT 'patient',
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -105,7 +108,7 @@ CREATE TABLE `prescription_requests` (
   `patient_id` BIGINT UNSIGNED NOT NULL,
   `doctor_id` BIGINT UNSIGNED NULL COMMENT 'Bác sĩ được chỉ định (nếu có)',
   `reason` TEXT NOT NULL COMMENT 'Lý do/triệu chứng',
-  `status` ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending',
+  `status` ENUM('PENDING', 'APPROVED', 'REJECTED') NOT NULL DEFAULT 'PENDING',
   `doctor_notes` TEXT NULL COMMENT 'Ghi chú phản hồi của bác sĩ',
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

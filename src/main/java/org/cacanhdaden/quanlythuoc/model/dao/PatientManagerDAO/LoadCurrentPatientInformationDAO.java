@@ -1,8 +1,10 @@
-package org.cacanhdaden.quanlythuoc.model.dao;
+package org.cacanhdaden.quanlythuoc.model.dao.PatientManagerDAO;
 
 
 import lombok.AllArgsConstructor;
-import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManagerPanel;
+import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
+import org.cacanhdaden.quanlythuoc.util.converter.DateFormatConverter;
+import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManager.PatientManagerPanel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +13,6 @@ import java.sql.ResultSet;
 @AllArgsConstructor
 public class LoadCurrentPatientInformationDAO {
     private final PatientManagerPanel panel;
-
     public void load(){
         try{
             String sql = "select * from users where id = ?";
@@ -22,7 +23,7 @@ public class LoadCurrentPatientInformationDAO {
             while(rs.next()){
                 this.panel.getFull_nameField().setText(rs.getString("full_name"));
                 this.panel.getEmailTextField().setText(rs.getString("email"));
-                this.panel.getDobTextField().setText(rs.getString("dob"));
+                this.panel.getDobTextField().setText(DateFormatConverter.convertToDDMMYYYY(rs.getString("date_of_birth")));
                 this.panel.getGengerComboBox().setSelectedItem(rs.getString("gender"));
                 this.panel.getAddressTextField().setText(rs.getString("address"));
                 this.panel.getPhone_numberTextField().setText(rs.getString("phone_number"));

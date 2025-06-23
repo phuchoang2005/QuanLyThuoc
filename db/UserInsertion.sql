@@ -1,0 +1,9 @@
+INSERT INTO users (id, email, password_hash, full_name, date_of_birth, gender, phone_number, address, role, created_at, updated_at) VALUES
+(1, 'nguyen.van.a@email.com', '$2b$12$...', 'Nguyễn Văn An', '1985-04-12', 'Nam', '0912345678', '123 Đường ABC, Quận 1, TP. Hồ Chí Minh', 'PATIENT', '2024-01-10 08:00:00', '2024-05-20 11:30:00'),
+(2, 'tran.thi.b@email.com', '$2b$12$...', 'Trần Thị Bình', '1992-09-20', 'Nữ', '0987654321', '456 Đường XYZ, Quận 3, TP. Hồ Chí Minh', 'PATIENT', '2024-02-15 09:30:00', '2024-06-10 14:00:00'),
+(3, 'bs.le.van.c@email.com', '$2b$12$...', 'Lê Văn Cường', '1978-11-30', 'Nữ', '0905112233', '789 Đường LMN, Quận 5, TP. Hồ Chí Minh', 'DOCTOR', '2024-01-05 14:00:00', '2024-06-01 10:00:00'),
+(4, 'bs.pham.thi.d@email.com', '$2b$12$...', 'Phạm Thị Dung', '1982-07-25', 'Nữ', '0934556677', '101 Đường OPQ, Quận 7, TP. Hồ Chí Minh', 'DOCTOR', '2024-03-01 11:00:00', '2024-06-15 16:20:00'),
+(5, 'hoang.van.e@email.com', '$2b$12$...', 'Hoàng Văn Em', '2001-01-15', 'Nam', '0978123456', '212 Đường GHK, Quận Bình Thạnh, TP. Hồ Chí Minh', 'PATIENT', '2024-04-22 16:45:00', '2024-06-20 09:15:00'),
+(6, 'admin@healthapp.com', '$2b$12$...', 'Quản Trị Viên', '1990-01-01', 'Khác', '0888999000', '1 Hệ Thống, TP. Thủ Đức, TP. Hồ Chí Minh', 'PATIENT', '2024-01-01 00:00:00', '2024-01-01 00:00:00'),
+(7, 'dinh.thi.f@email.com', '$2b$12$...', 'Đinh Thị Phượng', '1965-08-19', 'Nữ', '0918765432', '333 Đường RST, Quận 10, TP. Hồ Chí Minh', 'PATIENT', '2025-01-20 10:10:00', '2025-04-15 13:00:00'),
+(8, 'bs.vu.van.g@email.com', '$2b$12$...', 'Vũ Văn Giang', '1988-06-06', 'Nam', '0903123789', '444 Đường UVW, Quận Gò Vấp, TP. Hồ Chí Minh', 'DOCTOR', '2025-02-11 15:00:00', '2025-05-30 18:00:00');
