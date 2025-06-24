@@ -8,12 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PrescriptionDetail {
-    private String id;
-    private String prescription_id;
-    private String drug_id;
+    private long detailId;
+    private long prescriptionId;
+    private long medicineId;
+    private String medicineName;
     private String dosage;
     private String frequency;
-    private String quantity;
+    private int quantity;
     private String duration;
     private String notes;
 }

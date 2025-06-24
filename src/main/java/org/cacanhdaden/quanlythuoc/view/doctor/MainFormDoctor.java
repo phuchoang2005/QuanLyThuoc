@@ -58,7 +58,7 @@ public class MainFormDoctor extends JLayeredPane {
                 case 2 -> {
                     switch (subIndex) {
                         case 1 -> Launch.showForm(new FormManagePrescription());
-                        case 2 -> Launch.showForm(new FormMedicalRecord());
+                        case 2 -> Launch.showForm(new FormMedicalRecord(0));
                         default -> action.cancel();
                     }
                 }

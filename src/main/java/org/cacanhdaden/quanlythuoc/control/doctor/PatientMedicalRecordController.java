@@ -1,5 +1,8 @@
 package org.cacanhdaden.quanlythuoc.control.doctor;
 
+import lombok.Data;
+import lombok.Getter;
+import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
 import org.cacanhdaden.quanlythuoc.view.doctor.features.FormPatientList;
 import org.cacanhdaden.quanlythuoc.view.doctor.features.FormMedicalRecord;
 
@@ -11,120 +14,132 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 
+@Data
 public class PatientMedicalRecordController {
-    private final FormPatientList patientListView;
-    private final FormMedicalRecord medicalRecordView;
-    private final Connection connection;
-    private DefaultTableModel patientTableModel;
 
-    // Câu lệnh SQL
+    // Constants
     private static final String GET_ALL_PATIENTS =
-            "SELECT u.id, u.full_name, TIMESTAMPDIFF(YEAR, u.date_of_birth, CURDATE()) as age, " +
-                    "u.gender, MAX(p.issue_date) as last_visit_date " +
+            "SELECT u.user_id, u.full_name, u.age, u.gender, " +
+                    "MAX(p.created_at) as last_visit_date " +
                     "FROM users u " +
-                    "LEFT JOIN prescriptions p ON u.id = p.patient_id " +
+                    "LEFT JOIN prescriptions p ON u.user_id = p.patient_id " +
                     "WHERE u.role = 'patient' " +
-                    "GROUP BY u.id, u.full_name, u.date_of_birth, u.gender " +
+                    "GROUP BY u.user_id, u.full_name, u.age, u.gender " +
                     "ORDER BY last_visit_date DESC";
 
     private static final String GET_PATIENT_MEDICAL_RECORD =
-            "SELECT p.id, p.diagnosis, p.notes, p.issue_date, " +
-                    "GROUP_CONCAT(CONCAT(d.name, ' (', pd.dosage, ') - ', pd.frequency, ' - SL: ', pd.quantity) " +
-                    "SEPARATOR '\n') as medications " +
-                    "FROM prescriptions p " +
-                    "LEFT JOIN prescription_details pd ON p.id = pd.prescription_id " +
-                    "LEFT JOIN drugs d ON pd.drug_id = d.id " +
-                    "WHERE p.patient_id = ? " +
-                    "GROUP BY p.id, p.diagnosis, p.notes, p.issue_date " +
-                    "ORDER BY p.issue_date DESC";
+            "SELECT mr.record_id, mr.diagnosis, mr.symptoms, mr.treatment, " +
+                    "mr.visit_date, mr.notes " +
+                    "FROM medical_records mr " +
+                    "WHERE mr.patient_id = ? " +
+                    "ORDER BY mr.visit_date DESC";
+
+    private static final String DATE_PATTERN = "dd/MM/yyyy";
+    private static final String DATE_TIME_PATTERN = "dd/MM/yyyy HH:mm";
+    private static final String[] PATIENT_COLUMNS = {
+            "Mã bệnh nhân", "Họ tên", "Tuổi", "Giới tính", "Ngày khám gần nhất"
+    };
+
+    // Components
+    @Getter private final FormPatientList patientListView;
+    @Getter private final FormMedicalRecord medicalRecordView;
+    @Getter private Connection connection;
+    @Getter private DefaultTableModel patientTableModel;
 
     public PatientMedicalRecordController(FormPatientList patientListView, FormMedicalRecord medicalRecordView) {
         this.patientListView = patientListView;
         this.medicalRecordView = medicalRecordView;
 
+        initializeConnection();
+        setupComponents();
+    }
+
+    private void initializeConnection() {
         try {
-            // Khởi tạo kết nối đến cơ sở dữ liệu
-            String url = "jdbc:mysql://localhost:3306/QLT";
-            String username = "root";
-            String password = "012345678";
-            connection = DriverManager.getConnection(url, username, password);
-
-            // Thiết lập model cho bảng và nạp dữ liệu
-            setupTableModel();
-            loadPatients();
-
-            // Đăng ký sự kiện khi chọn bệnh nhân
-            registerEventHandlers();
-
+            connection = MySQLConnection.getConnection();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(patientListView,
-                    "Không thể kết nối đến cơ sở dữ liệu: " + e.getMessage(),
-                    "Lỗi kết nối", JOptionPane.ERROR_MESSAGE);
-            throw new RuntimeException(e);
+            handleConnectionError(e);
+            throw new RuntimeException("Không thể khởi tạo kết nối database", e);
         }
     }
 
+    private void setupComponents() {
+        setupTableModel();
+        loadPatients();
+        registerEventHandlers();
+    }
+
     private void setupTableModel() {
-        String[] columnNames = {"Mã bệnh nhân", "Họ tên", "Tuổi", "Giới tính", "Ngày khám gần nhất"};
-        patientTableModel = new DefaultTableModel(columnNames, 0) {
+        patientTableModel = new DefaultTableModel(PATIENT_COLUMNS, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        patientListView.getTblPatients().setModel(patientTableModel);
+
+        if (patientListView != null && patientListView.getTblPatients() != null) {
+            patientListView.updateTableModel(patientTableModel);
+        }
     }
 
     private void loadPatients() {
-        patientTableModel.setRowCount(0); // Xóa dữ liệu cũ
+        if (patientTableModel == null) return;
 
-        try (PreparedStatement stmt = connection.prepareStatement(GET_ALL_PATIENTS)) {
-            try (ResultSet rs = stmt.executeQuery()) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        patientTableModel.setRowCount(0);
 
-                while (rs.next()) {
-                    Vector<Object> row = new Vector<>();
-                    row.add(rs.getLong("id"));
-                    row.add(rs.getString("full_name"));
-                    row.add(rs.getInt("age"));
-                    row.add(rs.getString("gender"));
+        try (PreparedStatement stmt = connection.prepareStatement(GET_ALL_PATIENTS);
+             ResultSet rs = stmt.executeQuery()) {
 
-                    // Định dạng ngày tháng
-                    Date lastVisitDate = rs.getDate("last_visit_date");
-                    row.add(lastVisitDate != null ? dateFormat.format(lastVisitDate) : "Chưa có lần khám");
+            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN);
 
-                    patientTableModel.addRow(row);
-                }
+            while (rs.next()) {
+                Vector<Object> row = createPatientRow(rs, dateFormat);
+                patientTableModel.addRow(row);
             }
+
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(patientListView,
-                    "Lỗi khi tải danh sách bệnh nhân: " + e.getMessage(),
-                    "Lỗi truy vấn", JOptionPane.ERROR_MESSAGE);
+            handleDatabaseError("tải danh sách bệnh nhân", e);
         }
+    }
+
+    private Vector<Object> createPatientRow(ResultSet rs, SimpleDateFormat dateFormat) throws SQLException {
+        Vector<Object> row = new Vector<>();
+        row.add(rs.getLong("user_id"));
+        row.add(rs.getString("full_name"));
+        row.add(rs.getInt("age"));
+        row.add(rs.getString("gender"));
+
+        Timestamp lastVisitDate = rs.getTimestamp("last_visit_date");
+        String formattedDate = lastVisitDate != null ?
+                dateFormat.format(lastVisitDate) :
+                "Chưa có lần khám";
+        row.add(formattedDate);
+
+        return row;
     }
 
     private void registerEventHandlers() {
-        patientListView.getTblPatients().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 1) { // Xử lý click đơn
-                    handlePatientSelection();
+        if (patientListView != null && patientListView.getTblPatients() != null) {
+            patientListView.getTblPatients().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (e.getClickCount() == 1) {
+                        handlePatientSelection();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     private void handlePatientSelection() {
-        int selectedRow = patientListView.getTblPatients().getSelectedRow();
-        if (selectedRow < 0) {
-            return;
-        }
+        if (patientListView == null) return;
 
-        // Lấy ID của bệnh nhân được chọn
-        long patientId = (long) patientTableModel.getValueAt(selectedRow, 0);
-        String patientName = (String) patientTableModel.getValueAt(selectedRow, 1);
+        int selectedRow = patientListView.getSelectedPatientRow();
+        if (selectedRow < 0) return;
 
-        // Tải và hiển thị hồ sơ bệnh án
+        long patientId = (Long) patientListView.getValueAt(selectedRow, 0);
+        String patientName = (String) patientListView.getValueAt(selectedRow, 1);
+
         loadMedicalRecord(patientId, patientName);
     }
 
@@ -136,31 +151,12 @@ public class PatientMedicalRecordController {
             stmt.setLong(1, patientId);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat dateTimeFormat = new SimpleDateFormat(DATE_TIME_PATTERN);
                 boolean hasRecords = false;
 
                 while (rs.next()) {
                     hasRecords = true;
-                    recordText.append("--------------------------------------------------\n");
-                    recordText.append("Ngày khám: ").append(dateFormat.format(rs.getDate("issue_date"))).append("\n");
-                    recordText.append("Mã đơn thuốc: ").append(rs.getLong("id")).append("\n\n");
-                    recordText.append("CHUẨN ĐOÁN:\n").append(rs.getString("diagnosis")).append("\n\n");
-
-                    // Hiển thị danh sách thuốc
-                    String medications = rs.getString("medications");
-                    if (medications != null && !medications.isEmpty()) {
-                        recordText.append("THUỐC ĐÃ KÊ:\n").append(medications).append("\n\n");
-                    } else {
-                        recordText.append("THUỐC ĐÃ KÊ: Không có\n\n");
-                    }
-
-                    // Hiển thị ghi chú nếu có
-                    String notes = rs.getString("notes");
-                    if (notes != null && !notes.isEmpty()) {
-                        recordText.append("GHI CHÚ:\n").append(notes).append("\n");
-                    }
-
-                    recordText.append("--------------------------------------------------\n\n");
+                    appendMedicalRecordEntry(recordText, rs, dateTimeFormat);
                 }
 
                 if (!hasRecords) {
@@ -168,34 +164,112 @@ public class PatientMedicalRecordController {
                 }
             }
 
-            // Cập nhật nội dung vào FormMedicalRecord
-            medicalRecordView.setMedicalRecordText(recordText.toString());
+            updateMedicalRecordDisplay(recordText.toString());
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(patientListView,
-                    "Lỗi khi tải hồ sơ bệnh án: " + e.getMessage(),
-                    "Lỗi truy vấn", JOptionPane.ERROR_MESSAGE);
+            handleDatabaseError("tải hồ sơ bệnh án", e);
         }
     }
 
-    // Cập nhật giao diện FormPatientList
-    public void updatePatientListView(FormPatientList newView) {
-        // Gán view mới và thiết lập lại model cũng như các event handler
+    private void appendMedicalRecordEntry(StringBuilder recordText, ResultSet rs,
+                                          SimpleDateFormat dateTimeFormat) throws SQLException {
+        recordText.append("==================================================\n");
+
+        Timestamp visitDate = rs.getTimestamp("visit_date");
+        if (visitDate != null) {
+            recordText.append("Ngày khám: ").append(dateTimeFormat.format(visitDate)).append("\n");
+        }
+
+        recordText.append("Mã hồ sơ: ").append(rs.getLong("record_id")).append("\n\n");
+
+        String symptoms = rs.getString("symptoms");
+        if (symptoms != null && !symptoms.trim().isEmpty()) {
+            recordText.append("TRIỆU CHỨNG:\n").append(symptoms).append("\n\n");
+        }
+
+        String diagnosis = rs.getString("diagnosis");
+        if (diagnosis != null && !diagnosis.trim().isEmpty()) {
+            recordText.append("CHUẨN ĐOÁN:\n").append(diagnosis).append("\n\n");
+        }
+
+        String treatment = rs.getString("treatment");
+        if (treatment != null && !treatment.trim().isEmpty()) {
+            recordText.append("ĐIỀU TRỊ:\n").append(treatment).append("\n\n");
+        }
+
+        String notes = rs.getString("notes");
+        if (notes != null && !notes.trim().isEmpty()) {
+            recordText.append("GHI CHÚ:\n").append(notes).append("\n");
+        }
+
+        recordText.append("==================================================\n\n");
     }
 
-    // Cập nhật giao diện FormMedicalRecord
-    public void updateMedicalRecordView(FormMedicalRecord newView) {
-        // Gán view mới
+    private void updateMedicalRecordDisplay(String recordText) {
+        if (medicalRecordView != null) {
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    java.lang.reflect.Method method = medicalRecordView.getClass()
+                            .getDeclaredMethod("setMedicalRecordText", String.class);
+                    method.invoke(medicalRecordView, recordText);
+                } catch (Exception e) {
+                    updateTextAreaDirectly(recordText);
+                }
+            });
+        }
     }
 
-    // Đảm bảo giải phóng tài nguyên khi đóng ứng dụng
-    public void closeConnection() {
-        try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
+    private void updateTextAreaDirectly(String recordText) {
+        java.awt.Component[] components = medicalRecordView.getComponents();
+        for (java.awt.Component comp : components) {
+            if (comp instanceof JScrollPane) {
+                JScrollPane scrollPane = (JScrollPane) comp;
+                if (scrollPane.getViewport().getView() instanceof JTextArea) {
+                    JTextArea textArea = (JTextArea) scrollPane.getViewport().getView();
+                    textArea.setText(recordText);
+                    textArea.setCaretPosition(0);
+                    break;
+                }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }
+    }
+
+    private void handleConnectionError(SQLException e) {
+        String message = "Không thể kết nối đến cơ sở dữ liệu: " + e.getMessage();
+        JOptionPane.showMessageDialog(
+                patientListView,
+                message,
+                "Lỗi kết nối",
+                JOptionPane.ERROR_MESSAGE
+        );
+        e.printStackTrace();
+    }
+
+    private void handleDatabaseError(String operation, SQLException e) {
+        String message = "Lỗi khi " + operation + ": " + e.getMessage();
+        JOptionPane.showMessageDialog(
+                patientListView,
+                message,
+                "Lỗi truy vấn",
+                JOptionPane.ERROR_MESSAGE
+        );
+        e.printStackTrace();
+    }
+
+    // Public methods for external access
+    public void refreshPatientList() {
+        loadPatients();
+    }
+
+    public void closeConnection() {
+        if (connection != null) {
+            try {
+                if (!connection.isClosed()) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
