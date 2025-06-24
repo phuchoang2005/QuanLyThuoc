@@ -113,8 +113,13 @@ public class Launch extends JFrame {
         getInstance().otpSignUpForm.setUser(user);
     }
 
-    public static void loadOTPForgotPasswordInfo(String OTPCode) {
+    public static void loadOTPForgotPasswordInfo(String email, String OTPCode) {
+        getInstance().otpForgotPasswordForm.setEmail(email);
         getInstance().otpForgotPasswordForm.setOTPCode(OTPCode);
+    }
+
+    public static void loadResetPasswordInfo(String email) {
+        getInstance().resetPasswordForm.setEmail(email);
     }
 
     public static void setSelectedMenu(int index, int subIndex) {

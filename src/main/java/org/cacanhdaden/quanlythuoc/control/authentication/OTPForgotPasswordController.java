@@ -53,11 +53,12 @@ public class OTPForgotPasswordController {
                 JOptionPane.INFORMATION_MESSAGE
             );
             Launch.showResetPasswordForm();
+            Launch.loadResetPasswordInfo(otpForgotPasswordForm.getEmail());
         }
     }
 
     private void handleResendButtonClick() {
-        String OTPCode = EmailSendingUtil.sendAuthOTPEmail(otpForgotPasswordForm.getUser().getEmail());
+        String OTPCode = EmailSendingUtil.sendAuthOTPEmail(otpForgotPasswordForm.getEmail());
 
         if (OTPCode == null) {
             JOptionPane.showMessageDialog(

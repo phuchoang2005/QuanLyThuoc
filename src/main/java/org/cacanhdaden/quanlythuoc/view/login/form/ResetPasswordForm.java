@@ -2,7 +2,9 @@ package org.cacanhdaden.quanlythuoc.view.login.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
+import lombok.Setter;
 import net.miginfocom.swing.MigLayout;
+import org.cacanhdaden.quanlythuoc.control.authentication.ResetPasswordController;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
 import org.cacanhdaden.quanlythuoc.view.login.panel.PanelResetPassword;
 
@@ -12,6 +14,7 @@ import javax.swing.*;
  * Login Form Panel
  */
 @Getter
+@Setter
 public class ResetPasswordForm extends JPanel {
 
     private JButton btnConfirm;
@@ -20,7 +23,8 @@ public class ResetPasswordForm extends JPanel {
     private JLabel lbPass;
     private PanelResetPassword panelResetPassword;
     private JPasswordField txtConfirmPass;
-    private JTextField txtPass;
+    private JPasswordField txtPass;
+    private String email;
 
     public ResetPasswordForm() {
         initComponents();
@@ -35,6 +39,7 @@ public class ResetPasswordForm extends JPanel {
     private void setupComponentStyle() {
         lbTitle.putClientProperty(FlatClientProperties.STYLE, "font:$h1.font");
         txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Mật khẩu mới");
+        txtPass.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true;showCapsLock:true");
         txtConfirmPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nhập lại mật khẩu mới");
         txtConfirmPass.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true;showCapsLock:true");
         btnConfirm.putClientProperty(FlatClientProperties.STYLE, "borderWidth:0;focusWidth:0");
@@ -44,13 +49,13 @@ public class ResetPasswordForm extends JPanel {
         panelResetPassword = new PanelResetPassword();
         lbTitle = new JLabel("Đặt lại mật khẩu mới", SwingConstants.CENTER);
         lbPass = new JLabel("Mật khẩu mới");
-        txtPass = new JTextField();
+        txtPass = new JPasswordField();
         lbConfirmPass = new JLabel("Xác nhận mật khẩu mới");
         txtConfirmPass = new JPasswordField();
         btnConfirm = new JButton("Xác nhận");
 
         btnConfirm.addActionListener(e -> {
-
+            ResetPasswordController resetPasswordController = new ResetPasswordController(this);
         });
 
         panelResetPassword.add(lbTitle);

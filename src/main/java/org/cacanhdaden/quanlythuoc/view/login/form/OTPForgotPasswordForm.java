@@ -24,7 +24,7 @@ public class OTPForgotPasswordForm extends JPanel {
     private JLabel lbOTP;
     private PanelGenericOTPFillIn panelGenericOTPFillIn;
     private JTextField txtOTP;
-    private Users user;
+    private String email;
     private String OTPCode;
 
     public OTPForgotPasswordForm() {
