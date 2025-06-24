@@ -28,9 +28,9 @@ public class LoginDAO {
         }
 
         try (
-                Connection conn = MySQLConnection.getConnection();
-                PreparedStatement ps1 = conn.prepareStatement(qry1);
-                PreparedStatement ps2 = conn.prepareStatement(qry2);
+            Connection conn = MySQLConnection.getConnection();
+            PreparedStatement ps1 = conn.prepareStatement(qry1);
+            PreparedStatement ps2 = conn.prepareStatement(qry2);
         ) {
             if (user.getEmail() != null) {
                 ps1.setString(1, user.getEmail());

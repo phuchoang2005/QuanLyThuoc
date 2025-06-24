@@ -26,6 +26,7 @@ public class Launch extends JFrame {
     private final OTPForgotPasswordForm otpForgotPasswordForm;
     private final ForgotPasswordForm forgotPasswordForm;
     private final ResetPasswordForm resetPasswordForm;
+    private Users user;
 
     public Launch() {
         this.mainFormPatient = new MainFormPatient();
@@ -50,11 +51,17 @@ public class Launch extends JFrame {
     }
 
     public static void showForm(Component component) {
-        component.applyComponentOrientation(getInstance().getComponentOrientation());
-        getInstance().mainFormPatient.showForm(component);
+        if (getInstance().user.getRole() == Users.RoleEnum.PATIENT) {
+            component.applyComponentOrientation(getInstance().getComponentOrientation());
+            getInstance().mainFormPatient.showForm(component);
+        } else {
+            component.applyComponentOrientation(getInstance().getComponentOrientation());
+            getInstance().mainFormDoctor.showForm(component);
+        }
     }
 
     public static void showMainForm(Users user) {
+        getInstance().user = user;
         if (user.getRole() == Users.RoleEnum.PATIENT) {
             FlatAnimatedLafChange.showSnapshot();
             Launch app = getInstance();
