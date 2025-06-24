@@ -3,7 +3,7 @@ package org.cacanhdaden.quanlythuoc.model.dao.PatientManagerDAO;
 
 import lombok.AllArgsConstructor;
 import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
-import org.cacanhdaden.quanlythuoc.util.converter.DateFormatConverter;
+import org.cacanhdaden.quanlythuoc.util.Converter.DateFormatConverter;
 import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManager.PatientManagerPanel;
 
 import java.sql.Connection;

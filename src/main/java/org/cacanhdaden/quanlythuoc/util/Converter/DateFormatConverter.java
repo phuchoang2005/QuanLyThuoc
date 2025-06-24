@@ -1,6 +1,5 @@
-package org.cacanhdaden.quanlythuoc.util.converter;
+package org.cacanhdaden.quanlythuoc.util.Converter;
 
-import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
