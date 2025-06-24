@@ -1,7 +1,8 @@
-package org.cacanhdaden.quanlythuoc.model.dao;
+package org.cacanhdaden.quanlythuoc.model.dao.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
 import org.cacanhdaden.quanlythuoc.model.object.Users;
 import org.cacanhdaden.quanlythuoc.util.PasswordUtil;
 
@@ -27,9 +28,9 @@ public class LoginDAO {
         }
 
         try (
-            Connection conn = MySQLConnection.getConnection();
-            PreparedStatement ps1 = conn.prepareStatement(sql1);
-            PreparedStatement ps2 = conn.prepareStatement(sql2);
+                Connection conn = MySQLConnection.getConnection();
+                PreparedStatement ps1 = conn.prepareStatement(sql1);
+                PreparedStatement ps2 = conn.prepareStatement(sql2);
         ) {
             if (user.getEmail() != null) {
                 ps1.setString(1, user.getEmail());

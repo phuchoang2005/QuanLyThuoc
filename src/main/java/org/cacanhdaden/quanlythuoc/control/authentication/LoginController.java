@@ -1,6 +1,6 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
-import org.cacanhdaden.quanlythuoc.model.dao.LoginDAO;
+import org.cacanhdaden.quanlythuoc.model.dao.authentication.LoginDAO;
 import org.cacanhdaden.quanlythuoc.model.object.Users;
 import org.cacanhdaden.quanlythuoc.util.StringMatcherUtil;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
