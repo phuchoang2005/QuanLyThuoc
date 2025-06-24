@@ -39,7 +39,9 @@ public class LoginController {
         }
 
         if (login(user)) {
-            Launch.showMainForm();
+            LoginDAO loginDAO = new LoginDAO(user);
+            user.setRole(loginDAO.getUserRole());
+            Launch.showMainForm(user);
         } else {
             JOptionPane.showMessageDialog(
                 loginForm,

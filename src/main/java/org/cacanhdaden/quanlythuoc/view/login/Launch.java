@@ -6,6 +6,7 @@ import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
 import org.cacanhdaden.quanlythuoc.model.object.Users;
+import org.cacanhdaden.quanlythuoc.view.doctor.MainFormDoctor;
 import org.cacanhdaden.quanlythuoc.view.login.form.*;
 import org.cacanhdaden.quanlythuoc.view.patient.MainFormPatient;
 import raven.toast.Notifications;
@@ -18,6 +19,7 @@ public class Launch extends JFrame {
 
     private static Launch instance;
     private final MainFormPatient mainFormPatient;
+    private final MainFormDoctor mainFormDoctor;
     private final LoginForm loginForm;
     private final SignUpForm signUpForm;
     private final OTPSignUpForm otpSignUpForm;
@@ -27,6 +29,7 @@ public class Launch extends JFrame {
 
     public Launch() {
         this.mainFormPatient = new MainFormPatient();
+        this.mainFormDoctor = new MainFormDoctor();
         this.loginForm = new LoginForm();
         this.signUpForm = new SignUpForm();
         this.otpSignUpForm = new OTPSignUpForm();
@@ -51,13 +54,22 @@ public class Launch extends JFrame {
         getInstance().mainFormPatient.showForm(component);
     }
 
-    public static void showMainForm() {
-        FlatAnimatedLafChange.showSnapshot();
-        Launch app = getInstance();
-        app.switchContent(app.mainFormPatient);
-        setSelectedMenu(0, 0);
-        app.mainFormPatient.hideMenu();
-        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    public static void showMainForm(Users user) {
+        if (user.getRole() == Users.RoleEnum.PATIENT) {
+            FlatAnimatedLafChange.showSnapshot();
+            Launch app = getInstance();
+            app.switchContent(app.mainFormPatient);
+            setSelectedMenu(0, 0);
+            app.mainFormPatient.hideMenu();
+            FlatAnimatedLafChange.hideSnapshotWithAnimation();
+        } else {
+            FlatAnimatedLafChange.showSnapshot();
+            Launch app = getInstance();
+            app.switchContent(app.mainFormDoctor);
+            setSelectedMenu(0, 0);
+            app.mainFormPatient.hideMenu();
+            FlatAnimatedLafChange.hideSnapshotWithAnimation();
+        }
     }
 
     private void switchContent(Container content) {

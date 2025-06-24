@@ -17,20 +17,20 @@ public class LoginDAO {
     private Users user;
 
     public boolean handleLogin() {
-        String sql1 = null;
-        String sql2 = null;
+        String qry1 = null;
+        String qry2 = null;
         if (user.getEmail() != null) {
-            sql1 = "SELECT COUNT(*) FROM users WHERE email = ?";
-            sql2 = "SELECT password_hash FROM users WHERE email = ?";
+            qry1 = "SELECT COUNT(*) FROM users WHERE email = ?";
+            qry2 = "SELECT password_hash FROM users WHERE email = ?";
         } else {
-            sql1 = "SELECT COUNT(*) FROM users WHERE phone_number = ?";
-            sql2 = "SELECT password_hash FROM users WHERE phone_number = ?";
+            qry1 = "SELECT COUNT(*) FROM users WHERE phone_number = ?";
+            qry2 = "SELECT password_hash FROM users WHERE phone_number = ?";
         }
 
         try (
                 Connection conn = MySQLConnection.getConnection();
-                PreparedStatement ps1 = conn.prepareStatement(sql1);
-                PreparedStatement ps2 = conn.prepareStatement(sql2);
+                PreparedStatement ps1 = conn.prepareStatement(qry1);
+                PreparedStatement ps2 = conn.prepareStatement(qry2);
         ) {
             if (user.getEmail() != null) {
                 ps1.setString(1, user.getEmail());
@@ -52,5 +52,35 @@ public class LoginDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public Users.RoleEnum getUserRole() {
+        String qry = null;
+        Users.RoleEnum role = Users.RoleEnum.PATIENT; // Default role
+        if (user.getEmail() != null) {
+            qry = "SELECT role FROM users WHERE email = ?";
+        } else {
+            qry = "SELECT role FROM users WHERE phone_number = ?";
+        }
+
+        try (
+            Connection conn = MySQLConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(qry);
+        ) {
+            if (user.getEmail() != null) {
+                ps.setString(1, user.getEmail());
+            } else {
+                ps.setString(1, user.getPhoneNumber());
+            }
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    role = Users.RoleEnum.valueOf(rs.getString("role").toUpperCase());
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return role;
     }
 }
