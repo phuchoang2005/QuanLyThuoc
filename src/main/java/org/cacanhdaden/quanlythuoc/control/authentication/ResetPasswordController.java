@@ -1,14 +1,12 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
-import org.cacanhdaden.quanlythuoc.model.dao.ResetPasswordDAO;
+import org.cacanhdaden.quanlythuoc.model.dao.authentication.ResetPasswordDAO;
 import org.cacanhdaden.quanlythuoc.model.object.Users;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
-import org.cacanhdaden.quanlythuoc.view.login.form.OTPForgotPasswordForm;
 import org.cacanhdaden.quanlythuoc.view.login.form.ResetPasswordForm;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import javax.swing.*;
 

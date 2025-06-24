@@ -1,5 +1,6 @@
-package org.cacanhdaden.quanlythuoc.model.dao;
+package org.cacanhdaden.quanlythuoc.model.dao.authentication;
 
+import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
 import org.cacanhdaden.quanlythuoc.model.object.Users;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,8 +23,8 @@ public class ResetPasswordDAO {
         String sql = "UPDATE users SET password_hash = ? WHERE email = ?";
 
         try (
-            Connection conn = MySQLConnection.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
+                Connection conn = MySQLConnection.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql);
         ) {
             ps.setString(1, PasswordUtil.hashPassword(user.getPassword()));
             ps.setString(2, user.getEmail());

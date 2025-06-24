@@ -1,8 +1,9 @@
-package org.cacanhdaden.quanlythuoc.model.dao;
+package org.cacanhdaden.quanlythuoc.model.dao.authentication;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
+import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

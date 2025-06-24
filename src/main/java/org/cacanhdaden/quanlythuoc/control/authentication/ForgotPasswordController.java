@@ -1,13 +1,11 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
-import org.cacanhdaden.quanlythuoc.model.dao.ForgotPasswordDAO;
+import org.cacanhdaden.quanlythuoc.model.dao.authentication.ForgotPasswordDAO;
 import org.cacanhdaden.quanlythuoc.util.EmailSendingUtil;
-import org.cacanhdaden.quanlythuoc.util.StringMatcherUtil;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
 import org.cacanhdaden.quanlythuoc.view.login.form.ForgotPasswordForm;
 import lombok.Getter;
 import lombok.Setter;
-import raven.toast.Notifications;
 
 import javax.swing.*;
 

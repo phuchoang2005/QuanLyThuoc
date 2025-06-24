@@ -2,11 +2,9 @@ package org.cacanhdaden.quanlythuoc.control.authentication;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.cacanhdaden.quanlythuoc.model.dao.SignUpDAO;
 import org.cacanhdaden.quanlythuoc.util.EmailSendingUtil;
 import org.cacanhdaden.quanlythuoc.view.login.Launch;
 import org.cacanhdaden.quanlythuoc.view.login.form.OTPForgotPasswordForm;
-import org.cacanhdaden.quanlythuoc.view.login.form.OTPSignUpForm;
 
 import javax.swing.*;
 

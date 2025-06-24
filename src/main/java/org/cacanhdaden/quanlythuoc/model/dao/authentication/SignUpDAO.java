@@ -1,7 +1,8 @@
-package org.cacanhdaden.quanlythuoc.model.dao;
+package org.cacanhdaden.quanlythuoc.model.dao.authentication;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
 import org.cacanhdaden.quanlythuoc.model.object.Users;
 import org.cacanhdaden.quanlythuoc.util.GenderPassingUtil;
 
@@ -25,8 +26,8 @@ public class SignUpDAO {
                 ") VALUES\n" +
                 "(?, ?, ?, ?, ?, ?, ?, 'patient');";
         try (
-            Connection conn = MySQLConnection.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)
+                Connection conn = MySQLConnection.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)
         ) {
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getHashedPassword());
