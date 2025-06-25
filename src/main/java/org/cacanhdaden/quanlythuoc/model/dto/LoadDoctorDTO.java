@@ -15,4 +15,5 @@ public class LoadDoctorDTO {
     public String toString() {
         return this.full_name;
     }
+
 }
