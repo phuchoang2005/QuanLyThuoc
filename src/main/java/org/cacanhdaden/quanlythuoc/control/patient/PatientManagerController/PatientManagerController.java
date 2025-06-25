@@ -1,5 +1,5 @@
 package org.cacanhdaden.quanlythuoc.control.patient.PatientManagerController;
-import org.cacanhdaden.quanlythuoc.services.PatientManagerService.PatientManagerServiceImp;
+import org.cacanhdaden.quanlythuoc.services.PatientManagerService.Implement.PatientManagerServiceImp;
 import org.cacanhdaden.quanlythuoc.services.PatientManagerService.PatientManagerServiceInterface;
 import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManager.PatientManagerPanel;
 
@@ -7,7 +7,7 @@ import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManager.PatientM
 public class PatientManagerController {
     private final PatientManagerServiceInterface services;
 
-    public PatientManagerController(PatientManagerPanel panel) {
+    public PatientManagerController(PatientManagerPanel panel){
         services = new PatientManagerServiceImp(panel);
         loadCurrentInformation();
         checkInformationValid();

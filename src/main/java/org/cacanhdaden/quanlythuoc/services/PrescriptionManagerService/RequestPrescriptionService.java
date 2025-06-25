@@ -2,6 +2,7 @@ package org.cacanhdaden.quanlythuoc.services.PrescriptionManagerService;
 
 import org.cacanhdaden.quanlythuoc.model.dao.PrescriptionManagerDAO.LoadDoctorDAO;
 import org.cacanhdaden.quanlythuoc.model.dao.PrescriptionManagerDAO.RequestPrescriptionDAO;
+import org.cacanhdaden.quanlythuoc.model.dto.LoadDoctorDTO;
 import org.cacanhdaden.quanlythuoc.model.model.PrescriptionRequest;
 import org.cacanhdaden.quanlythuoc.model.model.Users;
 import org.cacanhdaden.quanlythuoc.util.Exception.InvalidInformationException;
@@ -22,14 +23,14 @@ public class RequestPrescriptionService {
     }
     private void getRequest() {
         request.setPatient_id(panel.getPatientIdTextField().getText());
-        request.setDoctor_id(((Users) panel.getDoctorComboBox().getSelectedItem()).getId());
+        request.setDoctor_id(((LoadDoctorDTO) panel.getDoctorComboBox().getSelectedItem()).getId());
         request.setReason(panel.getReasonTextArea().getText());
         request.setUpdated_at(String.valueOf(Date.valueOf(LocalDate.now())));
     }
     public void loadDoctor(){
         LoadDoctorDAO dao = new LoadDoctorDAO();
-        ArrayList<Users> doctors = dao.load();
-        for (Users u : doctors) {
+        ArrayList<LoadDoctorDTO> doctors = dao.load();
+        for (LoadDoctorDTO u : doctors) {
             this.panel.getDoctorComboBox().addItem(u);
         }
     }
@@ -44,7 +45,7 @@ public class RequestPrescriptionService {
                 getRequest();
                 checkIfReasonEmpty();
                 // ----
-                RequestPrescriptionDAO dao = new RequestPrescriptionDAO(request, (Users) panel.getDoctorComboBox().getSelectedItem());
+                RequestPrescriptionDAO dao = new RequestPrescriptionDAO(request, (LoadDoctorDTO) panel.getDoctorComboBox().getSelectedItem());
                 try {
                     dao.update();
                     panel.getReasonTextArea().setBorder(BorderFactory.createLineBorder(Color.GREEN));

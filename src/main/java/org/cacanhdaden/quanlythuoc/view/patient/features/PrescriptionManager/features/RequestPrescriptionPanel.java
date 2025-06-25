@@ -2,6 +2,7 @@ package org.cacanhdaden.quanlythuoc.view.patient.features.PrescriptionManager.fe
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
 import org.cacanhdaden.quanlythuoc.control.patient.PrescriptionManagerController.RequestPrescriptionController;
+import org.cacanhdaden.quanlythuoc.model.dto.LoadDoctorDTO;
 import org.cacanhdaden.quanlythuoc.model.model.Users;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 @Getter
 public class RequestPrescriptionPanel extends JPanel {
-    private final JComboBox<Users> doctorComboBox;
+    private final JComboBox<LoadDoctorDTO> doctorComboBox;
     private final JTextArea reasonTextArea;
     private final JButton submitButton;
     private final JLabel patientIdLabel;

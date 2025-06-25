@@ -2,6 +2,7 @@ package org.cacanhdaden.quanlythuoc.model.dao.PrescriptionManagerDAO;
 
 import lombok.AllArgsConstructor;
 import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
+import org.cacanhdaden.quanlythuoc.model.dto.LoadDoctorDTO;
 import org.cacanhdaden.quanlythuoc.model.model.Users;
 
 import java.sql.Connection;
@@ -11,8 +12,8 @@ import java.util.ArrayList;
 
 @AllArgsConstructor
 public class LoadDoctorDAO {
-    public ArrayList<Users> load(){
-        ArrayList<Users> doctors = new ArrayList<>();
+    public ArrayList<LoadDoctorDTO> load(){
+        ArrayList<LoadDoctorDTO> doctors = new ArrayList<>();
         try{
             Connection conn = MySQLConnection.getConnection();
             String sql = "select id, full_name, role from users where role = ?";
@@ -21,7 +22,7 @@ public class LoadDoctorDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                doctors.add(new Users(rs.getString("id"), rs.getString("full_name"), Users.RoleStatusEnum.DOCTOR));
+                doctors.add(new LoadDoctorDTO(rs.getString("id"), rs.getString("full_name") ));
             }
         }catch(Exception ex){
             throw new IllegalStateException(ex);

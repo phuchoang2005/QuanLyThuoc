@@ -9,12 +9,8 @@ public class EmailValidatorImp implements ValidatorInterface {
 
     private static void checkValidEmail(String email) throws InvalidInformationException {
         String regex = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
-        try{
-            if (!email.matches(regex)){
-                throw new InvalidInformationException("Email không hợp lệ");
-            }
-        }catch(InvalidInformationException exception){
-            throw new InvalidInformationException(exception.getMessage());
+        if (!email.matches(regex)){
+            throw new InvalidInformationException("Email không hợp lệ");
         }
     }
 

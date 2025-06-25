@@ -2,6 +2,7 @@ package org.cacanhdaden.quanlythuoc.model.dao.PrescriptionManagerDAO;
 
 import lombok.AllArgsConstructor;
 import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
+import org.cacanhdaden.quanlythuoc.model.dto.LoadDoctorDTO;
 import org.cacanhdaden.quanlythuoc.model.model.PrescriptionRequest;
 import org.cacanhdaden.quanlythuoc.model.model.Users;
 
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class RequestPrescriptionDAO {
     private final PrescriptionRequest request;
-    private final Users doctor;
+    private final LoadDoctorDTO doctor;
     public void update(){
         try{
             String sql = "insert into prescription_requests (patient_id, doctor_id, reason, updated_at) values (?, ?, ?, ?)";

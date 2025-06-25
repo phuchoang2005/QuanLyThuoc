@@ -3,6 +3,7 @@ package org.cacanhdaden.quanlythuoc.view.patient.features.PatientManager;
 import com.formdev.flatlaf.FlatClientProperties;
 import lombok.Getter;
 import org.cacanhdaden.quanlythuoc.control.patient.PatientManagerController.PatientManagerController;
+import org.cacanhdaden.quanlythuoc.util.Exception.InvalidInformationException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,7 +38,7 @@ public class PatientManagerPanel extends JPanel {
             this.dobTextField,
             this.gengerComboBox
     };
-    public PatientManagerPanel() {
+    public PatientManagerPanel(){
         configLayout();
         initComponent();
         changePassword();

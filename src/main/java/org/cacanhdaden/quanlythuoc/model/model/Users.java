@@ -21,14 +21,10 @@ public class Users {
     private RoleStatusEnum status;
     private String created_at = String.valueOf(Date.valueOf(LocalDate.now()));
     private String updated_at;
+
     public Users(final String email, final String hashedPassword){
         this.email = email;
         this.hashedPassword = hashedPassword;
-    }
-    public Users(final String id, final String full_name, final RoleStatusEnum role){
-        this.id = id;
-        this.full_name = full_name;
-        this.status = role;
     }
     public enum RoleStatusEnum{
         PATIENT, DOCTOR
