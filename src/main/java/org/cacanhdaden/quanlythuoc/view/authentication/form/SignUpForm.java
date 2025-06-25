@@ -6,6 +6,7 @@ import lombok.Getter;
 import javax.swing.*;
 import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 import org.cacanhdaden.quanlythuoc.control.authentication.SignUpController;
+import org.cacanhdaden.quanlythuoc.view.authentication.panel.PanelSignUp;
 import raven.datetime.DatePicker;
 
 @Getter
@@ -69,7 +70,7 @@ public class SignUpForm extends JPanel {
     }
 
     private void initComponents() {
-        panelSignUp = new org.cacanhdaden.quanlythuoc.view.authentication.form.PanelSignUp();
+        panelSignUp = new PanelSignUp();
         lbTitle = new JLabel("Đăng ký tài khoản", SwingConstants.CENTER);
         lbEmail = new JLabel("Email");
         lbPass = new JLabel("Mật khẩu");

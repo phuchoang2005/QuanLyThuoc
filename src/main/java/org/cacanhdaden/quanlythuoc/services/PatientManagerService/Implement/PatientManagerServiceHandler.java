@@ -7,6 +7,7 @@ public class PatientManagerServiceHandler {
     private final PatientManagerPanel panel;
     PatientManagerServiceHandlerBeforeSubmit handlerBeforeSubmit;
     PatientManagerServiceHandlerOnProgress handlerOnProgress;
+
     PatientManagerServiceHandler(final PatientManagerPanel panel) {
         this.panel = panel;
         handlerBeforeSubmit = new PatientManagerServiceHandlerBeforeSubmit(panel);

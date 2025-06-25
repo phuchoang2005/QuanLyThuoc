@@ -1,44 +1,24 @@
 package org.cacanhdaden.quanlythuoc.control.authentication;
 
+import org.cacanhdaden.quanlythuoc.model.dto.LoginDTO;
 import org.cacanhdaden.quanlythuoc.model.model.Users;
+import org.cacanhdaden.quanlythuoc.services.LoginService.Implement.LoginServiceImp;
+import org.cacanhdaden.quanlythuoc.services.LoginService.LoginServiceInterface;
 import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 import org.cacanhdaden.quanlythuoc.view.authentication.form.LoginForm;
 
 import javax.swing.*;
 public class LoginController {
-    private LoginForm loginForm;
+    private final LoginServiceInterface loginService;
 
     public LoginController(LoginForm loginForm) {
-        this.loginForm = loginForm;
-        handleLoginButtonClick();
-    }
+        this.loginService = new LoginServiceImp(loginForm);
 
-    void handleLoginButtonClick() {
-        String email = this.loginForm.getTxtUser().getText();
-        String password = new String(this.loginForm.getTxtPass().getPassword());
-        if (login(email, password)) {
-            // Login successful, proceed to the main application
-            Launch.showMainForm();
-        } else {
-            // Show error message
-            JOptionPane.showMessageDialog(
-                loginForm,
-                "Invalid email or password. Please try again.",
-                "Login Error",
-                JOptionPane.ERROR_MESSAGE
-            );
-        }
-    }
+        LoginDTO loginDTO = new LoginDTO(
+            loginForm.getTxtUser().getText(),
+            new String(loginForm.getTxtPass().getPassword())
+        );
 
-    private boolean login(String email, String password) {
-        Users users = new Users(email, password);
-        if (isValid(users)) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isValid(Users users) {
-        return !users.getEmail().isEmpty() && !users.getHashedPassword().isEmpty();
+        this.loginService.login(loginDTO);
     }
 }

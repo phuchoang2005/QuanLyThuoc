@@ -5,6 +5,7 @@ import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
 import org.cacanhdaden.quanlythuoc.control.authentication.LoginController;
 import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
+import org.cacanhdaden.quanlythuoc.view.authentication.panel.PanelLogin;
 
 import javax.swing.*;
 
@@ -28,6 +29,7 @@ public class LoginForm extends JPanel {
         initComponents();
         setupLayout();
         setupComponentStyle();
+        loadController();
     }
 
     private void setupLayout() {
@@ -43,7 +45,7 @@ public class LoginForm extends JPanel {
     }
 
     private void initComponents() {
-        panelLogin1 = new org.cacanhdaden.quanlythuoc.view.authentication.form.PanelLogin();
+        panelLogin1 = new PanelLogin();
         lbTitle = new JLabel("Đăng nhập", SwingConstants.CENTER);
         lbUser = new JLabel("Email / Số điện thoại");
         txtUser = new JTextField();
@@ -52,10 +54,6 @@ public class LoginForm extends JPanel {
         btnSignUp = new JButton("Đăng ký");
         btnForgotPassword = new JButton("Quên mật khẩu");
         btnLogin = new JButton("Đăng nhập");
-
-        btnLogin.addActionListener(e -> {
-            LoginController loginController = new LoginController(this);
-        });
 
         btnSignUp.addActionListener(e -> {
             Launch.showSignUpForm();
@@ -88,7 +86,7 @@ public class LoginForm extends JPanel {
         );
     }
 
-    /*private void onLogin() {
-        Application.login();
-    }*/
+    private void loadController() {
+        new LoginController(this);
+    }
 }

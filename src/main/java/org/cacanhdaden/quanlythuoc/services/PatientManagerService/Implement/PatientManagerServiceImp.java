@@ -18,7 +18,9 @@ public class PatientManagerServiceImp implements PatientManagerServiceInterface 
         this.panel = panel;
         handler = new PatientManagerServiceHandler(panel);
     }
-    public void update(){
+
+    @Override
+    public void update() {
         this.panel.getUpdateButton().addActionListener(e->{
             try {
                 handler.checkInformationValidBeforeSubmit();
@@ -35,6 +37,8 @@ public class PatientManagerServiceImp implements PatientManagerServiceInterface 
             }
         });
     }
+
+    @Override
     public void loadCurrentInformation() {
         this.panel.getIdJTextField().addFocusListener(new FocusAdapter() {
             @Override
@@ -48,6 +52,8 @@ public class PatientManagerServiceImp implements PatientManagerServiceInterface 
             }
         });
     }
+
+    @Override
     public void checkInformationValidOnProgress() {
         handler.checkInformationOnProgress();
     }

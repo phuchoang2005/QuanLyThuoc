@@ -7,6 +7,7 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
 import org.cacanhdaden.quanlythuoc.view.authentication.form.LoginForm;
 import org.cacanhdaden.quanlythuoc.view.authentication.form.SignUpForm;
+import org.cacanhdaden.quanlythuoc.view.authentication.form.OTPForgotPasswordForm;
 import org.cacanhdaden.quanlythuoc.view.patient.MainFormPatient;
 import raven.toast.Notifications;
 
@@ -20,11 +21,13 @@ public class Launch extends JFrame {
     private final MainFormPatient mainFormPatient;
     private final LoginForm loginForm;
     private final SignUpForm signUpForm;
+    private final OTPForgotPasswordForm otpForgotPasswordForm;
 
     public Launch() {
         this.mainFormPatient = new MainFormPatient();
         this.loginForm = new LoginForm();
         this.signUpForm = new SignUpForm();
+        this.otpForgotPasswordForm = new OTPForgotPasswordForm();
 
         initUI();
     }
@@ -69,6 +72,13 @@ public class Launch extends JFrame {
         FlatAnimatedLafChange.showSnapshot();
         Launch app = getInstance();
         app.switchContent(app.signUpForm);
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
+
+    public static void showOTPForgotPasswordForm() {
+        FlatAnimatedLafChange.showSnapshot();
+        Launch app = getInstance();
+        app.switchContent(app.otpForgotPasswordForm);
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 

@@ -1,4 +1,4 @@
-package org.cacanhdaden.quanlythuoc.view.authentication.form;
+package org.cacanhdaden.quanlythuoc.view.authentication.panel;
 
 
 import com.formdev.flatlaf.FlatClientProperties;
