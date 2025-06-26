@@ -1,3 +1,4 @@
+
 package org.cacanhdaden.quanlythuoc.model.dao;
 
 import lombok.Data;
@@ -12,12 +13,14 @@ public class PatientDAO {
 
     public List<Patient> getAllPatients() {
         List<Patient> patients = new ArrayList<>();
-        String sql = "SELECT u.id, u.full_name, u.age, u.gender, u.email, u.phone_number, " +
+        String sql = "SELECT u.id, u.full_name, " +
+                "YEAR(CURDATE()) - YEAR(u.date_of_birth) - (RIGHT(CURDATE(), 5) < RIGHT(u.date_of_birth, 5)) as age, " +
+                "u.gender, u.email, u.phone_number, " +
                 "MAX(p.created_at) as last_visit " +
                 "FROM users u " +
-                "LEFT JOIN prescriptions p ON u.user_id = p.patient_id " +
-                "WHERE u.role = 'patient' " +
-                "GROUP BY u.user_id, u.full_name, u.age, u.gender, u.email, u.phone_number";
+                "LEFT JOIN prescriptions p ON u.id = p.patient_id " +
+                "WHERE u.role = 'PATIENT' " +
+                "GROUP BY u.id, u.full_name, u.date_of_birth, u.gender, u.email, u.phone_number";
 
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -25,7 +28,7 @@ public class PatientDAO {
 
             while (rs.next()) {
                 Patient patient = new Patient();
-                patient.setPatientId(rs.getLong("user_id"));
+                patient.setPatientId(rs.getLong("id"));
                 patient.setFullName(rs.getString("full_name"));
                 patient.setAge(rs.getInt("age"));
                 patient.setGender(rs.getString("gender"));
@@ -47,7 +50,9 @@ public class PatientDAO {
     }
 
     public Patient getPatientById(long patientId) {
-        String sql = "SELECT * FROM users WHERE user_id = ? AND role = 'patient'";
+        String sql = "SELECT u.*, " +
+                "YEAR(CURDATE()) - YEAR(u.date_of_birth) - (RIGHT(CURDATE(), 5) < RIGHT(u.date_of_birth, 5)) as age " +
+                "FROM users u WHERE u.id = ? AND u.role = 'PATIENT'";
 
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -57,7 +62,7 @@ public class PatientDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     Patient patient = new Patient();
-                    patient.setPatientId(rs.getLong("user_id"));
+                    patient.setPatientId(rs.getLong("id"));
                     patient.setFullName(rs.getString("full_name"));
                     patient.setAge(rs.getInt("age"));
                     patient.setGender(rs.getString("gender"));

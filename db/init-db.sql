@@ -1,5 +1,5 @@
 -- Cài đặt encoding để hỗ trợ tiếng Việt
-CREATE DATABASE QLT;
+-- CREATE DATABASE QLT;
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 

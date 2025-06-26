@@ -53,12 +53,12 @@ public class MainFormDoctor extends JLayeredPane {
     private void initMenu() {
         menu.addMenuEvent((index, subIndex, action) -> {
             switch (index) {
-                case 0 -> Launch.showForm(new FormDashboard());
-                case 1 -> Launch.showForm(new FormPatientList());
+                case 0 -> showForm(new FormDashboard());
+                case 1 -> showForm(new FormPatientList());
                 case 2 -> {
                     switch (subIndex) {
-                        case 1 -> Launch.showForm(new FormManagePrescription());
-                        case 2 -> Launch.showForm(new FormMedicalRecord(0));
+                        case 1 -> showForm(new FormManagePrescription());
+                        case 2 -> showForm(new FormMedicalRecord(0));
                         default -> action.cancel();
                     }
                 }

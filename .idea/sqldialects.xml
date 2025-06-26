@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/db/DoctorProfiles.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/db/DrugInsertion.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/db/MedicationReminderInsertion.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/db/PasswordResetInsertion.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/db/PrescriptionDetailInsertion.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/db/PrescriptionInsertion.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/db/PrescriptionRequestInsertion.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/db/UserInsertion.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/db/init-db.sql" dialect="MySQL" />
+  </component>
+</project>
