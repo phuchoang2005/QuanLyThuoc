@@ -60,14 +60,14 @@ public class Launch extends JFrame {
             Launch app = getInstance();
             app.switchContent(app.mainFormPatient);
             setSelectedMenu(0, 0);
-            app.mainFormPatient.hideMenu();
+//            app.mainFormPatient.hideMenu();
             FlatAnimatedLafChange.hideSnapshotWithAnimation();
         } else {
             FlatAnimatedLafChange.showSnapshot();
             Launch app = getInstance();
             app.switchContent(app.mainFormDoctor);
             setSelectedMenu(0, 0);
-            app.mainFormPatient.hideMenu();
+//            app.mainFormDoctor.hideMenu();
             FlatAnimatedLafChange.hideSnapshotWithAnimation();
         }
     }
