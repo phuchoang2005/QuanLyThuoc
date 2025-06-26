@@ -9,6 +9,7 @@ import org.cacanhdaden.quanlythuoc.util.Exception.InvalidInformationException;
 import org.cacanhdaden.quanlythuoc.util.PasswordUtil;
 import org.cacanhdaden.quanlythuoc.util.validator.EmailValidatorImp;
 import org.cacanhdaden.quanlythuoc.util.validator.PhoneNumberValidatorImp;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -80,6 +81,7 @@ public class LoginDAO {
                                 rs3.getString("created_at"),
                                 rs3.getString("updated_at")
                             );
+                            Launch.loadUser(user);
                         }
                     }
                 }

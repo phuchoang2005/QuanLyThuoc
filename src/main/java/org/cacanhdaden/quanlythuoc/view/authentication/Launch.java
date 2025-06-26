@@ -5,6 +5,7 @@ import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
+import lombok.Setter;
 import org.cacanhdaden.quanlythuoc.model.model.Users;
 import org.cacanhdaden.quanlythuoc.view.authentication.form.*;
 import org.cacanhdaden.quanlythuoc.view.doctor.MainFormDoctor;
@@ -15,6 +16,7 @@ import javax.swing.*;
 import java.awt.*;
 
 @Getter
+@Setter
 public class Launch extends JFrame {
 
     private static Launch instance;
@@ -53,6 +55,14 @@ public class Launch extends JFrame {
         getInstance().mainFormPatient.showForm(component);
     }
 
+    public static void loadUser(Users user) {
+        getInstance().user = user;
+    }
+
+    public static Users getUser() {
+        return getInstance().user;
+    }
+
     public static void showMainForm(Users user) {
         getInstance().user = user;
         if (user.getStatus() == Users.RoleStatusEnum.PATIENT) {
@@ -60,14 +70,14 @@ public class Launch extends JFrame {
             Launch app = getInstance();
             app.switchContent(app.mainFormPatient);
             setSelectedMenu(0, 0);
-//            app.mainFormPatient.hideMenu();
+            app.mainFormDoctor.hideMenu();
             FlatAnimatedLafChange.hideSnapshotWithAnimation();
         } else {
             FlatAnimatedLafChange.showSnapshot();
             Launch app = getInstance();
             app.switchContent(app.mainFormDoctor);
             setSelectedMenu(0, 0);
-//            app.mainFormDoctor.hideMenu();
+            app.mainFormPatient.hideMenu();
             FlatAnimatedLafChange.hideSnapshotWithAnimation();
         }
     }

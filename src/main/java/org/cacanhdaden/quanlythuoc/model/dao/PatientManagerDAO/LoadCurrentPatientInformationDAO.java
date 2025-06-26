@@ -4,6 +4,7 @@ package org.cacanhdaden.quanlythuoc.model.dao.PatientManagerDAO;
 import lombok.AllArgsConstructor;
 import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
 import org.cacanhdaden.quanlythuoc.util.Converter.DateFormatConverter;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 import org.cacanhdaden.quanlythuoc.view.patient.features.PatientManager.PatientManagerPanel;
 
 import java.sql.Connection;
@@ -18,9 +19,11 @@ public class LoadCurrentPatientInformationDAO {
             String sql = "select * from users where id = ?";
             Connection conn = MySQLConnection.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, this.panel.getIdJTextField().getText());
+            ps.setString(1, Launch.getUser().getId());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                this.panel.getIdJTextField().setText(rs.getString("id"));
+                this.panel.getIdJTextField().setEditable(false);
                 this.panel.getFull_nameField().setText(rs.getString("full_name"));
                 this.panel.getEmailTextField().setText(rs.getString("email"));
                 this.panel.getDobTextField().setText(DateFormatConverter.convertToDDMMYYYY(rs.getString("date_of_birth")));

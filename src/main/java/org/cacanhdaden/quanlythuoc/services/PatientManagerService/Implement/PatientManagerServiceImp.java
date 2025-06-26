@@ -40,17 +40,12 @@ public class PatientManagerServiceImp implements PatientManagerServiceInterface 
 
     @Override
     public void loadCurrentInformation() {
-        this.panel.getIdJTextField().addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent eventListener){
-                try {
-                    final LoadCurrentPatientInformationDAO dao = new LoadCurrentPatientInformationDAO(panel);
-                    dao.load();
-                } catch (IllegalStateException e) {
-                    JOptionPane.showMessageDialog(panel,e.getMessage(),"Lỗi", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
+        try {
+            final LoadCurrentPatientInformationDAO dao = new LoadCurrentPatientInformationDAO(panel);
+            dao.load();
+        } catch (IllegalStateException e) {
+            JOptionPane.showMessageDialog(panel,e.getMessage(),"Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @Override

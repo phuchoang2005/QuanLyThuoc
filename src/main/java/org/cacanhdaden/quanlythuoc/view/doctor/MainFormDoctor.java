@@ -13,7 +13,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-@Data
+//@Data
 public class MainFormDoctor extends JLayeredPane {
 
     private final Menu menu;

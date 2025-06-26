@@ -18,15 +18,14 @@ public class Menu extends JPanel {
     private static final String[][] MENU_ITEMS = {
             {"~Trang chủ~"},
             {"Thông tin cá nhân"},
+            {"Danh sách bệnh nhân"},
             {"~Đơn thuốc~"},
-            {"Yêu cầu kê đơn", "Chi tiết đơn thuốc", "Lịch sử dùng thuốc"},
-            {"Tra cứu trực tuyến"},
-            {"Quản lý thông tin bệnh nhân"},
+            {"Quản lý đơn thuốc", "Đơn thuốc", "Hồ sơ bệnh án"},
             {"Logout"}
     };
 
     private final List<MenuEvent> events = new ArrayList<>();
-    private final String headerName = "Raven Channel";
+    private final String headerName = "Quản lý toa thuốc";
 
     private JLabel header;
     private JScrollPane scroll;
