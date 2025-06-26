@@ -4,6 +4,7 @@ import org.cacanhdaden.quanlythuoc.model.dao.authentication.ResetPasswordDAO;
 import org.cacanhdaden.quanlythuoc.model.dto.ResetPasswordDTO;
 import org.cacanhdaden.quanlythuoc.services.ResetPasswordService.ResetPasswordServiceInterface;
 import org.cacanhdaden.quanlythuoc.util.Exception.InvalidInformationException;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
 import org.cacanhdaden.quanlythuoc.view.authentication.form.ResetPasswordForm;
 
 import javax.swing.*;
@@ -30,6 +31,7 @@ public class ResetPasswordServiceImp implements ResetPasswordServiceInterface {
                             "Thông báo",
                             JOptionPane.INFORMATION_MESSAGE
                     );
+                    Launch.showLoginForm();
                 } else {
                     JOptionPane.showMessageDialog(
                             resetPasswordForm,

@@ -29,7 +29,6 @@ public class LoginForm extends JPanel {
         initComponents();
         setupLayout();
         setupComponentStyle();
-        loadController();
     }
 
     private void setupLayout() {
@@ -59,6 +58,14 @@ public class LoginForm extends JPanel {
             Launch.showSignUpForm();
         });
 
+        btnForgotPassword.addActionListener(e -> {
+            Launch.showForgotPasswordForm();
+        });
+
+        btnLogin.addActionListener(e -> {
+            LoginController loginController = new LoginController(this);
+        });
+
         panelLogin1.add(lbTitle);
         panelLogin1.add(lbUser);
         panelLogin1.add(txtUser);
@@ -84,9 +91,5 @@ public class LoginForm extends JPanel {
                                 .addComponent(panelLogin1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(96, Short.MAX_VALUE))
         );
-    }
-
-    private void loadController() {
-        new LoginController(this);
     }
 }

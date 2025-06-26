@@ -31,7 +31,7 @@ public class ForgotPasswordController {
             );
             String OTPcode = EmailSendingUtil.sendAuthOTPEmail(userInput);
             Launch.showOTPForgotPasswordForm();
-//            Launch.loadOTPForgotPasswordInfo(userInput, OTPcode);
+            Launch.loadOTPForgotPasswordInfo(userInput, OTPcode);
             return;
         } else {
             JOptionPane.showMessageDialog(
