@@ -5,8 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
-import org.cacanhdaden.quanlythuoc.model.object.Users;
-import org.cacanhdaden.quanlythuoc.util.PasswordUtil;
+import org.cacanhdaden.quanlythuoc.model.dto.ResetPasswordDTO;
+import org.cacanhdaden.quanlythuoc.util.Exception.InvalidInformationException;
+import org.cacanhdaden.quanlythuoc.util.validator.EmailValidatorImp;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,17 +18,21 @@ import java.sql.SQLException;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResetPasswordDAO {
-    private Users user;
+    private ResetPasswordDTO resetPasswordDTO;
 
-    public boolean handleResetPassword() {
+    public boolean handleResetPassword() throws InvalidInformationException {
+        if (!EmailValidatorImp.isEmail(resetPasswordDTO.getEmail())) {
+            throw new InvalidInformationException("Invalid email or phone number format");
+        }
+
         String sql = "UPDATE users SET password_hash = ? WHERE email = ?";
 
         try (
-                Connection conn = MySQLConnection.getConnection();
-                PreparedStatement ps = conn.prepareStatement(sql);
+            Connection conn = MySQLConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
         ) {
-            ps.setString(1, PasswordUtil.hashPassword(user.getPassword()));
-            ps.setString(2, user.getEmail());
+            ps.setString(1, resetPasswordDTO.getHashPassword());
+            ps.setString(2, resetPasswordDTO.getEmail());
 
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;

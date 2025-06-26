@@ -5,9 +5,7 @@ import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.Getter;
-import org.cacanhdaden.quanlythuoc.view.authentication.form.LoginForm;
-import org.cacanhdaden.quanlythuoc.view.authentication.form.SignUpForm;
-import org.cacanhdaden.quanlythuoc.view.authentication.form.OTPForgotPasswordForm;
+import org.cacanhdaden.quanlythuoc.view.authentication.form.*;
 import org.cacanhdaden.quanlythuoc.view.patient.MainFormPatient;
 import raven.toast.Notifications;
 
@@ -22,12 +20,16 @@ public class Launch extends JFrame {
     private final LoginForm loginForm;
     private final SignUpForm signUpForm;
     private final OTPForgotPasswordForm otpForgotPasswordForm;
+    private final ForgotPasswordForm forgotPasswordForm;
+    private final ResetPasswordForm resetPasswordForm;
 
     public Launch() {
         this.mainFormPatient = new MainFormPatient();
         this.loginForm = new LoginForm();
         this.signUpForm = new SignUpForm();
         this.otpForgotPasswordForm = new OTPForgotPasswordForm();
+        this.forgotPasswordForm = new ForgotPasswordForm();
+        this.resetPasswordForm = new ResetPasswordForm();
 
         initUI();
     }
@@ -80,6 +82,29 @@ public class Launch extends JFrame {
         Launch app = getInstance();
         app.switchContent(app.otpForgotPasswordForm);
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
+
+    public static void showForgotPasswordForm() {
+        FlatAnimatedLafChange.showSnapshot();
+        Launch app = getInstance();
+        app.switchContent(app.forgotPasswordForm);
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
+
+    public static void showResetPasswordForm() {
+        FlatAnimatedLafChange.showSnapshot();
+        Launch app = getInstance();
+        app.switchContent(app.resetPasswordForm);
+        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    }
+
+    public static void loadOTPForgotPasswordInfo(String email, String OTPCode) {
+        getInstance().otpForgotPasswordForm.setEmail(email);
+        getInstance().otpForgotPasswordForm.setOTPCode(OTPCode);
+    }
+
+    public static void loadResetPasswordInfo(String email) {
+        getInstance().resetPasswordForm.setEmail(email);
     }
 
     public static void setSelectedMenu(int index, int subIndex) {

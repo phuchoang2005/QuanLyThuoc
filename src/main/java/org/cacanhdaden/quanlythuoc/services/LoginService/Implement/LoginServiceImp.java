@@ -4,7 +4,6 @@ import org.cacanhdaden.quanlythuoc.model.dao.authentication.LoginDAO;
 import org.cacanhdaden.quanlythuoc.model.dto.LoginDTO;
 import org.cacanhdaden.quanlythuoc.services.LoginService.LoginServiceInterface;
 import org.cacanhdaden.quanlythuoc.util.Exception.InvalidInformationException;
-import org.cacanhdaden.quanlythuoc.util.validator.EmailValidatorImp;
 import org.cacanhdaden.quanlythuoc.view.authentication.form.LoginForm;
 
 import javax.swing.*;
@@ -24,7 +23,7 @@ public class LoginServiceImp implements LoginServiceInterface {
         this.loginForm.getBtnLogin().addActionListener(e -> {
             try {
                 LoginDAO loginDAO = new LoginDAO(loginDTO);
-                if (loginDAO.checkLogin()) {
+                if (loginDAO.handleLogin()) {
                     JOptionPane.showMessageDialog(
                             loginForm,
                             "Đăng nhập thành công",

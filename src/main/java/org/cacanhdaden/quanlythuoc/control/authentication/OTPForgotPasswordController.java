@@ -3,8 +3,8 @@ package org.cacanhdaden.quanlythuoc.control.authentication;
 import lombok.Getter;
 import lombok.Setter;
 import org.cacanhdaden.quanlythuoc.util.EmailSendingUtil;
-import org.cacanhdaden.quanlythuoc.view.login.Launch;
-import org.cacanhdaden.quanlythuoc.view.login.form.OTPForgotPasswordForm;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
+import org.cacanhdaden.quanlythuoc.view.authentication.form.OTPForgotPasswordForm;
 
 import javax.swing.*;
 

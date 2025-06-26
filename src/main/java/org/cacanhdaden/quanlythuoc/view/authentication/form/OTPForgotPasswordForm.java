@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.miginfocom.swing.MigLayout;
 import org.cacanhdaden.quanlythuoc.control.authentication.OTPForgotPasswordController;
-import org.cacanhdaden.quanlythuoc.view.login.panel.PanelGenericOTPFillIn;
+import org.cacanhdaden.quanlythuoc.view.authentication.panel.PanelGenericOTPFillIn;
 
 import javax.swing.*;
 

@@ -4,74 +4,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.cacanhdaden.quanlythuoc.model.dao.authentication.ResetPasswordDAO;
-import org.cacanhdaden.quanlythuoc.model.object.Users;
-import org.cacanhdaden.quanlythuoc.view.login.Launch;
-import org.cacanhdaden.quanlythuoc.view.login.form.ResetPasswordForm;
+import org.cacanhdaden.quanlythuoc.model.dto.ResetPasswordDTO;
+import org.cacanhdaden.quanlythuoc.model.model.Users;
+import org.cacanhdaden.quanlythuoc.services.ResetPasswordService.Implement.ResetPasswordServiceImp;
+import org.cacanhdaden.quanlythuoc.services.ResetPasswordService.ResetPasswordServiceInterface;
+import org.cacanhdaden.quanlythuoc.util.PasswordUtil;
+import org.cacanhdaden.quanlythuoc.view.authentication.Launch;
+import org.cacanhdaden.quanlythuoc.view.authentication.form.ResetPasswordForm;
 
 import javax.swing.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
 public class ResetPasswordController {
-    private ResetPasswordForm resetPasswordForm;
+    private final ResetPasswordServiceInterface resetPasswordService;
 
     public ResetPasswordController(ResetPasswordForm resetPasswordForm) {
-        this.resetPasswordForm = resetPasswordForm;
-        handleResetButtonClick();
-    }
+        this.resetPasswordService = new ResetPasswordServiceImp(resetPasswordForm);
 
-    private void handleResetButtonClick() {
-        String email = resetPasswordForm.getEmail();
-        String password = new String(resetPasswordForm.getTxtPass().getPassword());
-        String confirmPassword = new String(resetPasswordForm.getTxtConfirmPass().getPassword());
-
-        if (
-            password.isEmpty() ||
-            confirmPassword.isEmpty()
-        ) {
-            JOptionPane.showMessageDialog(
-                    resetPasswordForm,
-                    "Vui lòng nhập đầy đủ thông tin",
-                    "Lỗi nhập thông tin",
-                    JOptionPane.ERROR_MESSAGE
-            );
-        }
-
-        if (!password.contentEquals(confirmPassword)) {
-            JOptionPane.showMessageDialog(
-                    resetPasswordForm,
-                    "Mật khẩu và xác nhận mật khẩu không khớp",
-                    "Lỗi nhập thông tin",
-                    JOptionPane.ERROR_MESSAGE
-            );
-        }
-
-        Users user = Users.EmailUsers(
-            email,
-            password
+        ResetPasswordDTO resetPasswordDTO = new ResetPasswordDTO(
+            resetPasswordForm.getEmail(),
+            new String(resetPasswordForm.getTxtPass().getPassword()),
+            PasswordUtil.hashPassword(new String(resetPasswordForm.getTxtPass().getPassword()))
         );
 
-        if (resetPassword(user)) {
-            JOptionPane.showMessageDialog(
-                    resetPasswordForm,
-                    "Đặt lại mật khẩu thành công",
-                    "Thành công",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-            Launch.showLoginForm();
-        } else {
-            JOptionPane.showMessageDialog(
-                    resetPasswordForm,
-                    "Đặt lại mật khẩu không thành công. Vui lòng kiểm tra lại thông tin.",
-                    "Lỗi đặt lại mật khẩu",
-                    JOptionPane.ERROR_MESSAGE
-            );
-        }
-    }
-
-    private boolean resetPassword(Users user) {
-        ResetPasswordDAO resetPasswordDAO = new ResetPasswordDAO(user);
-        return resetPasswordDAO.handleResetPassword();
+        this.resetPasswordService.resetPassword(resetPasswordDTO);
     }
 }

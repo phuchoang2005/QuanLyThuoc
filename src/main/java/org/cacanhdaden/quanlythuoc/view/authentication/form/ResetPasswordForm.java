@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.miginfocom.swing.MigLayout;
 import org.cacanhdaden.quanlythuoc.control.authentication.ResetPasswordController;
-import org.cacanhdaden.quanlythuoc.view.login.panel.PanelResetPassword;
+import org.cacanhdaden.quanlythuoc.view.authentication.panel.PanelResetPassword;
 
 import javax.swing.*;
 

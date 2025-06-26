@@ -1,10 +1,8 @@
 package org.cacanhdaden.quanlythuoc.model.dao.authentication;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.cacanhdaden.quanlythuoc.model.dao.MySQLConnection;
 import org.cacanhdaden.quanlythuoc.model.dto.LoginDTO;
-import org.cacanhdaden.quanlythuoc.model.model.Users;
 import org.cacanhdaden.quanlythuoc.util.Exception.InvalidInformationException;
 import org.cacanhdaden.quanlythuoc.util.PasswordUtil;
 import org.cacanhdaden.quanlythuoc.util.validator.EmailValidatorImp;
@@ -19,7 +17,7 @@ import java.sql.SQLException;
 public class LoginDAO {
     private LoginDTO loginDTO;
 
-    public boolean checkLogin() throws SQLException, InvalidInformationException {
+    public boolean handleLogin() throws SQLException, InvalidInformationException {
         String qry1 = null;
         String qry2 = null;
         boolean result = false;
